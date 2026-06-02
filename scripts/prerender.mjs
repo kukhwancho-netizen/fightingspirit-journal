@@ -37,7 +37,12 @@ const TOPIC_PAGES = [
     title: '인테리어 하자 분쟁 대응 저널',
     description: '인테리어 공사 하자, 부실시공, 하자보수, 손해배상, 공사대금 방어 쟁점을 모은 조국환 변호사팀의 실무 저널입니다.',
     keywords: ['인테리어', '하자', '부실시공', '하자보수', '손해배상', '공사대금', '상계'],
-    checkpoints: ['계약서와 견적서의 공사 범위 특정', '하자 사진·영상·감정자료 확보', '하자보수 요구와 대금 지급 거절의 순서', '손해배상·상계 항변의 증명 구조']
+    checkpoints: ['계약서와 견적서의 공사 범위 특정', '하자 사진·영상·감정자료 확보', '하자보수 요구와 대금 지급 거절의 순서', '손해배상·상계 항변의 증명 구조'],
+    faq: [
+      ['인테리어 하자 분쟁에서 먼저 확보할 자료는 무엇인가요?', '계약서, 견적서, 설계도면, 시공 전후 사진, 하자 부위 영상, 하자보수 요청 내역, 대금 지급 자료를 함께 정리하는 것이 출발점입니다.'],
+      ['하자가 있으면 공사대금 지급을 거절할 수 있나요?', '하자의 정도, 계약 내용, 이미 완성된 공사의 가치, 하자보수 가능성에 따라 판단이 달라집니다. 지급 거절, 감액, 손해배상, 상계 주장을 구분해 검토해야 합니다.'],
+      ['인테리어 하자 감정은 언제 필요하나요?', '하자 원인, 보수비, 미시공 범위, 완성도를 다투는 사건에서는 사진만으로 부족할 수 있어 감정 절차가 핵심 쟁점이 되는 경우가 많습니다.']
+    ]
   },
   {
     slug: '공사대금-청구소송',
@@ -46,7 +51,12 @@ const TOPIC_PAGES = [
     title: '공사대금 청구소송 실무 저널',
     description: '공사대금 청구소송, 하자 항변, 상계, 추가공사대금, 기성고 다툼과 관련한 판례·실무 쟁점을 정리합니다.',
     keywords: ['공사대금', '청구소송', '하자', '항변', '상계', '추가공사', '기성고'],
-    checkpoints: ['도급계약·견적서·정산합의의 우선순위', '추가공사 지시와 승인 자료', '하자 항변과 상계 주장의 입증자료', '기성고·완성도·감정 절차의 대응']
+    checkpoints: ['도급계약·견적서·정산합의의 우선순위', '추가공사 지시와 승인 자료', '하자 항변과 상계 주장의 입증자료', '기성고·완성도·감정 절차의 대응'],
+    faq: [
+      ['공사대금 청구소송에서 핵심 쟁점은 무엇인가요?', '계약상 공사 범위, 완성 여부, 기성고, 추가공사 합의, 하자 존재, 정산 합의가 주된 쟁점입니다. 각 쟁점마다 필요한 증거가 다릅니다.'],
+      ['하자 항변과 상계는 어떻게 다릅니까?', '하자 항변은 청구된 공사대금의 지급 범위 자체를 다투는 주장이고, 상계는 별도의 손해배상채권 등을 공사대금채권과 맞세우는 구조입니다.'],
+      ['추가공사대금은 어떤 자료로 입증하나요?', '추가공사 지시, 견적 변경, 메시지, 현장 사진, 자재 반입 내역, 정산서, 세금계산서 등 실제 합의와 시공을 보여주는 자료가 중요합니다.']
+    ]
   },
   {
     slug: '건설-하자-분쟁',
@@ -55,7 +65,12 @@ const TOPIC_PAGES = [
     title: '건설 하자 분쟁 대응 저널',
     description: '건설 하자, 하자보수, 손해배상, 감정, 도급계약 분쟁에서 자주 문제 되는 법률 쟁점을 모았습니다.',
     keywords: ['건설', '하자', '하자보수', '손해배상', '감정', '도급', '부실시공'],
-    checkpoints: ['하자 발생 시점과 책임기간', '하자보수비 산정과 감정 신청', '사용승인·인도 이후 발견된 하자', '도급인·수급인·하수급인 책임 구분']
+    checkpoints: ['하자 발생 시점과 책임기간', '하자보수비 산정과 감정 신청', '사용승인·인도 이후 발견된 하자', '도급인·수급인·하수급인 책임 구분'],
+    faq: [
+      ['건설 하자 분쟁에서 하자보수비는 어떻게 산정하나요?', '하자의 범위, 보수 방법, 자재와 인건비, 철거·재시공 필요성, 감정 결과에 따라 산정됩니다. 단순 견적만으로는 다툼이 남을 수 있습니다.'],
+      ['사용승인 후 발견된 하자도 문제 삼을 수 있나요?', '사용승인이나 인도 이후 발견된 하자라도 계약 내용, 보증기간, 하자 성격, 발견 시점에 따라 책임 추궁 가능성이 달라집니다.'],
+      ['건설 하자 소송에서 감정이 중요한 이유는 무엇인가요?', '하자의 원인과 보수비는 전문 판단이 필요한 경우가 많아, 감정 결과가 손해액과 책임 범위를 가르는 핵심 자료가 될 수 있습니다.']
+    ]
   },
   {
     slug: '상가-임대차-원상회복',
@@ -64,7 +79,12 @@ const TOPIC_PAGES = [
     title: '상가 임대차 원상회복 분쟁 저널',
     description: '상가 임대차 종료, 원상회복, 보증금 반환, 시설물 철거와 관련한 임대인·임차인 분쟁 쟁점을 다룹니다.',
     keywords: ['상가', '임대차', '원상회복', '보증금', '시설물', '철거', '임차인', '임대인'],
-    checkpoints: ['임대차계약서의 원상회복 특약', '입점 전 상태와 인테리어 변경 범위', '보증금 공제와 원상회복 비용 산정', '권리금·시설물 인수와 철거 책임']
+    checkpoints: ['임대차계약서의 원상회복 특약', '입점 전 상태와 인테리어 변경 범위', '보증금 공제와 원상회복 비용 산정', '권리금·시설물 인수와 철거 책임'],
+    faq: [
+      ['상가 임대차 원상회복 범위는 어떻게 정해지나요?', '계약서 특약, 입점 당시 상태, 임대인의 동의, 시설물 설치 경위, 권리금·시설 인수 약정 등을 종합해 판단합니다.'],
+      ['임대인이 보증금에서 원상회복 비용을 공제할 수 있나요?', '원상회복 의무와 비용 발생이 인정되는 범위에서는 공제가 문제될 수 있지만, 비용의 필요성과 금액은 별도로 다툴 수 있습니다.'],
+      ['이전 임차인의 시설을 인수한 경우에도 철거해야 하나요?', '시설 인수 약정, 임대인의 승낙, 계약 종료 시 특약에 따라 달라집니다. 인수 사실만으로 항상 철거 책임이 사라지는 것은 아닙니다.']
+    ]
   },
   {
     slug: '부동산-가압류',
@@ -73,7 +93,12 @@ const TOPIC_PAGES = [
     title: '부동산 가압류 실무 저널',
     description: '부동산 가압류 신청, 보전처분, 담보제공, 집행해제와 관련한 실무상 판단 기준을 정리합니다.',
     keywords: ['부동산', '가압류', '보전처분', '담보제공', '집행해제', '채권', '강제집행'],
-    checkpoints: ['피보전권리와 보전의 필요성 소명', '부동산 시가·선순위 권리 확인', '담보제공 방식과 금액 예상', '가압류 이의·취소·해제 대응']
+    checkpoints: ['피보전권리와 보전의 필요성 소명', '부동산 시가·선순위 권리 확인', '담보제공 방식과 금액 예상', '가압류 이의·취소·해제 대응'],
+    faq: [
+      ['부동산 가압류를 신청하려면 무엇을 소명해야 하나요?', '채권이 존재한다는 피보전권리와, 판결 전 재산 보전이 필요하다는 보전의 필요성을 자료로 소명해야 합니다.'],
+      ['부동산 가압류 담보금은 어떻게 정해지나요?', '청구금액, 부동산 가치, 사안의 소명 정도, 상대방 손해 가능성 등을 고려해 법원이 담보제공 방식을 정합니다.'],
+      ['이미 가압류된 부동산을 해제할 수 있나요?', '담보 제공, 이의·취소 신청, 본안 진행 상황, 채권 소멸 사유 등에 따라 해제나 취소를 검토할 수 있습니다.']
+    ]
   },
   {
     slug: '명도소송',
@@ -82,7 +107,12 @@ const TOPIC_PAGES = [
     title: '명도소송·점유이전 대응 저널',
     description: '명도소송, 점유이전금지가처분, 임대차 종료, 불법점유와 관련한 소송 전략과 판례 쟁점을 모았습니다.',
     keywords: ['명도소송', '명도', '점유', '점유이전금지가처분', '임대차', '불법점유', '인도'],
-    checkpoints: ['임대차 종료 사유와 해지 통지', '점유자 특정과 점유이전금지가처분', '차임 연체·무단점유 자료 확보', '인도 집행 전후 비용 정산']
+    checkpoints: ['임대차 종료 사유와 해지 통지', '점유자 특정과 점유이전금지가처분', '차임 연체·무단점유 자료 확보', '인도 집행 전후 비용 정산'],
+    faq: [
+      ['명도소송 전에 점유이전금지가처분이 필요한가요?', '점유자가 바뀔 위험이 있거나 실제 점유관계가 불안정한 경우에는 본안 소송 전 가처분을 함께 검토하는 경우가 많습니다.'],
+      ['차임 연체만으로 명도소송이 가능한가요?', '연체 기간과 금액, 계약 해지 통지, 임대차 종류, 갱신 여부에 따라 다릅니다. 해지 요건과 통지 자료를 먼저 확인해야 합니다.'],
+      ['명도 판결 후 바로 강제집행이 가능한가요?', '판결 확정 여부, 집행문, 송달·확정증명, 점유자 특정, 현장 상황 등 집행 요건을 갖춘 뒤 강제집행 절차로 넘어갑니다.']
+    ]
   }
 ];
 
@@ -644,8 +674,7 @@ function topicPageHtml(topic, postsForTopic, allPosts) {
   const desc = topic.description;
   const keywords = uniqueList([topic.name, ...topic.keywords, '공간분쟁', '조국환변호사', 'AUCTORITAS']);
 
-  const jsonld = {
-    "@context": "https://schema.org",
+  const collectionJsonld = {
     "@type": "CollectionPage",
     "name": topic.title,
     "description": desc,
@@ -663,6 +692,29 @@ function topicPageHtml(topic, postsForTopic, allPosts) {
         "name": p.title
       }))
     }
+  };
+  const faqJsonld = {
+    "@type": "FAQPage",
+    "mainEntity": (topic.faq || []).map(([question, answer]) => ({
+      "@type": "Question",
+      "name": question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": answer
+      }
+    }))
+  };
+  const breadcrumbJsonld = {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "AUCTORITAS LAB", "item": `${SITE}/` },
+      { "@type": "ListItem", "position": 2, "name": "주요 주제", "item": `${SITE}/topic/` },
+      { "@type": "ListItem", "position": 3, "name": topic.name, "item": pageUrl }
+    ]
+  };
+  const jsonld = {
+    "@context": "https://schema.org",
+    "@graph": [collectionJsonld, faqJsonld, breadcrumbJsonld]
   };
 
   const rows = listedPosts.length ? listedPosts.map(p => {
@@ -683,6 +735,12 @@ function topicPageHtml(topic, postsForTopic, allPosts) {
     ? `<span class="topic-chip active">${escHtml(x.name)}</span>`
     : `<a class="topic-chip" href="./${encodeURIComponent(x.slug)}.html">${escHtml(x.name)}</a>`
   ).join('');
+  const faqRows = (topic.faq || []).map(([question, answer]) => `
+    <details class="faq-item">
+      <summary>${escHtml(question)}</summary>
+      <p>${escHtml(answer)}</p>
+    </details>
+  `).join('');
 
   return `<!DOCTYPE html>
 <html lang="ko">
@@ -727,6 +785,12 @@ ${discoveryLinksHtml()}
 .checkpoint ul{display:grid;grid-template-columns:repeat(2,1fr);gap:12px 24px;margin:0;padding:0;list-style:none}
 .checkpoint li{font-family:var(--sans);font-size:14px;line-height:1.65;color:var(--ink);padding-left:16px;position:relative}
 .checkpoint li::before{content:'';position:absolute;left:0;top:.75em;width:5px;height:5px;background:var(--vermillion)}
+.faq{padding:48px 0;border-bottom:1px solid var(--line)}
+.faq .h{font-family:var(--label);font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--fg-3);margin-bottom:18px}
+.faq-item{border-top:1px solid var(--line);font-family:var(--sans)}
+.faq-item:last-child{border-bottom:1px solid var(--line)}
+.faq-item summary{cursor:pointer;padding:18px 0;font-size:16px;font-weight:800;line-height:1.45;color:var(--ink);letter-spacing:-.012em}
+.faq-item p{margin:0 0 20px;font-size:14px;line-height:1.8;color:var(--fg-2);max-width:74ch}
 .topic-list{border-top:1px solid var(--line);margin-top:8px}
 .empty-topic{padding:28px 0;border-bottom:1px solid var(--line);font-family:var(--sans);font-size:14px;line-height:1.8;color:var(--fg-2)}
 .topic-row{display:grid;grid-template-columns:120px 1fr 110px;align-items:center;gap:28px;padding:24px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink);transition:padding var(--d-base) var(--ease),background var(--d-fast) var(--ease)}
@@ -770,6 +834,11 @@ ${navHtml()}
   <section class="checkpoint" aria-label="실무 체크포인트">
     <div class="h">Checkpoints</div>
     <ul>${(topic.checkpoints || []).map(x => `<li>${escHtml(x)}</li>`).join('')}</ul>
+  </section>
+
+  <section class="faq" aria-label="자주 묻는 질문">
+    <div class="h">Questions</div>
+    ${faqRows}
   </section>
 
   <div class="topic-list">${rows}</div>
@@ -914,6 +983,7 @@ function searchIndexJson(posts, tagIndex, topicIndex) {
       url: topicUrl(topic),
       description: topic.description,
       keywords: uniqueList([topic.name, ...topic.keywords]),
+      faq: (topic.faq || []).map(([question, answer]) => ({ question, answer })),
       articleCount: postsForTopic.length,
       articles: postsForTopic.map(p => ({ title: p.title, url: articleUrl(p) }))
     })),
