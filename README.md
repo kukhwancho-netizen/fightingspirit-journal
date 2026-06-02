@@ -75,6 +75,8 @@ npm run audit
 
 `CNAME`은 `journal.fightingspirit.kr`로 설정되어 있습니다. GitHub Pages 또는 정적 호스팅에서 저장소 루트를 배포 루트로 사용하면 됩니다.
 
+DNS와 검색 제출 절차는 [DEPLOYMENT.md](DEPLOYMENT.md)를 기준으로 확인합니다.
+
 배포 직후 검색엔진에 제출할 핵심 URL:
 
 ```text
