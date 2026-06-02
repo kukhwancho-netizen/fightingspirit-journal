@@ -132,6 +132,7 @@ function normalizeSourceText(raw) {
   text = text.replace(/<\/?[^>]+>/g, '');
   text = text.replace(/^[ \t]*Q\d+\.?[ \t]*/gim, '');
   text = text.replace(/^[ \t]*Q\.?[ \t]*/gim, '');
+  text = text.replace(/^(#{2,3}\s+[^\n]+)\n(?!\n)/gm, '$1\n\n');
   text = text.replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
   text = text.replaceAll(AUTHOR_LINE, '').trim();
   return text;
@@ -142,6 +143,22 @@ function looksLikeHeading(block) {
   if (!line || line.includes('\n')) return false;
   if (/[.?!。]$/.test(line)) return false;
   return line.length <= 42;
+}
+
+function markdownTableText(block) {
+  const lines = block.split('\n').map(line => line.trim()).filter(Boolean);
+  if (lines.length < 2 || !lines.every(line => line.startsWith('|') && line.endsWith('|'))) return null;
+  const rows = lines
+    .map(line => line.split('|').slice(1, -1).map(cell => cell.trim()).filter(Boolean))
+    .filter(cells => cells.length);
+  const contentRows = rows.filter(cells => !cells.every(cell => /^:?-{3,}:?$/.test(cell)));
+  if (contentRows.length < 2) return null;
+  const [headers, ...bodyRows] = contentRows;
+  const body = bodyRows.map(cells => {
+    const [label, ...rest] = cells;
+    return rest.length ? `${label}: ${rest.join(' / ')}` : label;
+  });
+  return [`**${headers.join(' / ')}**`, ...body].join('\n');
 }
 
 function normalizeBodyText(raw) {
@@ -159,6 +176,11 @@ function normalizeBodyHtml(raw) {
   for (const block of blocks) {
     const normalized = block.replace(/^#{2,3}\s+/, '').trim();
     if (!normalized) continue;
+    const tableText = markdownTableText(block);
+    if (tableText) {
+      html.push(`<p>${inlineHtml(tableText).replace(/\n/g, '<br>')}</p>`);
+      continue;
+    }
     if (/^자주\s*묻는\s*질문$/.test(normalized)) {
       html.push('<h2>자주 묻는 질문</h2>');
       inFaq = true;
