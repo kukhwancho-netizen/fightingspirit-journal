@@ -103,9 +103,9 @@
     },
     {
       "type": "ListTopicArticles",
-      "url_template": "https://journal.fightingspirit.kr/topic/{topic-slug}.html",
+      "url_template": "https://journal.fightingspirit.kr/topic/{한글-주제-slug}.html",
       "method": "GET",
-      "description": "검색 주제별 저널 허브를 가져옵니다. 예: construction-payment-lawsuit, interior-defect-dispute."
+      "description": "검색 주제별 저널 허브를 가져옵니다. 예: 공사대금-청구소송, 인테리어-하자-분쟁. 기존 영문 slug URL은 호환용 redirect입니다."
     },
     {
       "type": "ListArticles",

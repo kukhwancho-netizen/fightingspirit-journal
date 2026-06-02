@@ -29,7 +29,7 @@ AUCTORITAS LAB / 조국환 변호사팀 저널 전용 정적 사이트입니다.
 - 부동산 가압류
 - 명도소송
 
-각 허브는 `topic/{topic-slug}.html`로 생성되고, `topic/index.html`은 전체 주제 인덱스로 생성됩니다. 관련 글은 자동으로 묶어 `CollectionPage` JSON-LD, `search-index.json`, sitemap에 포함합니다.
+각 허브는 검색어와 같은 한글 정규 URL(`topic/공사대금-청구소송.html` 등)로 생성되고, 기존 영문 slug URL은 `noindex,follow` 호환 redirect로 남깁니다. `topic/index.html`은 전체 주제 인덱스로 생성됩니다. 관련 글은 자동으로 묶어 `CollectionPage` JSON-LD, `search-index.json`, sitemap에 포함합니다.
 
 ## 빌드
 

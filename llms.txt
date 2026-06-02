@@ -16,12 +16,12 @@
 ## Topic Hubs — 검색 주제별
 
 - [전체 주제 인덱스](https://journal.fightingspirit.kr/topic/): 주요 공간분쟁 검색 주제 전체
-- [인테리어 하자 분쟁](https://journal.fightingspirit.kr/topic/interior-defect-dispute.html): 부실시공·하자보수·손해배상·공사대금 방어
-- [공사대금 청구소송](https://journal.fightingspirit.kr/topic/construction-payment-lawsuit.html): 하자 항변·상계·추가공사대금·기성고
-- [건설 하자 분쟁](https://journal.fightingspirit.kr/topic/construction-defect-dispute.html): 건설 하자·감정·도급계약·하자보수
-- [상가 임대차 원상회복](https://journal.fightingspirit.kr/topic/lease-restoration.html): 시설물 철거·보증금 반환·원상회복 범위
-- [부동산 가압류](https://journal.fightingspirit.kr/topic/real-estate-provisional-attachment.html): 보전처분·담보제공·집행해제
-- [명도소송](https://journal.fightingspirit.kr/topic/eviction-lawsuit.html): 점유이전금지가처분·임대차 종료·불법점유
+- [인테리어 하자 분쟁](https://journal.fightingspirit.kr/topic/인테리어-하자-분쟁.html): 부실시공·하자보수·손해배상·공사대금 방어
+- [공사대금 청구소송](https://journal.fightingspirit.kr/topic/공사대금-청구소송.html): 하자 항변·상계·추가공사대금·기성고
+- [건설 하자 분쟁](https://journal.fightingspirit.kr/topic/건설-하자-분쟁.html): 건설 하자·감정·도급계약·하자보수
+- [상가 임대차 원상회복](https://journal.fightingspirit.kr/topic/상가-임대차-원상회복.html): 시설물 철거·보증금 반환·원상회복 범위
+- [부동산 가압류](https://journal.fightingspirit.kr/topic/부동산-가압류.html): 보전처분·담보제공·집행해제
+- [명도소송](https://journal.fightingspirit.kr/topic/명도소송.html): 점유이전금지가처분·임대차 종료·불법점유
 
 ## Indexes (에이전트용)
 
