@@ -14,6 +14,7 @@ AUCTORITAS LAB / 조국환 변호사팀 저널 전용 정적 사이트입니다.
 - `topic/`: 빌드 시 생성되는 검색 주제 허브
 - `tag/`: 빌드 시 생성되는 태그 아카이브
 - `sitemap.xml`: 검색엔진 제출용 URL 목록
+- `search-index.json`: 주제·태그·글 URL 구조화 목록
 - `llms.txt`, `llms-full.txt`: AI 검색·요약 에이전트용 콘텐츠 맵
 
 ## 검색 주제 허브
@@ -27,7 +28,7 @@ AUCTORITAS LAB / 조국환 변호사팀 저널 전용 정적 사이트입니다.
 - 부동산 가압류
 - 명도소송
 
-각 허브는 `topic/{topic-slug}.html`로 생성되고, 관련 글을 자동으로 묶어 `CollectionPage` JSON-LD와 sitemap에 포함합니다.
+각 허브는 `topic/{topic-slug}.html`로 생성되고, `topic/index.html`은 전체 주제 인덱스로 생성됩니다. 관련 글은 자동으로 묶어 `CollectionPage` JSON-LD, `search-index.json`, sitemap에 포함합니다.
 
 ## 빌드
 

@@ -15,6 +15,7 @@
 
 ## Topic Hubs — 검색 주제별
 
+- [전체 주제 인덱스](https://journal.fightingspirit.kr/topic/): 주요 공간분쟁 검색 주제 전체
 - [인테리어 하자 분쟁](https://journal.fightingspirit.kr/topic/interior-defect-dispute.html): 부실시공·하자보수·손해배상·공사대금 방어
 - [공사대금 청구소송](https://journal.fightingspirit.kr/topic/construction-payment-lawsuit.html): 하자 항변·상계·추가공사대금·기성고
 - [건설 하자 분쟁](https://journal.fightingspirit.kr/topic/construction-defect-dispute.html): 건설 하자·감정·도급계약·하자보수
@@ -27,6 +28,7 @@
 - [전체 글 목록](https://journal.fightingspirit.kr/journal.html): HTML 목록
 - [RSS 피드](https://journal.fightingspirit.kr/feed.xml): 최신 30건 (RSS 2.0)
 - [전체 본문 합본](https://journal.fightingspirit.kr/llms-full.txt): published 글 전체 (plain text)
+- [검색 인덱스 JSON](https://journal.fightingspirit.kr/search-index.json): 주제·태그·글 URL 구조화 목록
 - [Sitemap](https://journal.fightingspirit.kr/sitemap.xml): 모든 글의 정규 URL
 - [Agent manifest](https://journal.fightingspirit.kr/.well-known/agent.json): 사이트 신원·카테고리·라이선스·액션 JSON
 

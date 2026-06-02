@@ -772,6 +772,135 @@ ${footerHtml()}
 </html>`;
 }
 
+function topicIndexHtml(topicIndex) {
+  const pageUrl = `${SITE}/topic/`;
+  const desc = '공간분쟁 전문 조국환 변호사팀 저널의 주요 검색 주제 모음. 인테리어 하자, 공사대금 청구소송, 건설 하자, 임대차 원상회복, 부동산 가압류, 명도소송을 한곳에서 탐색합니다.';
+  const keywords = TOPIC_PAGES.flatMap(topic => [topic.name, ...topic.keywords]);
+  const jsonld = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "AUCTORITAS LAB 주요 공간분쟁 주제",
+    "description": desc,
+    "url": pageUrl,
+    "inLanguage": "ko",
+    "isPartOf": { "@type": "Blog", "name": "AUCTORITAS LAB 법률 저널", "url": SITE },
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": topicIndex.length,
+      "itemListElement": topicIndex.map(([topic], i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "url": topicUrl(topic),
+        "name": topic.name
+      }))
+    }
+  };
+
+  const cards = topicIndex.map(([topic, postsForTopic]) => `
+    <a class="topic-card" href="./${encodeURIComponent(topic.slug)}.html">
+      <div class="topic-name">${escHtml(topic.name)}</div>
+      <div class="topic-title">${escHtml(topic.title)}</div>
+      <p>${escHtml(topic.description)}</p>
+      <div class="topic-count">${postsForTopic.length ? `${postsForTopic.length}개 관련 글` : '관련 글 준비 중'}</div>
+      <div class="topic-keys">${topic.keywords.slice(0, 5).map(k => `<span>${escHtml(k)}</span>`).join('')}</div>
+    </a>
+  `).join('');
+
+  return `<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>공간분쟁 주요 주제 | AUCTORITAS LAB 법률 저널</title>
+<meta name="description" content="${escHtml(desc)}">
+<meta name="keywords" content="${escHtml(uniqueList(keywords).join(','))}">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="${pageUrl}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AUCTORITAS LAB">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="공간분쟁 주요 주제 | AUCTORITAS LAB">
+<meta property="og:description" content="${escHtml(desc)}">
+<meta property="og:url" content="${pageUrl}">
+<meta property="og:image" content="${SITE}/og/default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="공간분쟁 주요 주제 | AUCTORITAS LAB">
+<meta name="twitter:description" content="${escHtml(desc)}">
+<meta name="twitter:image" content="${SITE}/og/default.png">
+<script type="application/ld+json">${JSON.stringify(jsonld)}</script>
+<link rel="alternate" type="application/rss+xml" title="AUCTORITAS LAB 법률 저널" href="${SITE}/feed.xml">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="../assets/common.css">
+<style>
+.wrap{max-width:1280px;margin:0 auto;padding:60px 40px 120px}
+.breadcrumb{font-family:var(--label);font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--fg-3);margin-bottom:40px}
+.breadcrumb a:hover{color:var(--ink)}.breadcrumb .dim{color:var(--fg-3);margin:0 6px}
+.head{padding-bottom:42px;border-bottom:1px solid var(--ink);margin-bottom:1px}
+.eyebrow{font-family:var(--label);font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--fg-3);margin-bottom:18px}
+h1{font-family:var(--sans);font-weight:900;font-size:clamp(42px,5.8vw,84px);line-height:1.02;letter-spacing:-.04em;color:var(--ink)}
+.desc{margin-top:22px;font-family:var(--sans);font-size:16px;line-height:1.85;color:var(--fg-2);max-width:72ch}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border-bottom:1px solid var(--line)}
+.topic-card{display:flex;flex-direction:column;gap:12px;background:var(--paper);padding:28px;color:var(--ink);text-decoration:none;min-height:260px;transition:background var(--d-fast) var(--ease)}
+.topic-card:hover{background:#fff}
+.topic-name{font-family:var(--sans);font-weight:900;font-size:24px;line-height:1.18;letter-spacing:-.02em}
+.topic-title{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--vermillion)}
+.topic-card p{font-family:var(--sans);font-size:13px;line-height:1.65;color:var(--fg-2);margin:0}
+.topic-count{margin-top:auto;font-family:var(--label);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--fg-3)}
+.topic-keys{display:flex;flex-wrap:wrap;gap:6px}
+.topic-keys span{border:1px solid var(--line-2);padding:5px 8px;font-family:var(--sans);font-size:11px;color:var(--fg-2)}
+@media(max-width:900px){.wrap{padding:40px 20px 80px}.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+${navHtml()}
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="이동 경로"><a href="../index.html">HOME</a><span class="dim">/</span><a href="../journal.html">JOURNAL</a><span class="dim">/</span><span>TOPICS</span></nav>
+  <header class="head">
+    <div class="eyebrow">Topic Index</div>
+    <h1>공간분쟁 주요 주제</h1>
+    <p class="desc">${escHtml(desc)}</p>
+  </header>
+  <div class="grid">${cards}</div>
+</div>
+${footerHtml()}
+</body>
+</html>`;
+}
+
+function searchIndexJson(posts, tagIndex, topicIndex) {
+  const generatedAt = new Date().toISOString();
+  return JSON.stringify({
+    site: SITE,
+    name: 'AUCTORITAS LAB 법률 저널',
+    description: '공간분쟁 전문 조국환 변호사팀의 판례·실무 저널 검색 인덱스',
+    generatedAt,
+    topics: topicIndex.map(([topic, postsForTopic]) => ({
+      name: topic.name,
+      title: topic.title,
+      url: topicUrl(topic),
+      description: topic.description,
+      keywords: uniqueList([topic.name, ...topic.keywords]),
+      articleCount: postsForTopic.length,
+      articles: postsForTopic.map(p => ({ title: p.title, url: articleUrl(p) }))
+    })),
+    tags: tagIndex.map(([tag, postsForTag]) => ({
+      name: tag,
+      url: tagUrl(tag),
+      articleCount: postsForTag.length
+    })),
+    articles: posts.map(p => ({
+      id: p.id,
+      title: p.title,
+      url: articleUrl(p),
+      summary: p.summary || stripTags(p.content).substring(0, 180),
+      date: p.date || (p.publish_at || '').slice(0, 10),
+      tags: normalizeTags(p.tags),
+      topics: matchingTopicsForPost(p).map(topic => topic.name)
+    }))
+  }, null, 2) + '\n';
+}
+
 function feedXml(posts) {
   const items = posts.slice(0, 30).map(p => {
     const pageUrl = articleUrl(p);
@@ -918,6 +1047,7 @@ function sitemapXml(posts, tagIndex, topicIndex) {
   const staticUrls = [
     { loc: `${SITE}/`,             changefreq: 'weekly',  priority: '1.0' },
     { loc: `${SITE}/journal.html`, changefreq: 'weekly',  priority: '0.9' },
+    { loc: `${SITE}/topic/`,       changefreq: 'weekly',  priority: '0.9' },
     { loc: `${SITE}/about.html`,   changefreq: 'monthly', priority: '0.7' }
   ];
   const postUrls = posts.map(p => ({
@@ -1001,6 +1131,7 @@ async function main() {
   for (const [topic, postsForTopic] of topicIndex) {
     await writeFile(join(topicDir, `${topic.slug}.html`), topicPageHtml(topic, postsForTopic, posts), 'utf8');
   }
+  await writeFile(join(topicDir, 'index.html'), topicIndexHtml(topicIndex), 'utf8');
   console.log(`Wrote ${topicIndex.length} topic hub pages → topic/`);
 
   await writeFile(join(ROOT, 'feed.xml'), feedXml(posts), 'utf8');
@@ -1011,6 +1142,9 @@ async function main() {
 
   await writeFile(join(ROOT, 'sitemap.xml'), sitemapXml(posts, tagIndex, topicIndex), 'utf8');
   console.log('Wrote sitemap.xml');
+
+  await writeFile(join(ROOT, 'search-index.json'), searchIndexJson(posts, tagIndex, topicIndex), 'utf8');
+  console.log('Wrote search-index.json');
 
   // ── OG 이미지 ────────────────────────────────────────────────────────
   console.log('Loading Pretendard font for OG images…');

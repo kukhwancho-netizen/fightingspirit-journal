@@ -57,6 +57,7 @@ jobs:
             llms.txt \
             og \
             robots.txt \
+            search-index.json \
             sitemap.xml \
             tag \
             topic \
