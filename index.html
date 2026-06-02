@@ -90,7 +90,7 @@
 .j-row .cat .pri{color:var(--ink);font-weight:600}
 .j-row:hover .cat .pri{color:var(--vermillion)}
 .empty{padding:80px 0;text-align:center;font-family:var(--sans);font-size:14px;color:var(--fg-3);line-height:1.9;border-top:1px solid var(--line)}
-.view-all{text-align:center;margin-top:60px}
+.view-all{text-align:center;margin-top:60px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
 .view-all a{font-family:var(--label);font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);padding:14px 32px;border:1px solid var(--ink);transition:all var(--d-fast) var(--ease);display:inline-block}
 .view-all a:hover{background:var(--ink);color:var(--paper)}
 
@@ -223,7 +223,7 @@
 
   <div class="j-list" id="blogList"></div>
   <div class="empty" id="emptyMsg" style="display:none">아직 게시된 글이 없습니다.<br><span style="font-size:12px">관리자 페이지에서 첫 글을 등록해 주세요.</span></div>
-  <div class="view-all"><a href="journal.html">전체 저널 보기 →</a></div>
+  <div class="view-all"><a href="journal.html">전체 저널 보기 →</a><a href="journal/">정적 아카이브</a></div>
 </section>
 
 <div id="footerSlot"></div>

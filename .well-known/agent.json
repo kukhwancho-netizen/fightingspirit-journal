@@ -52,6 +52,7 @@
     "feed": "https://journal.fightingspirit.kr/feed.xml",
     "sitemap": "https://journal.fightingspirit.kr/sitemap.xml",
     "html_listing": "https://journal.fightingspirit.kr/journal.html",
+    "static_archive": "https://journal.fightingspirit.kr/journal/",
     "topic_hubs": "https://journal.fightingspirit.kr/topic/",
     "search_index": "https://journal.fightingspirit.kr/search-index.json",
     "opensearch": "https://journal.fightingspirit.kr/opensearch.xml"

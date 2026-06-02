@@ -50,6 +50,7 @@ npm run check
 
 ```text
 /journal/{title-slug}-{shortId}.html
+/journal/
 ```
 
 기존 ID 기반 URL은 호환을 위해 생성하되 `noindex,follow` redirect 페이지로 둡니다.

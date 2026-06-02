@@ -970,6 +970,169 @@ ${footerHtml()}
 </html>`;
 }
 
+function journalArchiveHtml(posts, tagIndex, topicIndex) {
+  const pageUrl = `${SITE}/journal/`;
+  const desc = 'AUCTORITAS LAB 법률 저널의 전체 글을 검색엔진과 AI 에이전트가 JavaScript 없이도 따라갈 수 있도록 모은 정적 아카이브입니다.';
+  const keywords = uniqueList([
+    'AUCTORITAS LAB',
+    '조국환 변호사',
+    '법률 저널',
+    '공간분쟁',
+    ...TOPIC_PAGES.flatMap(topic => [topic.name, ...topic.keywords]),
+    ...tagIndex.map(([tag]) => tag)
+  ]);
+  const collectionJsonld = {
+    "@type": "CollectionPage",
+    "name": "AUCTORITAS LAB 전체 글 아카이브",
+    "description": desc,
+    "url": pageUrl,
+    "inLanguage": "ko",
+    "isPartOf": { "@type": "Blog", "name": "AUCTORITAS LAB 법률 저널", "url": SITE },
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": posts.length,
+      "itemListElement": posts.map((p, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "url": articleUrl(p),
+        "name": p.title
+      }))
+    }
+  };
+  const breadcrumbJsonld = {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "AUCTORITAS LAB", "item": `${SITE}/` },
+      { "@type": "ListItem", "position": 2, "name": "전체 글 아카이브", "item": pageUrl }
+    ]
+  };
+  const jsonld = {
+    "@context": "https://schema.org",
+    "@graph": [collectionJsonld, breadcrumbJsonld]
+  };
+
+  const rows = posts.length ? posts.map((p, i) => {
+    const lbl = SERIES_LABEL[p.series] || p.series || '';
+    const dateStr = p.date || (p.publish_at || '').slice(0, 10);
+    const sum = p.summary || stripTags(p.content).substring(0, 140);
+    const tags = normalizeTags(p.tags).slice(0, 5);
+    const topics = matchingTopicsForPost(p).slice(0, 3);
+    const tagLinks = tags.map(tag => `<a class="mini" href="${tagHref(tag, true)}">#${escHtml(tag)}</a>`).join('');
+    const topicLinks = topics.map(topic => `<a class="mini topic" href="${topicHref(topic, 'subdir')}">${escHtml(topic.name)}</a>`).join('');
+    return `<article class="archive-row">
+      <a class="archive-main" href="${articleHref(p, 'same-dir')}">
+        <span class="num">${String(i + 1).padStart(2, '0')}</span>
+        <span class="body">
+          <span class="meta">${escHtml(lbl)}${dateStr ? ` / ${escHtml(dateStr)}` : ''}</span>
+          <span class="title">${escHtml(p.title)}</span>
+          ${sum ? `<span class="sum">${escHtml(sum)}</span>` : ''}
+        </span>
+      </a>
+      ${(tagLinks || topicLinks) ? `<div class="mini-row">${topicLinks}${tagLinks}</div>` : ''}
+    </article>`;
+  }).join('') : `<div class="empty-archive">아직 공개된 글이 없습니다.</div>`;
+
+  const topicChips = topicIndex.map(([topic, postsForTopic]) => `
+    <a class="chip topic" href="${topicHref(topic, 'subdir')}">${escHtml(topic.name)} <em>${postsForTopic.length}</em></a>
+  `).join('');
+  const tagChips = tagIndex.slice(0, 30).map(([tag, postsForTag]) => `
+    <a class="chip" href="${tagHref(tag, true)}">#${escHtml(tag)} <em>${postsForTag.length}</em></a>
+  `).join('');
+
+  return `<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>전체 글 아카이브 | AUCTORITAS LAB 법률 저널</title>
+<meta name="description" content="${escHtml(desc)}">
+<meta name="keywords" content="${escHtml(keywords.join(','))}">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="${pageUrl}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AUCTORITAS LAB">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="전체 글 아카이브 | AUCTORITAS LAB">
+<meta property="og:description" content="${escHtml(desc)}">
+<meta property="og:url" content="${pageUrl}">
+<meta property="og:image" content="${SITE}/og/default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="전체 글 아카이브 | AUCTORITAS LAB">
+<meta name="twitter:description" content="${escHtml(desc)}">
+<meta name="twitter:image" content="${SITE}/og/default.png">
+<script type="application/ld+json">${JSON.stringify(jsonld)}</script>
+${discoveryLinksHtml()}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="../assets/common.css">
+<style>
+.wrap{max-width:1240px;margin:0 auto;padding:60px 40px 120px}
+.breadcrumb{font-family:var(--label);font-size:10px;font-weight:500;letter-spacing:0;text-transform:uppercase;color:var(--fg-3);margin-bottom:40px}
+.breadcrumb a:hover{color:var(--ink)}.breadcrumb .dim{color:var(--fg-3);margin:0 6px}
+.head{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:48px;align-items:end;padding-bottom:42px;border-bottom:1px solid var(--ink)}
+.eyebrow{font-family:var(--label);font-size:10px;font-weight:600;letter-spacing:0;text-transform:uppercase;color:var(--fg-3);margin-bottom:18px}
+h1{font-family:var(--sans);font-weight:900;font-size:clamp(40px,5.5vw,80px);line-height:1.03;letter-spacing:0;color:var(--ink)}
+.desc{margin-top:20px;font-family:var(--sans);font-size:16px;line-height:1.85;color:var(--fg-2);max-width:72ch}
+.count{font-family:var(--label);font-size:12px;letter-spacing:0;text-transform:uppercase;color:var(--fg-3);text-align:right}
+.count strong{display:block;font-family:var(--sans);font-size:54px;line-height:1;color:var(--vermillion);letter-spacing:0;margin-bottom:8px}
+.archive-list{border-bottom:1px solid var(--line)}
+.archive-row{border-top:1px solid var(--line)}
+.archive-main{display:grid;grid-template-columns:70px minmax(0,1fr);gap:28px;padding:26px 0;color:var(--ink);text-decoration:none;transition:background var(--d-fast) var(--ease),padding var(--d-base) var(--ease)}
+.archive-main:hover{background:var(--paper-2);padding-left:16px;padding-right:16px}
+.num{font-family:var(--label);font-size:12px;letter-spacing:0;color:var(--fg-3);padding-top:5px}
+.body{display:flex;flex-direction:column;gap:8px;min-width:0}
+.meta{font-family:var(--label);font-size:10px;font-weight:600;letter-spacing:0;text-transform:uppercase;color:var(--fg-3)}
+.title{font-family:var(--sans);font-weight:760;font-size:22px;line-height:1.38;letter-spacing:0;color:var(--ink)}
+.sum{font-family:var(--sans);font-size:14px;line-height:1.7;color:var(--fg-2);max-width:80ch}
+.mini-row{display:flex;flex-wrap:wrap;gap:7px;padding:0 0 22px 98px}
+.mini,.chip{display:inline-flex;align-items:baseline;gap:6px;border:1px solid var(--line-2);padding:6px 10px;font-family:var(--sans);font-size:12px;font-weight:600;color:var(--ink);text-decoration:none;transition:background var(--d-fast) var(--ease),border-color var(--d-fast) var(--ease),color var(--d-fast) var(--ease)}
+.mini.topic,.chip.topic{border-color:rgba(216,58,44,.36);color:var(--vermillion)}
+.mini:hover,.chip:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.chip em{font-style:normal;font-size:11px;font-weight:500;color:var(--fg-3)}
+.chip:hover em{color:var(--fg-on-ink-2)}
+.link-cloud{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:64px;padding-top:32px;border-top:1px solid var(--line)}
+.cloud-title{font-family:var(--label);font-size:10px;font-weight:600;letter-spacing:0;text-transform:uppercase;color:var(--fg-3);margin-bottom:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.empty-archive{padding:60px 0;font-family:var(--sans);font-size:15px;color:var(--fg-3)}
+@media(max-width:760px){
+  .wrap{padding:40px 20px 80px}
+  .head{grid-template-columns:1fr;gap:24px}
+  .count{text-align:left}
+  .archive-main{grid-template-columns:1fr;gap:8px;padding:22px 0}
+  .archive-main:hover{padding-left:0;padding-right:0}
+  .mini-row{padding-left:0}
+  .link-cloud{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+${navHtml()}
+<div class="wrap">
+  <nav class="breadcrumb" aria-label="이동 경로"><a href="../index.html">HOME</a><span class="dim">/</span><a href="../journal.html">JOURNAL</a><span class="dim">/</span><span>ARCHIVE</span></nav>
+  <header class="head">
+    <div>
+      <div class="eyebrow">Static Journal Archive</div>
+      <h1>전체 글 아카이브</h1>
+      <p class="desc">${escHtml(desc)}</p>
+    </div>
+    <div class="count"><strong>${posts.length}</strong>published articles</div>
+  </header>
+  <section class="archive-list" aria-label="전체 글 목록">${rows}</section>
+  <section class="link-cloud" aria-label="주제와 태그">
+    <div>
+      <div class="cloud-title">Topic Hubs</div>
+      <div class="chips">${topicChips}</div>
+    </div>
+    <div>
+      <div class="cloud-title">Tags</div>
+      <div class="chips">${tagChips}</div>
+    </div>
+  </section>
+</div>
+${footerHtml()}
+</body>
+</html>`;
+}
+
 function searchIndexJson(posts, tagIndex, topicIndex) {
   const generatedAt = new Date().toISOString();
   return JSON.stringify({
@@ -1150,6 +1313,7 @@ function sitemapXml(posts, tagIndex, topicIndex) {
   const staticUrls = [
     { loc: `${SITE}/`,             changefreq: 'weekly',  priority: '1.0' },
     { loc: `${SITE}/journal.html`, changefreq: 'weekly',  priority: '0.9' },
+    { loc: `${SITE}/journal/`,     changefreq: 'weekly',  priority: '0.9' },
     { loc: `${SITE}/topic/`,       changefreq: 'weekly',  priority: '0.9' },
     { loc: `${SITE}/about.html`,   changefreq: 'monthly', priority: '0.7' }
   ];
@@ -1239,6 +1403,9 @@ async function main() {
   }
   await writeFile(join(topicDir, 'index.html'), topicIndexHtml(topicIndex), 'utf8');
   console.log(`Wrote ${topicIndex.length} topic hub pages → topic/`);
+
+  await writeFile(join(journalDir, 'index.html'), journalArchiveHtml(posts, tagIndex, topicIndex), 'utf8');
+  console.log('Wrote static journal archive -> journal/index.html');
 
   await writeFile(join(ROOT, 'feed.xml'), feedXml(posts), 'utf8');
   console.log('Wrote feed.xml');
