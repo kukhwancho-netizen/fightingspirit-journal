@@ -23,6 +23,15 @@ import { Resvg } from '@resvg/resvg-js';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const SITE = 'https://journal.fightingspirit.kr';
+const GA_MEASUREMENT_ID = 'G-TC1HNLWLM6';
+const GA_TAG = `<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '${GA_MEASUREMENT_ID}');
+</script>`;
 
 const SB_URL = 'https://cbdyclovsybrxhpgpjbo.supabase.co';
 const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNiZHljbG92c3licnhocGdwamJvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4NjE5MzEsImV4cCI6MjA5NDQzNzkzMX0.kEfbLtW4ugwAYfh7NWucXbDZarpY_4fbK3Wthov_PRk';
@@ -125,6 +134,11 @@ const TOPIC_PAGES = [
 const escHtml = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
 const escXml  = s => String(s ?? '').replace(/[&<>'"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;',"'":'&apos;','"':'&quot;' }[c]));
 const stripTags = s => String(s ?? '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+
+function withAnalytics(html) {
+  if (html.includes(GA_MEASUREMENT_ID)) return html;
+  return html.replace('</head>', `${GA_TAG}\n</head>`);
+}
 
 function uniqueList(items) {
   return [...new Set(items.map(x => String(x || '').trim()).filter(Boolean))];
@@ -1495,8 +1509,8 @@ async function main() {
   await mkdir(journalDir, { recursive: true });
 
   for (const p of posts) {
-    await writeFile(join(journalDir, `${articleSlug(p)}.html`), articleHtml(p, visiblePosts), 'utf8');
-    await writeFile(join(journalDir, `${p.id}.html`), legacyArticleRedirectHtml(p), 'utf8');
+    await writeFile(join(journalDir, `${articleSlug(p)}.html`), withAnalytics(articleHtml(p, visiblePosts)), 'utf8');
+    await writeFile(join(journalDir, `${p.id}.html`), withAnalytics(legacyArticleRedirectHtml(p)), 'utf8');
   }
   console.log(`Wrote ${posts.length} canonical article pages and ${posts.length} legacy redirects → journal/`);
 
@@ -1518,7 +1532,7 @@ async function main() {
   await mkdir(tagDir, { recursive: true });
   for (const [tag, postsForTag] of tagIndex) {
     const fileName = `${tagSlug(tag)}.html`;
-    await writeFile(join(tagDir, fileName), tagPageHtml(tag, postsForTag, tagIndex), 'utf8');
+    await writeFile(join(tagDir, fileName), withAnalytics(tagPageHtml(tag, postsForTag, tagIndex)), 'utf8');
   }
   console.log(`Wrote ${tagIndex.length} tag index pages → tag/`);
 
@@ -1527,18 +1541,18 @@ async function main() {
   const topicDir = join(ROOT, 'topic');
   await mkdir(topicDir, { recursive: true });
   for (const [topic, postsForTopic] of topicIndex) {
-    await writeFile(join(topicDir, `${topic.slug}.html`), topicPageHtml(topic, postsForTopic, visiblePosts), 'utf8');
+    await writeFile(join(topicDir, `${topic.slug}.html`), withAnalytics(topicPageHtml(topic, postsForTopic, visiblePosts)), 'utf8');
     if (topic.legacySlug) {
-      await writeFile(join(topicDir, `${topic.legacySlug}.html`), legacyTopicRedirectHtml(topic), 'utf8');
+      await writeFile(join(topicDir, `${topic.legacySlug}.html`), withAnalytics(legacyTopicRedirectHtml(topic)), 'utf8');
     }
   }
-  await writeFile(join(topicDir, 'index.html'), topicIndexHtml(topicIndex), 'utf8');
+  await writeFile(join(topicDir, 'index.html'), withAnalytics(topicIndexHtml(topicIndex)), 'utf8');
   console.log(`Wrote ${topicIndex.length} topic hub pages → topic/`);
 
-  await writeFile(join(journalDir, 'index.html'), journalArchiveHtml(visiblePosts, tagIndex, topicIndex), 'utf8');
+  await writeFile(join(journalDir, 'index.html'), withAnalytics(journalArchiveHtml(visiblePosts, tagIndex, topicIndex)), 'utf8');
   console.log('Wrote static journal archive -> journal/index.html');
 
-  await writeFile(join(ROOT, 'query-map.html'), queryMapHtml(topicIndex), 'utf8');
+  await writeFile(join(ROOT, 'query-map.html'), withAnalytics(queryMapHtml(topicIndex)), 'utf8');
   console.log('Wrote query-map.html');
 
   await writeFile(join(ROOT, 'feed.xml'), feedXml(visiblePosts), 'utf8');

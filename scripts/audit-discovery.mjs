@@ -6,12 +6,16 @@ import { dirname, join } from 'node:path';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const SITE = 'https://journal.fightingspirit.kr';
+const GA_MEASUREMENT_ID = 'G-TC1HNLWLM6';
 
 const requiredFiles = [
   'index.html',
   'journal.html',
+  'journal-detail.html',
   'journal/index.html',
+  'about.html',
   'authority.html',
+  '404.html',
   'query-map.html',
   'topic/index.html',
   'sitemap.xml',
@@ -47,6 +51,11 @@ function requireText(file, body, needle, label = needle) {
   }
 }
 
+function requireAnalytics(file, body) {
+  requireText(file, body, `gtag/js?id=${GA_MEASUREMENT_ID}`, 'Google Analytics loader');
+  requireText(file, body, `gtag('config', '${GA_MEASUREMENT_ID}')`, 'Google Analytics config');
+}
+
 function urlToGeneratedPath(url) {
   const parsed = new URL(url);
   const pathname = decodeURIComponent(parsed.pathname.replace(/^\/+/, ''));
@@ -66,6 +75,11 @@ async function main() {
   const queryMap = await text('query-map.html');
   const indexHtml = await text('index.html');
   const journalHtml = await text('journal.html');
+  const journalDetailHtml = await text('journal-detail.html');
+  const aboutHtml = await text('about.html');
+  const authorityHtml = await text('authority.html');
+  const notFoundHtml = await text('404.html');
+  const topicIndexHtml = await text('topic/index.html');
   const searchIndex = JSON.parse(await text('search-index.json'));
   const agent = JSON.parse(await text('.well-known/agent.json'));
   const authority = JSON.parse(await text('.well-known/authority.json'));
@@ -88,6 +102,19 @@ async function main() {
   requireText('journal/index.html', journalArchive, 'ItemList', 'ItemList JSON-LD');
   requireText('query-map.html', queryMap, 'CollectionPage', 'query map CollectionPage JSON-LD');
   requireText('query-map.html', queryMap, 'ItemList', 'query map ItemList JSON-LD');
+  for (const [file, body] of [
+    ['index.html', indexHtml],
+    ['journal.html', journalHtml],
+    ['journal-detail.html', journalDetailHtml],
+    ['journal/index.html', journalArchive],
+    ['about.html', aboutHtml],
+    ['authority.html', authorityHtml],
+    ['404.html', notFoundHtml],
+    ['query-map.html', queryMap],
+    ['topic/index.html', topicIndexHtml]
+  ]) {
+    requireAnalytics(file, body);
+  }
   requireText('.well-known/agent.json', JSON.stringify(agent), `${SITE}/journal/`, 'agent static archive URL');
   requireText('.well-known/agent.json', JSON.stringify(agent), 'search_query_targets', 'agent search query target index');
   requireText('.well-known/agent.json', JSON.stringify(agent), 'search_query_map', 'agent search query map');
@@ -120,6 +147,7 @@ async function main() {
       continue;
     }
     const html = await text(rel);
+    requireAnalytics(rel, html);
     requireText(rel, html, `<link rel="canonical" href="${article.url}">`, 'canonical URL');
     if (!html.includes('"@type":"Article"') && !html.includes('"@type":"BlogPosting"')) {
       errors.push(`${rel}: missing Article/BlogPosting JSON-LD`);
@@ -139,6 +167,7 @@ async function main() {
       continue;
     }
     const html = await text(rel);
+    requireAnalytics(rel, html);
     requireText(rel, html, `<link rel="canonical" href="${topic.url}">`, 'canonical URL');
     requireText(rel, html, 'FAQPage', 'FAQPage JSON-LD');
     if (!Array.isArray(topic.queryTargets) || topic.queryTargets.length < 4) {
@@ -150,6 +179,19 @@ async function main() {
     for (const query of topic.queryTargets || []) {
       requireText('query-map.html', queryMap, query, `query map target: ${query}`);
     }
+  }
+
+  for (const tag of searchIndex.tags || []) {
+    if (!tag.url || !tag.url.startsWith(`${SITE}/tag/`)) {
+      errors.push(`search-index.json: invalid tag URL for ${tag.name || 'unknown tag'}`);
+      continue;
+    }
+    const rel = urlToGeneratedPath(tag.url);
+    if (!(await exists(rel))) {
+      errors.push(`missing generated tag page: ${rel}`);
+      continue;
+    }
+    requireAnalytics(rel, await text(rel));
   }
 
   if (errors.length) {
