@@ -56,6 +56,7 @@ jobs:
             llms-full.txt \
             llms.txt \
             og \
+            opensearch.xml \
             robots.txt \
             search-index.json \
             sitemap.xml \

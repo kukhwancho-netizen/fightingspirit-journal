@@ -8,6 +8,10 @@
 <meta name="keywords" content="법률저널,공사대금 청구소송,인테리어 하자 분쟁,건설 하자 분쟁,상가 임대차 원상회복,부동산 가압류,명도소송,공간분쟁,조국환변호사,AUCTORITAS">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://journal.fightingspirit.kr/journal.html">
+<link rel="alternate" type="application/rss+xml" title="AUCTORITAS LAB 법률 저널 RSS" href="https://journal.fightingspirit.kr/feed.xml">
+<link rel="alternate" type="application/json" title="AUCTORITAS LAB 검색 인덱스" href="https://journal.fightingspirit.kr/search-index.json">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="https://journal.fightingspirit.kr/sitemap.xml">
+<link rel="search" type="application/opensearchdescription+xml" title="AUCTORITAS LAB 검색" href="https://journal.fightingspirit.kr/opensearch.xml">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://journal.fightingspirit.kr/journal.html">
 <meta property="og:title" content="AUCTORITAS LAB — 공간분쟁 법률 저널">
@@ -129,7 +133,7 @@ footer{margin-top:80px}
     <button class="fb" data-cat="civil" onclick="filterJournals('civil',this)">민사</button>
     <button class="fb" data-cat="admin" onclick="filterJournals('admin',this)">행정</button>
     <button class="fb" data-cat="family" onclick="filterJournals('family',this)">가사</button>
-    <input type="text" class="search-input" placeholder="Search…" oninput="searchJournals(this.value)">
+    <input type="text" class="search-input" id="journalSearch" placeholder="Search…" oninput="searchJournals(this.value)">
   </div>
 
   <div class="j-list" id="journalList"></div>
@@ -164,15 +168,25 @@ function renderJournals(){
 function filterJournals(s,b){curFilter=s;document.querySelectorAll(".fb").forEach(x=>x.classList.remove("active"));b.classList.add("active");renderJournals();}
 function searchJournals(v){curSearch=v;renderJournals();}
 function applyUrlFilter(){
-  const cat=new URLSearchParams(location.search).get('cat');
+  const params=new URLSearchParams(location.search);
+  const cat=params.get('cat')||params.get('series');
   if(!cat)return;
-  const btn=document.querySelector('.fb[data-cat="'+cat+'"]');
-  if(btn){document.querySelectorAll('.fb').forEach(x=>x.classList.remove('active'));btn.classList.add('active');curFilter=cat;}
+  const normalized=cat.toLowerCase();
+  const btn=document.querySelector('.fb[data-cat="'+normalized+'"]');
+  if(btn){document.querySelectorAll('.fb').forEach(x=>x.classList.remove('active'));btn.classList.add('active');curFilter=normalized;}
+}
+function applyUrlSearch(){
+  const q=new URLSearchParams(location.search).get('q');
+  if(!q)return;
+  curSearch=q;
+  const input=document.getElementById('journalSearch');
+  if(input)input.value=q;
 }
 (async()=>{
   try{
     journals=await fetchPublicPosts();
     applyUrlFilter();
+    applyUrlSearch();
     renderJournals();
   }catch(e){
     document.getElementById('emptyMsg').style.display='block';

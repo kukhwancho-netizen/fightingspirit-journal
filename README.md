@@ -15,6 +15,7 @@ AUCTORITAS LAB / 조국환 변호사팀 저널 전용 정적 사이트입니다.
 - `tag/`: 빌드 시 생성되는 태그 아카이브
 - `sitemap.xml`: 검색엔진 제출용 URL 목록
 - `search-index.json`: 주제·태그·글 URL 구조화 목록
+- `opensearch.xml`: `journal.html?q={검색어}` 기반 사이트 검색 설명
 - `llms.txt`, `llms-full.txt`: AI 검색·요약 에이전트용 콘텐츠 맵
 
 ## 검색 주제 허브

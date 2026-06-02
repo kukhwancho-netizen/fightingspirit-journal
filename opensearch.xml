@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>AUCTORITAS LAB</ShortName>
+  <Description>공간분쟁 전문 조국환 변호사팀 법률 저널 검색</Description>
+  <InputEncoding>UTF-8</InputEncoding>
+  <Url type="text/html" method="get" template="https://journal.fightingspirit.kr/journal.html?q={searchTerms}"/>
+  <Url type="application/rss+xml" rel="results" template="https://journal.fightingspirit.kr/feed.xml"/>
+</OpenSearchDescription>

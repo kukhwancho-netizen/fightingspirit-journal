@@ -204,6 +204,13 @@ function tagHref(tag, fromArticle) {
   return fromArticle ? `../tag/${slug}.html` : `./tag/${slug}.html`;
 }
 
+function discoveryLinksHtml() {
+  return `<link rel="alternate" type="application/rss+xml" title="AUCTORITAS LAB 법률 저널 RSS" href="${SITE}/feed.xml">
+<link rel="alternate" type="application/json" title="AUCTORITAS LAB 검색 인덱스" href="${SITE}/search-index.json">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="${SITE}/sitemap.xml">
+<link rel="search" type="application/opensearchdescription+xml" title="AUCTORITAS LAB 검색" href="${SITE}/opensearch.xml">`;
+}
+
 function navHtml() {
   return `<nav class="top" aria-label="주메뉴">
 <a href="../index.html" class="logo">AUCTORITAS LAB<span class="sub">공간분쟁 전문 조국환 변호사팀</span></a>
@@ -365,7 +372,7 @@ function articleHtml(p, allPosts) {
 <meta name="twitter:description" content="${escHtml(desc)}">
 <meta name="twitter:image" content="${SITE}/og/${p.id}.png">
 <script type="application/ld+json">${JSON.stringify(jsonld)}</script>
-<link rel="alternate" type="application/rss+xml" title="AUCTORITAS LAB 법률 저널" href="${SITE}/feed.xml">
+${discoveryLinksHtml()}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 <link rel="stylesheet" href="../assets/common.css">
 <style>
@@ -554,7 +561,7 @@ function tagPageHtml(tag, postsForTag, allTags) {
 <meta name="twitter:description" content="${escHtml(desc)}">
 <meta name="twitter:image" content="${SITE}/og/default.png">
 <script type="application/ld+json">${JSON.stringify(jsonld)}</script>
-<link rel="alternate" type="application/rss+xml" title="AUCTORITAS LAB 법률 저널" href="${SITE}/feed.xml">
+${discoveryLinksHtml()}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 <link rel="stylesheet" href="../assets/common.css">
 <style>
@@ -695,7 +702,7 @@ function topicPageHtml(topic, postsForTopic, allPosts) {
 <meta name="twitter:description" content="${escHtml(desc)}">
 <meta name="twitter:image" content="${SITE}/og/default.png">
 <script type="application/ld+json">${JSON.stringify(jsonld)}</script>
-<link rel="alternate" type="application/rss+xml" title="AUCTORITAS LAB 법률 저널" href="${SITE}/feed.xml">
+${discoveryLinksHtml()}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 <link rel="stylesheet" href="../assets/common.css">
 <style>
@@ -828,7 +835,7 @@ function topicIndexHtml(topicIndex) {
 <meta name="twitter:description" content="${escHtml(desc)}">
 <meta name="twitter:image" content="${SITE}/og/default.png">
 <script type="application/ld+json">${JSON.stringify(jsonld)}</script>
-<link rel="alternate" type="application/rss+xml" title="AUCTORITAS LAB 법률 저널" href="${SITE}/feed.xml">
+${discoveryLinksHtml()}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 <link rel="stylesheet" href="../assets/common.css">
 <style>
