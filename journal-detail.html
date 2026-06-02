@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AUCTORITAS LAB — 법률 저널</title>
+<meta name="robots" content="noindex,follow">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="AUCTORITAS LAB">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary">
+<meta id="og-title" property="og:title" content="AUCTORITAS LAB 법률 저널">
+<meta id="og-desc" property="og:description" content="공간분쟁 전문 조국환 변호사팀의 판례·실무 저널.">
+<meta id="og-url" property="og:url" content="https://journal.fightingspirit.kr/journal-detail.html">
+<meta id="meta-desc" name="description" content="공간분쟁 전문 조국환 변호사팀의 판례·실무 저널.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="assets/common.css">
+<style>
+.container{max-width:1400px;margin:0 auto;padding:60px 40px 120px;display:grid;grid-template-columns:1fr 320px;gap:80px}
+
+.breadcrumb{font-family:var(--label);font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--fg-3);margin-bottom:40px}
+.breadcrumb a:hover{color:var(--ink)}
+.breadcrumb .dim{color:var(--fg-3);margin:0 6px}
+
+.article-cat{font-family:var(--label);font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;padding:6px 0;margin-bottom:28px;color:var(--ink)}
+.article-title{font-family:var(--sans);font-weight:900;font-size:clamp(40px,5.4vw,80px);line-height:1.0;letter-spacing:-.04em;margin-bottom:28px;color:var(--ink)}
+.article-title .dot{color:var(--vermillion)}
+.article-meta{display:flex;gap:24px;flex-wrap:wrap;font-family:var(--label);font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--fg-3);margin-bottom:48px;padding-bottom:24px;border-bottom:1px solid var(--ink)}
+
+.article-summary{font-family:var(--sans);font-weight:600;font-size:clamp(20px,2.2vw,26px);line-height:1.5;letter-spacing:-.018em;color:var(--ink);padding:24px 0 32px;border-left:3px solid var(--vermillion);padding-left:28px;margin-bottom:40px}
+
+.article-body{font-family:var(--sans);font-size:17px;line-height:1.95;color:var(--ink);font-weight:400;white-space:pre-wrap}
+.article-body h2,.article-body h3{font-family:var(--sans);font-weight:900;color:var(--ink);margin:40px 0 16px;letter-spacing:-.025em}
+.article-body h2{font-size:30px}.article-body h3{font-size:22px}
+.article-body p{margin-bottom:20px}
+.article-body blockquote{border-left:3px solid var(--ink);padding:16px 24px;background:var(--paper-2);margin:28px 0;font-weight:500;color:var(--fg-2)}
+.article-body a{color:var(--vermillion);border-bottom:1px solid currentColor}
+
+.cta-block{margin-top:80px;padding-top:40px;border-top:1px solid var(--line)}
+.cta-block p{font-family:var(--sans);font-size:13px;color:var(--fg-3);line-height:1.8;margin-bottom:16px}
+.cta-btn{display:inline-block;padding:14px 32px;background:var(--ink);color:var(--paper);font-family:var(--label);font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;transition:background var(--d-fast) var(--ease)}
+.cta-btn:hover{background:#000}
+
+aside.sidebar{position:sticky;top:100px;height:fit-content;display:flex;flex-direction:column;gap:32px}
+.side-block{padding:24px 0;border-top:1px solid var(--ink)}
+.side-h{font-family:var(--label);font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--fg-3);margin-bottom:18px}
+.brand-chip{display:inline-block;font-family:var(--label);font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);padding:6px 10px;border:1px solid var(--line-2);margin-bottom:14px}
+.side-item{font-family:var(--sans);font-size:13px;line-height:1.7;margin-bottom:8px;color:var(--ink)}
+.side-item strong{font-weight:700}
+.side-consult{display:block;margin-top:18px;padding:12px;background:var(--ink);color:var(--paper);text-align:center;font-family:var(--label);font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;transition:background var(--d-fast) var(--ease)}
+.side-consult:hover{background:#000}
+
+.recent-row{display:grid;grid-template-columns:32px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.recent-row:last-child{border-bottom:none}
+.recent-row .rn{font-family:var(--sans);font-weight:900;font-size:18px;letter-spacing:-.04em;color:var(--ink);line-height:1.2}
+.recent-row .rt{font-family:var(--sans);font-weight:500;font-size:13px;line-height:1.5;color:var(--ink)}
+.recent-row .rc{font-family:var(--label);font-size:9px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--fg-3);margin-bottom:4px}
+.recent-row:hover .rt{color:var(--vermillion)}
+
+.notfound{padding:120px 0;text-align:center;font-family:var(--sans);font-size:15px;color:var(--fg-3);line-height:1.9}
+.notfound a{font-family:var(--label);font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);border-bottom:2px solid var(--ink);padding-bottom:2px}
+
+@media(max-width:1100px){
+  .container{grid-template-columns:1fr 260px;gap:48px}
+}
+@media(max-width:900px){
+  .container{grid-template-columns:1fr;padding:40px 20px 80px;gap:48px}
+  aside.sidebar{position:static}
+}
+@media(max-width:600px){
+  .article-title{font-size:clamp(28px,9vw,44px)}
+  .article-meta{gap:12px;font-size:9px}
+  .article-summary{font-size:clamp(16px,4.5vw,20px);padding-left:18px}
+  .article-body{font-size:15px}
+}
+</style>
+</head>
+<body>
+<div id="navSlot"></div>
+
+<div class="container">
+  <main>
+    <div class="breadcrumb"><a href="index.html">HOME</a><span class="dim">/</span><a href="journal.html">JOURNAL</a><span class="dim">/</span><span id="bTitle">Article</span></div>
+    <div id="articleWrap" style="display:none">
+      <div class="article-cat" id="aCat"></div>
+      <h1 class="article-title" id="aTitle">Loading…</h1>
+      <div class="article-meta">
+        <span id="aDate"></span>
+        <span>작성: 조국환 변호사팀 | AUCTORITAS LAB</span>
+      </div>
+      <div class="article-summary" id="aSummary" style="display:none"></div>
+      <div class="article-body" id="aBody"></div>
+      <div id="tagBlock" style="display:none;margin-top:64px;padding-top:32px;border-top:1px solid var(--line)">
+        <div style="font-family:var(--label);font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--fg-3);margin-bottom:14px">Tags</div>
+        <div id="tagChipsDetail" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+      </div>
+      <div class="cta-block">
+        <p>조국환 변호사팀의 활동 전반은 본 사이트에서 확인하실 수 있습니다.</p>
+        <a href="https://www.fightingspirit.kr" target="_blank" rel="noopener" class="cta-btn">발행팀 홈페이지 →</a>
+      </div>
+    </div>
+    <div class="notfound" id="nfMsg" style="display:none">
+      요청한 글을 찾을 수 없습니다.<br><br>
+      <a href="journal.html">저널 목록으로 →</a>
+    </div>
+  </main>
+
+  <aside class="sidebar">
+    <div class="side-block">
+      <span class="brand-chip">AUCTORITAS LAB</span>
+      <div class="side-h">Contact</div>
+      <div class="side-item"><strong>031-546-3997</strong></div>
+      <div class="side-item">031-546-3998 (FAX)</div>
+      <div class="side-item"><a href="mailto:info@fightingspirit.kr">info@fightingspirit.kr</a></div>
+      <div class="side-item" style="font-size:12px;color:var(--fg-2);margin-top:10px;line-height:1.6">경기도 수원시 영통구 광교중앙로 248번길 7-2 원희캐슬법조타운 B동 401호</div>
+      <a href="https://www.fightingspirit.kr" target="_blank" rel="noopener" class="side-consult">발행팀 홈페이지 →</a>
+    </div>
+    <div class="side-block">
+      <div class="side-h">Recent Articles</div>
+      <div id="recentList"><div style="font-family:var(--sans);font-size:12px;color:var(--fg-3)">불러오는 중…</div></div>
+    </div>
+  </aside>
+</div>
+
+<div id="footerSlot"></div>
+
+<script src="assets/common.js"></script>
+<script>
+renderNav();renderFooter();
+
+function gp(n){return new URLSearchParams(window.location.search).get(n);}
+
+window.addEventListener("DOMContentLoaded",async function(){
+  const id=gp("id");
+  if(!id){document.getElementById('nfMsg').style.display='block';return;}
+  // 본 페이지는 즉시 발행 경로(신규 글 SPA 폴백)이자, 404.html이 보내는 우회 종착지.
+  // 자동 리다이렉트는 두지 않는다 — /journal/{id}.html 미생성 → 404 → 본 페이지로 우회되는 루프 방지.
+  try{
+    const rows=await fetchPublicPosts({select:'id,title,summary,content,series,date,tags',idEq:id});
+    const a=rows&&rows[0];
+    if(!a){document.getElementById('nfMsg').style.display='block';return;}
+    document.getElementById('articleWrap').style.display='block';
+    const lbl=SERIES_LABEL[a.series]||a.series||'';
+    document.title=a.title+" | AUCTORITAS LAB 법률 저널";
+    document.getElementById("bTitle").textContent=(a.title||'').substring(0,40)+(a.title&&a.title.length>40?'…':'');
+    document.getElementById("aCat").innerHTML=`<span>${lbl}</span>`;
+    document.getElementById("aTitle").textContent=a.title||'';
+    document.getElementById("aDate").textContent=a.date||'';
+    if(a.summary){const s=document.getElementById("aSummary");s.textContent=a.summary;s.style.display='block';}
+    document.getElementById("aBody").innerHTML=a.content||'';
+    const tags=Array.isArray(a.tags)?a.tags.filter(Boolean):[];
+    if(tags.length){
+      const escH=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+      document.getElementById('tagChipsDetail').innerHTML=tags.map(t=>{
+        const slug=encodeURIComponent(t.trim().replace(/\s+/g,'-'));
+        return `<a href="tag/${slug}.html" rel="tag" style="display:inline-flex;align-items:center;padding:7px 14px;border:1px solid var(--line-2);font-family:var(--sans);font-size:13px;font-weight:500;color:var(--ink);text-decoration:none"><span style="color:var(--fg-3);margin-right:4px">#</span>${escH(t)}</a>`;
+      }).join('');
+      document.getElementById('tagBlock').style.display='block';
+    }
+    const pageUrl='https://journal.fightingspirit.kr/'+articlePath(a);
+    const desc=a.summary||(a.content||'').replace(/<[^>]+>/g,'').substring(0,120);
+    document.getElementById('og-title').setAttribute('content',a.title+' | AUCTORITAS LAB');
+    document.getElementById('og-desc').setAttribute('content',desc);
+    document.getElementById('og-url').setAttribute('content',pageUrl);
+    document.getElementById('meta-desc').setAttribute('content',desc);
+    const keywordsArr=[lbl,...tags,'공간분쟁','조국환변호사','AUCTORITAS'].filter(Boolean);
+    const ld=document.createElement('script');ld.type='application/ld+json';
+    ld.text=JSON.stringify({"@context":"https://schema.org","@type":"BlogPosting","headline":a.title,"description":desc,"datePublished":a.date,"author":{"@type":"Organization","name":"조국환 변호사팀","alternateName":"AUCTORITAS LAB","url":"https://journal.fightingspirit.kr/"},"publisher":{"@type":"Organization","name":"AUCTORITAS LAB","url":"https://journal.fightingspirit.kr/"},"url":pageUrl,"inLanguage":"ko","keywords":keywordsArr});
+    document.head.appendChild(ld);
+  }catch(e){console.error(e);document.getElementById('nfMsg').style.display='block';return;}
+  try{
+    const rec=await fetchPublicPosts({select:'id,title,series',idNeq:id,limit:5});
+    document.getElementById("recentList").innerHTML=rec.length?rec.map((x,i)=>{
+      const lbl=SERIES_LABEL[x.series]||x.series||'';
+      return `<a href="${articlePath(x)}" class="recent-row"><div class="rn">${String(i+1).padStart(2,'0')}</div><div><div class="rc">${lbl}</div><div class="rt">${x.title}</div></div></a>`;
+    }).join(""):'<div style="font-family:var(--sans);font-size:12px;color:var(--fg-3)">다른 글이 아직 없습니다.</div>';
+  }catch(e){document.getElementById("recentList").innerHTML='<div style="font-family:var(--sans);font-size:12px;color:var(--fg-3)">불러올 수 없습니다.</div>';}
+});
+</script>
+</body>
+</html>

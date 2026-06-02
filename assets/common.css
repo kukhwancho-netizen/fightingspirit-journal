@@ -1,0 +1,53 @@
+:root{
+  --paper:#FFFFFF;--paper-2:#FAFAF7;--paper-3:#F2F1ED;
+  --ink:#111111;--ink-2:#1A1A1A;--ink-3:#333333;
+  --vermillion:#8C1F19;
+  --line:rgba(17,17,17,.10);--line-2:rgba(17,17,17,.16);
+  --fg-2:rgba(17,17,17,.62);--fg-3:rgba(17,17,17,.40);
+  --fg-on-ink:rgba(255,255,255,.62);--fg-on-ink-2:rgba(255,255,255,.40);
+  --c-precedent:#8C1F19;--c-civil:#2B4870;--c-admin:#2E6B45;--c-family:#6B4C2E;
+  --sans:'Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,sans-serif;
+  --label:'Pretendard Variable',system-ui,sans-serif;
+  --ease:cubic-bezier(.2,0,0,1);--d-fast:200ms;--d-base:400ms;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word;font-size:16px;line-height:1.5;min-height:100vh}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+nav.top{position:sticky;top:0;z-index:50;padding:18px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.85);backdrop-filter:saturate(140%) blur(20px);-webkit-backdrop-filter:saturate(140%) blur(20px);border-bottom:1px solid var(--line)}
+.logo{font-family:var(--sans);font-weight:900;font-size:15px;letter-spacing:-.02em;color:var(--ink)}
+.logo .sub{display:inline-block;margin-left:10px;font-family:var(--label);font-weight:500;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--vermillion);vertical-align:middle}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--fg-2);transition:color var(--d-fast) var(--ease)}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+
+.sec-label{font-family:var(--label);font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+.sec-label .dim{color:var(--fg-3);margin:0 6px}
+
+.brandbar{padding:18px 40px;display:flex;align-items:center;gap:18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper);font-family:var(--sans);font-size:13px;color:var(--fg-2)}
+.brandbar .key{font-family:var(--label);font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--fg-3)}
+.brandbar .name{font-weight:600;color:var(--ink)}
+.brandbar .chip{margin-left:auto;font-family:var(--label);font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);padding:6px 10px;border:1px solid var(--line-2)}
+
+footer{background:var(--ink);color:var(--fg-on-ink);padding:80px 40px 32px}
+.ft-inner{max-width:1400px;margin:0 auto 56px;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px}
+.ft-brand .name{font-family:var(--sans);font-weight:900;font-size:24px;color:var(--paper);letter-spacing:-.03em}
+.ft-brand .tagline{font-family:var(--label);font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--fg-on-ink-2);margin-top:6px}
+.ft-brand .legal{margin-top:24px;font-family:var(--sans);font-size:12px;color:var(--fg-on-ink-2);line-height:1.8}
+.ft-h{font-family:var(--label);font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--fg-on-ink-2);margin-bottom:18px}
+.ft-line{font-family:var(--sans);font-size:13px;color:var(--fg-on-ink);margin-bottom:8px;line-height:1.7}
+.ft-line a{color:var(--fg-on-ink)}.ft-line a:hover{color:var(--paper)}
+.ft-bot{max-width:1400px;margin:0 auto;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;font-family:var(--label);font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-on-ink-2)}
+
+#navSlot{display:block;min-height:62px}
+
+@media(max-width:900px){
+  nav.top{padding:14px 20px}.nav-links{display:none}
+  .brandbar{padding:14px 20px;flex-wrap:wrap;gap:10px}
+  .ft-inner{grid-template-columns:1fr;gap:32px}
+  footer{padding:56px 20px 20px}
+  .ft-bot{flex-direction:column;gap:10px}
+  #navSlot{min-height:50px}
+}

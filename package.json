@@ -1,0 +1,18 @@
+{
+  "name": "fightingspirit-journal",
+  "version": "1.0.0",
+  "description": "AUCTORITAS LAB 저널 전용 정적 사이트 (SEO 주제 허브 + 정적 글 HTML + RSS + llms-full.txt + OG 이미지)",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/prerender.mjs",
+    "check": "node --check scripts/prerender.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "satori": "^0.10.13",
+    "@resvg/resvg-js": "^2.6.2"
+  }
+}

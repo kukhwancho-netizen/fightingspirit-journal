@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>찾을 수 없음 — AUCTORITAS LAB</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="assets/common.css">
+<script>
+// /journal/{id}.html 가 아직 사전 렌더되지 않은 경우:
+// SPA 폴백 경로 /journal-detail.html?id={id} 으로 즉시 우회.
+// 제목 기반 정규 slug URL은 404에서 억지로 우회하지 않는다.
+(function () {
+  var m = window.location.pathname.match(/^\/journal\/([0-9]+|[0-9a-fA-F-]{32,36})\.html$/);
+  if (m) {
+    window.location.replace('/journal-detail.html?id=' + encodeURIComponent(m[1]));
+  }
+})();
+</script>
+<style>
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px}
+.box{max-width:560px;text-align:center}
+.code{font-family:var(--label);font-size:11px;letter-spacing:.24em;color:var(--fg-3);margin-bottom:24px}
+h1{font-weight:900;font-size:48px;line-height:1.05;letter-spacing:-.03em;margin-bottom:18px}
+p{color:var(--fg-2);line-height:1.7;margin-bottom:32px}
+a.btn{display:inline-block;padding:14px 32px;background:var(--ink);color:var(--paper);font-family:var(--label);font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="code">404 · NOT FOUND</div>
+  <h1>요청하신 페이지를<br>찾을 수 없습니다</h1>
+  <p>주소가 잘못되었거나, 글이 비공개로 전환되었을 수 있습니다.</p>
+  <a class="btn" href="/journal.html">저널 목록으로 →</a>
+</div>
+</body>
+</html>

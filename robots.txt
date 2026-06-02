@@ -1,0 +1,88 @@
+# AUCTORITAS LAB — robots policy
+# 공개 콘텐츠는 인덱싱·인용을 허용합니다.
+# AI 어시스턴트는 /llms.txt 또는 /llms-full.txt 를 우선 참조해 주십시오.
+
+User-agent: *
+Allow: /
+Allow: /journal/
+Allow: /topic/
+Allow: /tag/
+
+# 검색·요약 어시스턴트 — 인용 시 출처(URL) 표기 조건
+User-agent: GPTBot
+Allow: /
+Allow: /journal/
+Allow: /topic/
+Allow: /tag/
+
+User-agent: ChatGPT-User
+Allow: /
+Allow: /journal/
+Allow: /topic/
+Allow: /tag/
+
+User-agent: OAI-SearchBot
+Allow: /
+Allow: /journal/
+Allow: /topic/
+Allow: /tag/
+
+User-agent: ClaudeBot
+Allow: /
+Allow: /journal/
+Allow: /topic/
+Allow: /tag/
+
+User-agent: Claude-Web
+Allow: /
+Allow: /journal/
+Allow: /topic/
+Allow: /tag/
+
+User-agent: anthropic-ai
+Allow: /
+Allow: /journal/
+Allow: /topic/
+Allow: /tag/
+
+User-agent: PerplexityBot
+Allow: /
+Allow: /journal/
+Allow: /topic/
+Allow: /tag/
+
+User-agent: Perplexity-User
+Allow: /
+Allow: /journal/
+Allow: /topic/
+Allow: /tag/
+
+User-agent: Google-Extended
+Allow: /
+Allow: /journal/
+Allow: /topic/
+Allow: /tag/
+
+User-agent: Applebot-Extended
+Allow: /
+Allow: /journal/
+Allow: /topic/
+Allow: /tag/
+
+User-agent: CCBot
+Allow: /
+Allow: /journal/
+Allow: /topic/
+Allow: /tag/
+
+User-agent: Bytespider
+Allow: /
+Allow: /journal/
+Allow: /topic/
+Allow: /tag/
+
+# Agent guidance
+# llms.txt:      https://journal.fightingspirit.kr/llms.txt
+# llms-full.txt: https://journal.fightingspirit.kr/llms-full.txt
+
+Sitemap: https://journal.fightingspirit.kr/sitemap.xml

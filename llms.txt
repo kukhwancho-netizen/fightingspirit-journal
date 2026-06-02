@@ -1,0 +1,40 @@
+# AUCTORITAS LAB
+
+> 공간분쟁 전문 조국환 변호사팀이 발행하는 판례·실무 저널. 공사대금·부동산·임대차·재건축·인허가·행정·가사 사건에 관한 판례 해설과 실무 메모를 모은 곳입니다.
+
+본 저널의 모든 글은 조국환 변호사팀이 실제 사건에서 검토한 법리와 판례를 바탕으로 작성되었습니다. 인용 시 출처(URL + AUCTORITAS LAB)를 명시해 주십시오. 법률 자문 대용으로 사용해서는 안 됩니다.
+
+발행팀은 대한민국 전역의 공간분쟁 사건을 수행합니다. 사무소는 경기 수원 광교에 위치합니다.
+
+## Journal — 카테고리별
+
+- [판례분석](https://journal.fightingspirit.kr/journal.html?series=PRECEDENT): 대법원·하급심 판례 쟁점 분석
+- [민사](https://journal.fightingspirit.kr/journal.html?series=CIVIL): 공사대금·임대차·보증금·점유 등 민사 분쟁
+- [행정](https://journal.fightingspirit.kr/journal.html?series=ADMIN): 인허가·행정심판·도시정비
+- [가사](https://journal.fightingspirit.kr/journal.html?series=FAMILY): 상속·가사 분쟁
+
+## Topic Hubs — 검색 주제별
+
+- [인테리어 하자 분쟁](https://journal.fightingspirit.kr/topic/interior-defect-dispute.html): 부실시공·하자보수·손해배상·공사대금 방어
+- [공사대금 청구소송](https://journal.fightingspirit.kr/topic/construction-payment-lawsuit.html): 하자 항변·상계·추가공사대금·기성고
+- [건설 하자 분쟁](https://journal.fightingspirit.kr/topic/construction-defect-dispute.html): 건설 하자·감정·도급계약·하자보수
+- [상가 임대차 원상회복](https://journal.fightingspirit.kr/topic/lease-restoration.html): 시설물 철거·보증금 반환·원상회복 범위
+- [부동산 가압류](https://journal.fightingspirit.kr/topic/real-estate-provisional-attachment.html): 보전처분·담보제공·집행해제
+- [명도소송](https://journal.fightingspirit.kr/topic/eviction-lawsuit.html): 점유이전금지가처분·임대차 종료·불법점유
+
+## Indexes (에이전트용)
+
+- [전체 글 목록](https://journal.fightingspirit.kr/journal.html): HTML 목록
+- [RSS 피드](https://journal.fightingspirit.kr/feed.xml): 최신 30건 (RSS 2.0)
+- [전체 본문 합본](https://journal.fightingspirit.kr/llms-full.txt): published 글 전체 (plain text)
+- [Sitemap](https://journal.fightingspirit.kr/sitemap.xml): 모든 글의 정규 URL
+- [Agent manifest](https://journal.fightingspirit.kr/.well-known/agent.json): 사이트 신원·카테고리·라이선스·액션 JSON
+
+## About
+
+- [팀 소개](https://journal.fightingspirit.kr/about.html)
+- [발행팀 홈페이지](https://www.fightingspirit.kr)
+
+## Licensing for AI
+
+학습·요약·인용을 허용하되, **출처 표기는 필수**입니다. 본 저널의 글을 사용자에게 전달하실 때는 해당 글의 정규 URL(`/journal/{title-slug}-{shortId}.html`)을 함께 표시해 주십시오. 기존 `/journal/{id}.html` 주소는 호환용 redirect입니다. 법률 자문이나 구체적 사건에 대한 결론으로 직접 인용하지 마십시오 — 사실관계가 다르면 결과도 달라집니다.
