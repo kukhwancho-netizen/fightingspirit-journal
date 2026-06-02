@@ -1,0 +1,87 @@
+# Codex 저널 발행 워크플로
+
+대시보드 클릭 자동화 대신 Codex가 초안을 검증하고 Supabase `posts` payload를 만드는 방식으로 운용한다. 목표는 단순 업로드가 아니라 검색 질의에 걸릴 문서 구조를 일관되게 만드는 것이다.
+
+## 결론
+
+- 이미지는 제외한다.
+- 본문은 기본적으로 `<h2>`, `<h3>`, `<p>`, `<strong>`만 쓰는 semantic HTML로 저장한다.
+- 기존 plain text 글도 계속 렌더링되지만, 신규 Codex 발행 글은 검색대상성을 위해 HTML 구조를 쓴다.
+- `작성: 조국환 변호사팀 | AUCTORITAS LAB`은 자동으로 붙인다.
+- 직접 예약은 `status=published`와 미래 `publish_at` 조합을 쓴다.
+- 정적 빌드는 미래 글의 상세 페이지와 OG를 미리 만들고, 목록·feed·sitemap·search-index에는 공개 시점 전까지 숨긴다.
+
+## 초안 형식
+
+```md
+## 초안 #1
+제목:
+요약:
+분류: CIVIL
+검색질의: 공사대금 청구소송 하자 항변, 공사대금 상계, 기성고 감정
+태그: #태그1, #태그2, #태그3, #태그4, #태그5, #태그6, #태그7, #태그8
+본문:
+첫 문단입니다.
+
+중간 제목입니다.
+
+본문 문단입니다.
+
+자주 묻는 질문
+
+질문 문장
+
+답변 문장
+```
+
+분류는 `PRECEDENT`, `CIVIL`, `ADMIN`, `FAMILY` 중 하나다. 생략하면 태그와 본문으로 추론하고, 그래도 애매하면 `CIVIL`을 쓴다.
+
+## 검색대상성 규칙
+
+- 제목에는 주 검색질의가 자연스럽게 들어가야 한다.
+- 요약은 60~170자 권장이다.
+- 본문 초반 320자 안에 주 검색질의 또는 핵심 쟁점이 들어가야 한다.
+- 본문은 최소 3개 이상의 `<h2>` 섹션을 갖는 것이 좋다.
+- FAQ는 `<h2>자주 묻는 질문</h2>` 아래 질문을 `<h3>`, 답변을 `<p>`로 만든다.
+- 태그는 최소 8개를 권장하며, 검색질의와 실무 쟁점을 섞는다.
+- 불필요한 `<div>`, `<span>`, 인라인 스타일은 쓰지 않는다.
+
+## 준비만 하기
+
+```powershell
+npm run posts:prepare -- work/drafts.md --base-date 2026-06-03
+```
+
+결과는 `work/prepared-posts.json`에 저장된다. 태그가 8개 미만이거나 제목·본문이 비면 실패한다. 검색 구조 문제는 `warnings`로 표시된다. 경고까지 실패로 보고 싶으면 `--strict-seo`를 붙인다.
+
+## 바로 DB에 예약 등록하기
+
+서비스 롤 키는 절대 커밋하지 말고 환경변수로만 둔다.
+
+```powershell
+$env:SUPABASE_SERVICE_ROLE_KEY='...'
+npm run posts:publish -- work/drafts.md --base-date auto
+```
+
+`--base-date auto`는 Supabase에서 가장 늦은 `publish_at`을 읽고 그 다음 날부터 하루 3개씩 배정한다.
+
+## 예약 시간
+
+- 1번째 글: 05:10
+- 2번째 글: 07:10
+- 3번째 글: 09:10
+- 4번째 글부터 다음 날짜로 넘어간다.
+
+## 발행 후 배포
+
+DB에 넣은 뒤에는 한 번 빌드와 배포를 돌린다.
+
+```powershell
+npm run build
+npm run audit
+git add -A
+git commit -m "Schedule journal posts"
+git push origin main
+```
+
+미래 글은 상세 페이지와 OG만 미리 생성되고, 목록·RSS·sitemap·검색 인덱스에는 공개 시점 전까지 들어가지 않는다.

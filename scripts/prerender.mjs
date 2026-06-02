@@ -209,9 +209,7 @@ function matchingTopicsForPost(p) {
 }
 
 async function fetchPosts() {
-  const nowIso = new Date().toISOString();
   const base = `${SB_URL}/rest/v1/posts?status=eq.published`
-    + `&or=(publish_at.is.null,publish_at.lte.${encodeURIComponent(nowIso)})`
     + `&order=publish_at.desc.nullslast,date.desc,id.desc`;
   const headers = { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}` };
 
@@ -228,6 +226,12 @@ async function fetchPosts() {
     throw new Error(`Supabase ${r.status}: ${body}`);
   }
   return r.json();
+}
+
+function isVisiblePost(p, now = new Date()) {
+  if (!p.publish_at) return true;
+  const ts = Date.parse(p.publish_at);
+  return Number.isNaN(ts) || ts <= now.getTime();
 }
 
 // 태그 정규화: 공백 제거, 빈 값 필터.
@@ -1484,13 +1488,14 @@ ${items}
 async function main() {
   console.log('Fetching published posts from Supabase…');
   const posts = await fetchPosts();
-  console.log(`Got ${posts.length} published posts.`);
+  const visiblePosts = posts.filter(p => isVisiblePost(p));
+  console.log(`Got ${posts.length} published posts (${visiblePosts.length} visible now).`);
 
   const journalDir = join(ROOT, 'journal');
   await mkdir(journalDir, { recursive: true });
 
   for (const p of posts) {
-    await writeFile(join(journalDir, `${articleSlug(p)}.html`), articleHtml(p, posts), 'utf8');
+    await writeFile(join(journalDir, `${articleSlug(p)}.html`), articleHtml(p, visiblePosts), 'utf8');
     await writeFile(join(journalDir, `${p.id}.html`), legacyArticleRedirectHtml(p), 'utf8');
   }
   console.log(`Wrote ${posts.length} canonical article pages and ${posts.length} legacy redirects → journal/`);
@@ -1498,7 +1503,7 @@ async function main() {
   // ── 태그 인덱스 페이지 ───────────────────────────────────────────────
   // 태그별로 글 모음. 빈 태그·중복 정규화.
   const tagMap = new Map();
-  for (const p of posts) {
+  for (const p of visiblePosts) {
     for (const t of normalizeTags(p.tags)) {
       if (!tagMap.has(t)) tagMap.set(t, []);
       tagMap.get(t).push(p);
@@ -1518,11 +1523,11 @@ async function main() {
   console.log(`Wrote ${tagIndex.length} tag index pages → tag/`);
 
   // ── 검색 주제 허브 페이지 ────────────────────────────────────────────
-  const topicIndex = TOPIC_PAGES.map(topic => [topic, topicPosts(topic, posts)]);
+  const topicIndex = TOPIC_PAGES.map(topic => [topic, topicPosts(topic, visiblePosts)]);
   const topicDir = join(ROOT, 'topic');
   await mkdir(topicDir, { recursive: true });
   for (const [topic, postsForTopic] of topicIndex) {
-    await writeFile(join(topicDir, `${topic.slug}.html`), topicPageHtml(topic, postsForTopic, posts), 'utf8');
+    await writeFile(join(topicDir, `${topic.slug}.html`), topicPageHtml(topic, postsForTopic, visiblePosts), 'utf8');
     if (topic.legacySlug) {
       await writeFile(join(topicDir, `${topic.legacySlug}.html`), legacyTopicRedirectHtml(topic), 'utf8');
     }
@@ -1530,22 +1535,22 @@ async function main() {
   await writeFile(join(topicDir, 'index.html'), topicIndexHtml(topicIndex), 'utf8');
   console.log(`Wrote ${topicIndex.length} topic hub pages → topic/`);
 
-  await writeFile(join(journalDir, 'index.html'), journalArchiveHtml(posts, tagIndex, topicIndex), 'utf8');
+  await writeFile(join(journalDir, 'index.html'), journalArchiveHtml(visiblePosts, tagIndex, topicIndex), 'utf8');
   console.log('Wrote static journal archive -> journal/index.html');
 
   await writeFile(join(ROOT, 'query-map.html'), queryMapHtml(topicIndex), 'utf8');
   console.log('Wrote query-map.html');
 
-  await writeFile(join(ROOT, 'feed.xml'), feedXml(posts), 'utf8');
+  await writeFile(join(ROOT, 'feed.xml'), feedXml(visiblePosts), 'utf8');
   console.log('Wrote feed.xml');
 
-  await writeFile(join(ROOT, 'llms-full.txt'), llmsFullTxt(posts), 'utf8');
+  await writeFile(join(ROOT, 'llms-full.txt'), llmsFullTxt(visiblePosts), 'utf8');
   console.log('Wrote llms-full.txt');
 
-  await writeFile(join(ROOT, 'sitemap.xml'), sitemapXml(posts, tagIndex, topicIndex), 'utf8');
+  await writeFile(join(ROOT, 'sitemap.xml'), sitemapXml(visiblePosts, tagIndex, topicIndex), 'utf8');
   console.log('Wrote sitemap.xml');
 
-  await writeFile(join(ROOT, 'search-index.json'), searchIndexJson(posts, tagIndex, topicIndex), 'utf8');
+  await writeFile(join(ROOT, 'search-index.json'), searchIndexJson(visiblePosts, tagIndex, topicIndex), 'utf8');
   console.log('Wrote search-index.json');
 
   // ── OG 이미지 ────────────────────────────────────────────────────────
