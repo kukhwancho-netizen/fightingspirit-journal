@@ -30,6 +30,7 @@
 - [RSS 피드](https://journal.fightingspirit.kr/feed.xml): 최신 30건 (RSS 2.0)
 - [전체 본문 합본](https://journal.fightingspirit.kr/llms-full.txt): published 글 전체 (plain text)
 - [검색 인덱스 JSON](https://journal.fightingspirit.kr/search-index.json): 주제·태그·글 URL 구조화 목록
+- `search-index.json`의 `topics[].queryTargets`는 주제별 SERP 추적용 핵심 검색 질의입니다.
 - [OpenSearch](https://journal.fightingspirit.kr/opensearch.xml): `journal.html?q={검색어}` 기반 사이트 검색 설명
 - [Sitemap](https://journal.fightingspirit.kr/sitemap.xml): 모든 글의 정규 URL
 - [Agent manifest](https://journal.fightingspirit.kr/.well-known/agent.json): 사이트 신원·카테고리·라이선스·액션 JSON

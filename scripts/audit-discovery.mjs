@@ -74,6 +74,7 @@ async function main() {
   requireText('journal/index.html', journalArchive, 'CollectionPage', 'CollectionPage JSON-LD');
   requireText('journal/index.html', journalArchive, 'ItemList', 'ItemList JSON-LD');
   requireText('.well-known/agent.json', JSON.stringify(agent), `${SITE}/journal/`, 'agent static archive URL');
+  requireText('.well-known/agent.json', JSON.stringify(agent), 'search_query_targets', 'agent search query target index');
 
   if (!Array.isArray(searchIndex.articles) || searchIndex.articles.length === 0) {
     errors.push('search-index.json: articles must be a non-empty array');
@@ -115,6 +116,12 @@ async function main() {
     const html = await text(rel);
     requireText(rel, html, `<link rel="canonical" href="${topic.url}">`, 'canonical URL');
     requireText(rel, html, 'FAQPage', 'FAQPage JSON-LD');
+    if (!Array.isArray(topic.queryTargets) || topic.queryTargets.length < 4) {
+      errors.push(`search-index.json: topic ${topic.name || topic.url} needs at least four queryTargets`);
+    }
+    for (const query of (topic.queryTargets || []).slice(0, 3)) {
+      requireText(rel, html, query, `visible query target: ${query}`);
+    }
   }
 
   if (errors.length) {

@@ -37,6 +37,7 @@ const TOPIC_PAGES = [
     title: '인테리어 하자 분쟁 대응 저널',
     description: '인테리어 공사 하자, 부실시공, 하자보수, 손해배상, 공사대금 방어 쟁점을 모은 조국환 변호사팀의 실무 저널입니다.',
     keywords: ['인테리어', '하자', '부실시공', '하자보수', '손해배상', '공사대금', '상계'],
+    queryTargets: ['인테리어 하자 분쟁', '인테리어 하자 소송', '인테리어 부실시공 손해배상', '인테리어 하자보수 거절', '인테리어 공사대금 하자 항변', '인테리어 하자 감정'],
     checkpoints: ['계약서와 견적서의 공사 범위 특정', '하자 사진·영상·감정자료 확보', '하자보수 요구와 대금 지급 거절의 순서', '손해배상·상계 항변의 증명 구조'],
     faq: [
       ['인테리어 하자 분쟁에서 먼저 확보할 자료는 무엇인가요?', '계약서, 견적서, 설계도면, 시공 전후 사진, 하자 부위 영상, 하자보수 요청 내역, 대금 지급 자료를 함께 정리하는 것이 출발점입니다.'],
@@ -51,6 +52,7 @@ const TOPIC_PAGES = [
     title: '공사대금 청구소송 실무 저널',
     description: '공사대금 청구소송, 하자 항변, 상계, 추가공사대금, 기성고 다툼과 관련한 판례·실무 쟁점을 정리합니다.',
     keywords: ['공사대금', '청구소송', '하자', '항변', '상계', '추가공사', '기성고'],
+    queryTargets: ['공사대금 청구소송', '공사대금 분쟁', '공사대금 하자 항변', '공사대금 상계', '추가공사대금 청구', '기성고 공사대금 소송'],
     checkpoints: ['도급계약·견적서·정산합의의 우선순위', '추가공사 지시와 승인 자료', '하자 항변과 상계 주장의 입증자료', '기성고·완성도·감정 절차의 대응'],
     faq: [
       ['공사대금 청구소송에서 핵심 쟁점은 무엇인가요?', '계약상 공사 범위, 완성 여부, 기성고, 추가공사 합의, 하자 존재, 정산 합의가 주된 쟁점입니다. 각 쟁점마다 필요한 증거가 다릅니다.'],
@@ -65,6 +67,7 @@ const TOPIC_PAGES = [
     title: '건설 하자 분쟁 대응 저널',
     description: '건설 하자, 하자보수, 손해배상, 감정, 도급계약 분쟁에서 자주 문제 되는 법률 쟁점을 모았습니다.',
     keywords: ['건설', '하자', '하자보수', '손해배상', '감정', '도급', '부실시공'],
+    queryTargets: ['건설 하자 분쟁', '건설 하자 소송', '건설 하자보수 손해배상', '건설 하자 감정', '도급계약 하자 분쟁', '부실시공 소송'],
     checkpoints: ['하자 발생 시점과 책임기간', '하자보수비 산정과 감정 신청', '사용승인·인도 이후 발견된 하자', '도급인·수급인·하수급인 책임 구분'],
     faq: [
       ['건설 하자 분쟁에서 하자보수비는 어떻게 산정하나요?', '하자의 범위, 보수 방법, 자재와 인건비, 철거·재시공 필요성, 감정 결과에 따라 산정됩니다. 단순 견적만으로는 다툼이 남을 수 있습니다.'],
@@ -79,6 +82,7 @@ const TOPIC_PAGES = [
     title: '상가 임대차 원상회복 분쟁 저널',
     description: '상가 임대차 종료, 원상회복, 보증금 반환, 시설물 철거와 관련한 임대인·임차인 분쟁 쟁점을 다룹니다.',
     keywords: ['상가', '임대차', '원상회복', '보증금', '시설물', '철거', '임차인', '임대인'],
+    queryTargets: ['상가 임대차 원상회복', '상가 원상회복 분쟁', '상가 보증금 원상회복 공제', '상가 시설물 철거 분쟁', '임대차 종료 원상회복', '상가 임차인 원상회복 의무'],
     checkpoints: ['임대차계약서의 원상회복 특약', '입점 전 상태와 인테리어 변경 범위', '보증금 공제와 원상회복 비용 산정', '권리금·시설물 인수와 철거 책임'],
     faq: [
       ['상가 임대차 원상회복 범위는 어떻게 정해지나요?', '계약서 특약, 입점 당시 상태, 임대인의 동의, 시설물 설치 경위, 권리금·시설 인수 약정 등을 종합해 판단합니다.'],
@@ -93,6 +97,7 @@ const TOPIC_PAGES = [
     title: '부동산 가압류 실무 저널',
     description: '부동산 가압류 신청, 보전처분, 담보제공, 집행해제와 관련한 실무상 판단 기준을 정리합니다.',
     keywords: ['부동산', '가압류', '보전처분', '담보제공', '집행해제', '채권', '강제집행'],
+    queryTargets: ['부동산 가압류', '부동산 가압류 신청', '부동산 가압류 해제', '부동산 가압류 담보제공', '보전처분 부동산 가압류', '채권 회수 부동산 가압류'],
     checkpoints: ['피보전권리와 보전의 필요성 소명', '부동산 시가·선순위 권리 확인', '담보제공 방식과 금액 예상', '가압류 이의·취소·해제 대응'],
     faq: [
       ['부동산 가압류를 신청하려면 무엇을 소명해야 하나요?', '채권이 존재한다는 피보전권리와, 판결 전 재산 보전이 필요하다는 보전의 필요성을 자료로 소명해야 합니다.'],
@@ -107,6 +112,7 @@ const TOPIC_PAGES = [
     title: '명도소송·점유이전 대응 저널',
     description: '명도소송, 점유이전금지가처분, 임대차 종료, 불법점유와 관련한 소송 전략과 판례 쟁점을 모았습니다.',
     keywords: ['명도소송', '명도', '점유', '점유이전금지가처분', '임대차', '불법점유', '인도'],
+    queryTargets: ['명도소송', '명도소송 절차', '점유이전금지가처분', '임대차 종료 명도소송', '차임 연체 명도소송', '불법점유 명도'],
     checkpoints: ['임대차 종료 사유와 해지 통지', '점유자 특정과 점유이전금지가처분', '차임 연체·무단점유 자료 확보', '인도 집행 전후 비용 정산'],
     faq: [
       ['명도소송 전에 점유이전금지가처분이 필요한가요?', '점유자가 바뀔 위험이 있거나 실제 점유관계가 불안정한 경우에는 본안 소송 전 가처분을 함께 검토하는 경우가 많습니다.'],
@@ -122,6 +128,10 @@ const stripTags = s => String(s ?? '').replace(/<[^>]+>/g, '').replace(/\s+/g, '
 
 function uniqueList(items) {
   return [...new Set(items.map(x => String(x || '').trim()).filter(Boolean))];
+}
+
+function topicQueryTargets(topic) {
+  return uniqueList([topic.name, ...(topic.queryTargets || [])]);
 }
 
 function slugifyText(value, maxLen = 86) {
@@ -672,7 +682,8 @@ function topicPageHtml(topic, postsForTopic, allPosts) {
   const pageUrl = topicUrl(topic);
   const listedPosts = postsForTopic;
   const desc = topic.description;
-  const keywords = uniqueList([topic.name, ...topic.keywords, '공간분쟁', '조국환변호사', 'AUCTORITAS']);
+  const queryTargets = topicQueryTargets(topic);
+  const keywords = uniqueList([topic.name, ...queryTargets, ...topic.keywords, '공간분쟁', '조국환변호사', 'AUCTORITAS']);
 
   const collectionJsonld = {
     "@type": "CollectionPage",
@@ -682,6 +693,8 @@ function topicPageHtml(topic, postsForTopic, allPosts) {
     "inLanguage": "ko",
     "isPartOf": { "@type": "Blog", "name": "AUCTORITAS LAB 법률 저널", "url": SITE },
     "about": keywords.map(name => ({ "@type": "Thing", "name": name })),
+    "keywords": queryTargets.join(', '),
+    "mentions": queryTargets.map(name => ({ "@type": "Thing", "name": name })),
     "mainEntity": {
       "@type": "ItemList",
       "numberOfItems": listedPosts.length,
@@ -828,7 +841,7 @@ ${navHtml()}
     <div class="topic-eyebrow">Topic Archive</div>
     <h1 class="topic-h1">${escHtml(topic.title)}</h1>
     <p class="topic-desc">${escHtml(desc)}</p>
-    <div class="query-list">${keywords.slice(0, 9).map(k => `<span class="query-pill">${escHtml(k)}</span>`).join('')}</div>
+    <div class="query-list" aria-label="대상 검색 질의">${queryTargets.slice(0, 9).map(k => `<span class="query-pill">${escHtml(k)}</span>`).join('')}</div>
   </header>
 
   <section class="checkpoint" aria-label="실무 체크포인트">
@@ -877,7 +890,7 @@ function legacyTopicRedirectHtml(topic) {
 function topicIndexHtml(topicIndex) {
   const pageUrl = `${SITE}/topic/`;
   const desc = '공간분쟁 전문 조국환 변호사팀 저널의 주요 검색 주제 모음. 인테리어 하자, 공사대금 청구소송, 건설 하자, 임대차 원상회복, 부동산 가압류, 명도소송을 한곳에서 탐색합니다.';
-  const keywords = TOPIC_PAGES.flatMap(topic => [topic.name, ...topic.keywords]);
+  const keywords = TOPIC_PAGES.flatMap(topic => [topic.name, ...topicQueryTargets(topic), ...topic.keywords]);
   const jsonld = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -904,7 +917,7 @@ function topicIndexHtml(topicIndex) {
       <div class="topic-title">${escHtml(topic.title)}</div>
       <p>${escHtml(topic.description)}</p>
       <div class="topic-count">${postsForTopic.length ? `${postsForTopic.length}개 관련 글` : '관련 글 준비 중'}</div>
-      <div class="topic-keys">${topic.keywords.slice(0, 5).map(k => `<span>${escHtml(k)}</span>`).join('')}</div>
+      <div class="topic-keys">${topicQueryTargets(topic).slice(0, 5).map(k => `<span>${escHtml(k)}</span>`).join('')}</div>
     </a>
   `).join('');
 
@@ -978,7 +991,7 @@ function journalArchiveHtml(posts, tagIndex, topicIndex) {
     '조국환 변호사',
     '법률 저널',
     '공간분쟁',
-    ...TOPIC_PAGES.flatMap(topic => [topic.name, ...topic.keywords]),
+    ...TOPIC_PAGES.flatMap(topic => [topic.name, ...topicQueryTargets(topic), ...topic.keywords]),
     ...tagIndex.map(([tag]) => tag)
   ]);
   const collectionJsonld = {
@@ -1145,7 +1158,8 @@ function searchIndexJson(posts, tagIndex, topicIndex) {
       title: topic.title,
       url: topicUrl(topic),
       description: topic.description,
-      keywords: uniqueList([topic.name, ...topic.keywords]),
+      queryTargets: topicQueryTargets(topic),
+      keywords: uniqueList([topic.name, ...topicQueryTargets(topic), ...topic.keywords]),
       faq: (topic.faq || []).map(([question, answer]) => ({ question, answer })),
       articleCount: postsForTopic.length,
       articles: postsForTopic.map(p => ({ title: p.title, url: articleUrl(p) }))

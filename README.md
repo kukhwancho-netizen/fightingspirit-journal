@@ -31,6 +31,8 @@ AUCTORITAS LAB / 조국환 변호사팀 저널 전용 정적 사이트입니다.
 
 각 허브는 검색어와 같은 한글 정규 URL(`topic/공사대금-청구소송.html` 등)로 생성되고, 기존 영문 slug URL은 `noindex,follow` 호환 redirect로 남깁니다. `topic/index.html`은 전체 주제 인덱스로 생성됩니다. 관련 글은 자동으로 묶어 `CollectionPage` JSON-LD, `search-index.json`, sitemap에 포함합니다.
 
+각 주제는 `scripts/prerender.mjs`의 `queryTargets`에 실제 검색자가 입력할 법한 질의 묶음을 가집니다. 이 값은 주제 허브의 표시 문구, meta keywords, JSON-LD `keywords`/`mentions`, `search-index.json`에 함께 반영됩니다.
+
 ## 빌드
 
 ```bash
@@ -51,7 +53,7 @@ npm run build
 npm run audit
 ```
 
-`npm run audit`는 sitemap, robots, OpenSearch, llms, agent manifest, 정적 글 아카이브, 글·주제 canonical URL, Article/CollectionPage/FAQPage JSON-LD가 서로 연결되어 있는지 확인합니다.
+`npm run audit`는 sitemap, robots, OpenSearch, llms, agent manifest, 정적 글 아카이브, 글·주제 canonical URL, BlogPosting/CollectionPage/FAQPage JSON-LD, 주제별 `queryTargets`가 서로 연결되어 있는지 확인합니다.
 
 ## URL 정책
 
