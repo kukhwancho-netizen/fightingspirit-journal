@@ -36,6 +36,9 @@ jobs:
       - name: Build static journal
         run: npm run build
 
+      - name: Audit search discovery signals
+        run: npm run audit
+
       - name: Prepare Pages artifact
         shell: bash
         run: |

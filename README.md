@@ -44,6 +44,15 @@ npm run build
 npm run check
 ```
 
+검색 대상성 감사:
+
+```bash
+npm run build
+npm run audit
+```
+
+`npm run audit`는 sitemap, robots, OpenSearch, llms, agent manifest, 정적 글 아카이브, 글·주제 canonical URL, Article/CollectionPage/FAQPage JSON-LD가 서로 연결되어 있는지 확인합니다.
+
 ## URL 정책
 
 정규 글 URL은 제목 기반 slug를 사용합니다.
@@ -62,3 +71,13 @@ npm run check
 ## 배포
 
 `CNAME`은 `journal.fightingspirit.kr`로 설정되어 있습니다. GitHub Pages 또는 정적 호스팅에서 저장소 루트를 배포 루트로 사용하면 됩니다.
+
+배포 직후 검색엔진에 제출할 핵심 URL:
+
+```text
+https://journal.fightingspirit.kr/sitemap.xml
+https://journal.fightingspirit.kr/journal/
+https://journal.fightingspirit.kr/topic/
+https://journal.fightingspirit.kr/search-index.json
+https://journal.fightingspirit.kr/llms.txt
+```

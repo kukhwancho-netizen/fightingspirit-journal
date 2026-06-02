@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/prerender.mjs",
-    "check": "node --check scripts/prerender.mjs"
+    "check": "node --check scripts/prerender.mjs && node --check scripts/audit-discovery.mjs",
+    "audit": "node scripts/audit-discovery.mjs"
   },
   "engines": {
     "node": ">=20"
