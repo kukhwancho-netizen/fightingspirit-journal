@@ -54,6 +54,26 @@ npm run posts:prepare -- work/drafts.md --base-date 2026-06-03
 
 결과는 `work/prepared-posts.json`에 저장된다. 태그가 8개 미만이거나 제목·본문이 비면 실패한다. 검색 구조 문제는 `warnings`로 표시된다. 경고까지 실패로 보고 싶으면 `--strict-seo`를 붙인다.
 
+### 오늘 바로 공개하기
+
+사용자가 "예약 없이 오늘 올려"라고 하면 예약 슬롯을 잡지 말고 모든 글을 오늘 날짜의 즉시 공개 글로 준비한다.
+
+```powershell
+npm run posts:publish -- work/drafts.md --publish-today --strict-seo
+```
+
+이 모드는 `date`를 오늘로 두고 `publish_at`을 비워서 공개 저널 목록, sitemap, search-index에 바로 들어가게 한다.
+
+### 공개 저널 기준으로 빈날 채우기
+
+예약 배치는 관리자 화면의 마지막 예약일이 아니라 공개 저널에 실제로 보이는 글의 날짜별 개수를 기준으로 잡는다. 미래 예약글은 공개 저널에 아직 보이지 않으므로 빈날 계산에서 제외한다.
+
+```powershell
+npm run posts:publish -- work/drafts.md --fill-visible-gaps --strict-seo
+```
+
+이 모드는 오늘부터 공개 글이 3개 미만인 날짜를 먼저 채우고, 05:10 / 07:10 / 09:10 순서로 배정한다.
+
 ## 바로 DB에 예약 등록하기
 
 서비스 롤 키는 절대 커밋하지 말고 환경변수로만 둔다.

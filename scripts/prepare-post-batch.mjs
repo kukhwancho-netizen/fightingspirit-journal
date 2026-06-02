@@ -16,7 +16,9 @@ function parseArgs(argv) {
     minTags: 8,
     baseDate: null,
     format: 'html',
-    strictSeo: false
+    strictSeo: false,
+    fillVisibleGaps: false,
+    publishToday: false
   };
   const files = [];
   for (let i = 0; i < argv.length; i += 1) {
@@ -29,6 +31,8 @@ function parseArgs(argv) {
     else if (arg === '--min-tags') opts.minTags = Number(argv[++i]);
     else if (arg === '--format') opts.format = argv[++i];
     else if (arg === '--strict-seo') opts.strictSeo = true;
+    else if (arg === '--fill-visible-gaps') opts.fillVisibleGaps = true;
+    else if (arg === '--publish-today') opts.publishToday = true;
     else if (arg === '--help' || arg === '-h') opts.help = true;
     else files.push(arg);
   }
@@ -53,6 +57,8 @@ Options:
   --status published              직접 예약은 published + future publish_at 권장.
   --format html|text              기본 html. 검색 구조용 h2/h3/p를 생성.
   --strict-seo                    검색 구조 경고도 실패로 처리.
+  --fill-visible-gaps             공개 저널 기준 날짜별 빈 슬롯을 먼저 채움.
+  --publish-today                 모든 글을 오늘 날짜의 즉시 공개 글로 준비.
 `;
 }
 
@@ -267,11 +273,14 @@ function seoWarnings(draft, row, opts) {
   return warnings;
 }
 
-function scheduleRows(drafts, opts, baseDate) {
+function scheduleRows(drafts, opts, baseDate, assignments = null) {
   return drafts.map((draft, i) => {
-    const dayOffset = Math.floor(i / SLOTS.length) + 1;
-    const slot = SLOTS[i % SLOTS.length];
-    const date = addDays(baseDate, dayOffset);
+    const fallback = {
+      date: addDays(baseDate, Math.floor(i / SLOTS.length) + 1),
+      slot: SLOTS[i % SLOTS.length]
+    };
+    const plan = assignments?.[i] || fallback;
+    const { date, slot } = plan;
     const series = draft.series || inferSeries(draft, opts.defaultSeries);
     const content = normalizeBody(draft.body, opts.format);
     const row = {
@@ -282,7 +291,7 @@ function scheduleRows(drafts, opts, baseDate) {
       tags: draft.tags,
       status: opts.status,
       date: displayDate(date),
-      publish_at: publishAtIso(date, slot)
+      publish_at: slot ? publishAtIso(date, slot) : null
     };
     const errors = [];
     if (!row.title) errors.push('제목 없음');
@@ -293,7 +302,7 @@ function scheduleRows(drafts, opts, baseDate) {
     if (opts.strictSeo) errors.push(...warnings);
     return {
       draft: draft.index,
-      schedule: `${date} ${slot}`,
+      schedule: slot ? `${date} ${slot}` : `${date} now`,
       row,
       searchTargets: draft.searchTargets,
       warnings,
@@ -315,6 +324,48 @@ async function latestBaseDateFromSupabase() {
   if (!first) return formatDateInput(new Date());
   if (first.publish_at) return formatDateInput(new Date(first.publish_at));
   return normalizeDate(first.date);
+}
+
+function visiblePostDate(post) {
+  if (post.publish_at) {
+    const ts = Date.parse(post.publish_at);
+    if (Number.isFinite(ts) && ts > Date.now()) return null;
+  }
+  if (post.date) return normalizeDate(post.date);
+  if (post.publish_at) return formatDateInput(new Date(post.publish_at));
+  return null;
+}
+
+async function visibleDateCountsFromSupabase() {
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
+  if (!key) throw new Error('--fill-visible-gaps에는 SUPABASE_SERVICE_ROLE_KEY 또는 SUPABASE_ANON_KEY가 필요합니다.');
+  const url = `${SB_URL}/rest/v1/posts?select=date,publish_at&status=eq.published&limit=1000`;
+  const response = await fetch(url, {
+    headers: { apikey: key, Authorization: `Bearer ${key}` }
+  });
+  if (!response.ok) throw new Error(`Supabase visible-date fetch failed: ${response.status} ${await response.text()}`);
+  const counts = new Map();
+  for (const post of await response.json()) {
+    const date = visiblePostDate(post);
+    if (!date) continue;
+    counts.set(date, (counts.get(date) || 0) + 1);
+  }
+  return counts;
+}
+
+function fillVisibleGapAssignments(count, counts, startDate) {
+  const assignments = [];
+  let date = startDate;
+  while (assignments.length < count) {
+    let used = counts.get(date) || 0;
+    for (let slotIndex = used; slotIndex < SLOTS.length && assignments.length < count; slotIndex += 1) {
+      assignments.push({ date, slot: SLOTS[slotIndex] });
+      used += 1;
+      counts.set(date, used);
+    }
+    date = addDays(date, 1);
+  }
+  return assignments;
 }
 
 async function publishRows(rows) {
@@ -344,12 +395,22 @@ async function main() {
   if (!SERIES.has(opts.defaultSeries)) throw new Error(`Invalid --default-series: ${opts.defaultSeries}`);
   const input = await readFile(resolve(opts.input), 'utf8');
   const drafts = parseDrafts(input);
-  const baseDate = opts.baseDate === 'auto'
-    ? await latestBaseDateFromSupabase()
-    : normalizeDate(opts.baseDate);
+  let assignments = null;
+  let baseDate = null;
+  if (opts.publishToday) {
+    baseDate = formatDateInput(new Date());
+    assignments = drafts.map(() => ({ date: baseDate, slot: null }));
+  } else if (opts.fillVisibleGaps) {
+    baseDate = opts.baseDate ? normalizeDate(opts.baseDate) : formatDateInput(new Date());
+    assignments = fillVisibleGapAssignments(drafts.length, await visibleDateCountsFromSupabase(), baseDate);
+  } else {
+    baseDate = opts.baseDate === 'auto'
+      ? await latestBaseDateFromSupabase()
+      : normalizeDate(opts.baseDate);
+  }
   if (!baseDate) throw new Error('--base-date YYYY-MM-DD 또는 --base-date auto가 필요합니다.');
 
-  const prepared = scheduleRows(drafts, opts, baseDate);
+  const prepared = scheduleRows(drafts, opts, baseDate, assignments);
   const failed = prepared.filter(x => x.errors.length);
   const result = {
     generatedAt: new Date().toISOString(),
