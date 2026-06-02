@@ -2,7 +2,7 @@
   "site": "https://journal.fightingspirit.kr",
   "name": "AUCTORITAS LAB 법률 저널",
   "description": "공간분쟁 전문 조국환 변호사팀의 판례·실무 저널 검색 인덱스",
-  "generatedAt": "2026-06-02T12:27:26.815Z",
+  "generatedAt": "2026-06-02T14:32:11.195Z",
   "topics": [
     {
       "name": "인테리어 하자 분쟁",
@@ -182,8 +182,12 @@
           "answer": "시설 인수 약정, 임대인의 승낙, 계약 종료 시 특약에 따라 달라집니다. 인수 사실만으로 항상 철거 책임이 사라지는 것은 아닙니다."
         }
       ],
-      "articleCount": 1,
+      "articleCount": 2,
       "articles": [
+        {
+          "title": "전세사기 피해자 보증금 회수 — 법적 절차와 우선순위 판단 기준",
+          "url": "https://journal.fightingspirit.kr/journal/%EC%A0%84%EC%84%B8%EC%82%AC%EA%B8%B0-%ED%94%BC%ED%95%B4%EC%9E%90-%EB%B3%B4%EC%A6%9D%EA%B8%88-%ED%9A%8C%EC%88%98-%EB%B2%95%EC%A0%81-%EC%A0%88%EC%B0%A8%EC%99%80-%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84-%ED%8C%90%EB%8B%A8-%EA%B8%B0%EC%A4%80-42.html"
+        },
         {
           "title": "주택임대차 조정서의 집행력과 강제집행 기준",
           "url": "https://journal.fightingspirit.kr/journal/%EC%A3%BC%ED%83%9D%EC%9E%84%EB%8C%80%EC%B0%A8-%EC%A1%B0%EC%A0%95%EC%84%9C%EC%9D%98-%EC%A7%91%ED%96%89%EB%A0%A5%EA%B3%BC-%EA%B0%95%EC%A0%9C%EC%A7%91%ED%96%89-%EA%B8%B0%EC%A4%80-7.html"
@@ -232,11 +236,15 @@
           "answer": "담보 제공, 이의·취소 신청, 본안 진행 상황, 채권 소멸 사유 등에 따라 해제나 취소를 검토할 수 있습니다."
         }
       ],
-      "articleCount": 1,
+      "articleCount": 2,
       "articles": [
         {
           "title": "주택임대차 조정서의 집행력과 강제집행 기준",
           "url": "https://journal.fightingspirit.kr/journal/%EC%A3%BC%ED%83%9D%EC%9E%84%EB%8C%80%EC%B0%A8-%EC%A1%B0%EC%A0%95%EC%84%9C%EC%9D%98-%EC%A7%91%ED%96%89%EB%A0%A5%EA%B3%BC-%EA%B0%95%EC%A0%9C%EC%A7%91%ED%96%89-%EA%B8%B0%EC%A4%80-7.html"
+        },
+        {
+          "title": "강제경매에서 소유권이전청구권 보전 가등기의 인수 여부 판단 기준",
+          "url": "https://journal.fightingspirit.kr/journal/%EA%B0%95%EC%A0%9C%EA%B2%BD%EB%A7%A4%EC%97%90%EC%84%9C-%EC%86%8C%EC%9C%A0%EA%B6%8C%EC%9D%B4%EC%A0%84%EC%B2%AD%EA%B5%AC%EA%B6%8C-%EB%B3%B4%EC%A0%84-%EA%B0%80%EB%93%B1%EA%B8%B0%EC%9D%98-%EC%9D%B8%EC%88%98-%EC%97%AC%EB%B6%80-%ED%8C%90%EB%8B%A8-%EA%B8%B0%EC%A4%80-47.html"
         }
       ]
     },
@@ -280,11 +288,15 @@
           "answer": "판결 확정 여부, 집행문, 송달·확정증명, 점유자 특정, 현장 상황 등 집행 요건을 갖춘 뒤 강제집행 절차로 넘어갑니다."
         }
       ],
-      "articleCount": 1,
+      "articleCount": 2,
       "articles": [
         {
           "title": "주택임대차 조정서의 집행력과 강제집행 기준",
           "url": "https://journal.fightingspirit.kr/journal/%EC%A3%BC%ED%83%9D%EC%9E%84%EB%8C%80%EC%B0%A8-%EC%A1%B0%EC%A0%95%EC%84%9C%EC%9D%98-%EC%A7%91%ED%96%89%EB%A0%A5%EA%B3%BC-%EA%B0%95%EC%A0%9C%EC%A7%91%ED%96%89-%EA%B8%B0%EC%A4%80-7.html"
+        },
+        {
+          "title": "전세사기 피해자 보증금 회수 — 법적 절차와 우선순위 판단 기준",
+          "url": "https://journal.fightingspirit.kr/journal/%EC%A0%84%EC%84%B8%EC%82%AC%EA%B8%B0-%ED%94%BC%ED%95%B4%EC%9E%90-%EB%B3%B4%EC%A6%9D%EA%B8%88-%ED%9A%8C%EC%88%98-%EB%B2%95%EC%A0%81-%EC%A0%88%EC%B0%A8%EC%99%80-%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84-%ED%8C%90%EB%8B%A8-%EA%B8%B0%EC%A4%80-42.html"
         }
       ]
     }
@@ -296,8 +308,58 @@
       "articleCount": 1
     },
     {
+      "name": "경매가등기인수",
+      "url": "https://journal.fightingspirit.kr/tag/%EA%B2%BD%EB%A7%A4%EA%B0%80%EB%93%B1%EA%B8%B0%EC%9D%B8%EC%88%98.html",
+      "articleCount": 1
+    },
+    {
+      "name": "공유물분할경매",
+      "url": "https://journal.fightingspirit.kr/tag/%EA%B3%B5%EC%9C%A0%EB%AC%BC%EB%B6%84%ED%95%A0%EA%B2%BD%EB%A7%A4.html",
+      "articleCount": 1
+    },
+    {
+      "name": "담보가등기",
+      "url": "https://journal.fightingspirit.kr/tag/%EB%8B%B4%EB%B3%B4%EA%B0%80%EB%93%B1%EA%B8%B0.html",
+      "articleCount": 1
+    },
+    {
+      "name": "대항력우선변제권",
+      "url": "https://journal.fightingspirit.kr/tag/%EB%8C%80%ED%95%AD%EB%A0%A5%EC%9A%B0%EC%84%A0%EB%B3%80%EC%A0%9C%EA%B6%8C.html",
+      "articleCount": 1
+    },
+    {
+      "name": "매수인권리",
+      "url": "https://journal.fightingspirit.kr/tag/%EB%A7%A4%EC%88%98%EC%9D%B8%EA%B6%8C%EB%A6%AC.html",
+      "articleCount": 1
+    },
+    {
+      "name": "민법1008조단서",
+      "url": "https://journal.fightingspirit.kr/tag/%EB%AF%BC%EB%B2%951008%EC%A1%B0%EB%8B%A8%EC%84%9C.html",
+      "articleCount": 1
+    },
+    {
+      "name": "배당이의신청",
+      "url": "https://journal.fightingspirit.kr/tag/%EB%B0%B0%EB%8B%B9%EC%9D%B4%EC%9D%98%EC%8B%A0%EC%B2%AD.html",
+      "articleCount": 1
+    },
+    {
+      "name": "보상적증여",
+      "url": "https://journal.fightingspirit.kr/tag/%EB%B3%B4%EC%83%81%EC%A0%81%EC%A6%9D%EC%97%AC.html",
+      "articleCount": 1
+    },
+    {
       "name": "부당이득징수결정",
       "url": "https://journal.fightingspirit.kr/tag/%EB%B6%80%EB%8B%B9%EC%9D%B4%EB%93%9D%EC%A7%95%EC%88%98%EA%B2%B0%EC%A0%95.html",
+      "articleCount": 1
+    },
+    {
+      "name": "분담금환불",
+      "url": "https://journal.fightingspirit.kr/tag/%EB%B6%84%EB%8B%B4%EA%B8%88%ED%99%98%EB%B6%88.html",
+      "articleCount": 1
+    },
+    {
+      "name": "사업계획승인지연",
+      "url": "https://journal.fightingspirit.kr/tag/%EC%82%AC%EC%97%85%EA%B3%84%ED%9A%8D%EC%8A%B9%EC%9D%B8%EC%A7%80%EC%97%B0.html",
       "articleCount": 1
     },
     {
@@ -316,8 +378,43 @@
       "articleCount": 1
     },
     {
+      "name": "순위보전가등기",
+      "url": "https://journal.fightingspirit.kr/tag/%EC%88%9C%EC%9C%84%EB%B3%B4%EC%A0%84%EA%B0%80%EB%93%B1%EA%B8%B0.html",
+      "articleCount": 1
+    },
+    {
+      "name": "우선매수권",
+      "url": "https://journal.fightingspirit.kr/tag/%EC%9A%B0%EC%84%A0%EB%A7%A4%EC%88%98%EA%B6%8C.html",
+      "articleCount": 1
+    },
+    {
+      "name": "유류분기여분개정",
+      "url": "https://journal.fightingspirit.kr/tag/%EC%9C%A0%EB%A5%98%EB%B6%84%EA%B8%B0%EC%97%AC%EB%B6%84%EA%B0%9C%EC%A0%95.html",
+      "articleCount": 1
+    },
+    {
+      "name": "유류분산정기초재산",
+      "url": "https://journal.fightingspirit.kr/tag/%EC%9C%A0%EB%A5%98%EB%B6%84%EC%82%B0%EC%A0%95%EA%B8%B0%EC%B4%88%EC%9E%AC%EC%82%B0.html",
+      "articleCount": 1
+    },
+    {
       "name": "유족급여",
       "url": "https://journal.fightingspirit.kr/tag/%EC%9C%A0%EC%A1%B1%EA%B8%89%EC%97%AC.html",
+      "articleCount": 1
+    },
+    {
+      "name": "이유불비",
+      "url": "https://journal.fightingspirit.kr/tag/%EC%9D%B4%EC%9C%A0%EB%B6%88%EB%B9%84.html",
+      "articleCount": 1
+    },
+    {
+      "name": "이유제시",
+      "url": "https://journal.fightingspirit.kr/tag/%EC%9D%B4%EC%9C%A0%EC%A0%9C%EC%8B%9C.html",
+      "articleCount": 1
+    },
+    {
+      "name": "인수주의",
+      "url": "https://journal.fightingspirit.kr/tag/%EC%9D%B8%EC%88%98%EC%A3%BC%EC%9D%98.html",
       "articleCount": 1
     },
     {
@@ -326,8 +423,28 @@
       "articleCount": 1
     },
     {
+      "name": "임차권등기명령",
+      "url": "https://journal.fightingspirit.kr/tag/%EC%9E%84%EC%B0%A8%EA%B6%8C%EB%93%B1%EA%B8%B0%EB%AA%85%EB%A0%B9.html",
+      "articleCount": 1
+    },
+    {
       "name": "장해급여상속",
       "url": "https://journal.fightingspirit.kr/tag/%EC%9E%A5%ED%95%B4%EA%B8%89%EC%97%AC%EC%83%81%EC%86%8D.html",
+      "articleCount": 1
+    },
+    {
+      "name": "전세사기대응",
+      "url": "https://journal.fightingspirit.kr/tag/%EC%A0%84%EC%84%B8%EC%82%AC%EA%B8%B0%EB%8C%80%EC%9D%91.html",
+      "articleCount": 1
+    },
+    {
+      "name": "전세사기보증금회수",
+      "url": "https://journal.fightingspirit.kr/tag/%EC%A0%84%EC%84%B8%EC%82%AC%EA%B8%B0%EB%B3%B4%EC%A6%9D%EA%B8%88%ED%9A%8C%EC%88%98.html",
+      "articleCount": 1
+    },
+    {
+      "name": "전세사기피해자법",
+      "url": "https://journal.fightingspirit.kr/tag/%EC%A0%84%EC%84%B8%EC%82%AC%EA%B8%B0%ED%94%BC%ED%95%B4%EC%9E%90%EB%B2%95.html",
       "articleCount": 1
     },
     {
@@ -336,17 +453,141 @@
       "articleCount": 1
     },
     {
+      "name": "조합가입계약",
+      "url": "https://journal.fightingspirit.kr/tag/%EC%A1%B0%ED%95%A9%EA%B0%80%EC%9E%85%EA%B3%84%EC%95%BD.html",
+      "articleCount": 1
+    },
+    {
+      "name": "조합원탈퇴",
+      "url": "https://journal.fightingspirit.kr/tag/%EC%A1%B0%ED%95%A9%EC%9B%90%ED%83%88%ED%87%B4.html",
+      "articleCount": 1
+    },
+    {
       "name": "주택임대차조정서",
       "url": "https://journal.fightingspirit.kr/tag/%EC%A3%BC%ED%83%9D%EC%9E%84%EB%8C%80%EC%B0%A8%EC%A1%B0%EC%A0%95%EC%84%9C.html",
+      "articleCount": 1
+    },
+    {
+      "name": "지역주택조합위약금",
+      "url": "https://journal.fightingspirit.kr/tag/%EC%A7%80%EC%97%AD%EC%A3%BC%ED%83%9D%EC%A1%B0%ED%95%A9%EC%9C%84%EC%95%BD%EA%B8%88.html",
       "articleCount": 1
     },
     {
       "name": "집행권원",
       "url": "https://journal.fightingspirit.kr/tag/%EC%A7%91%ED%96%89%EA%B6%8C%EC%9B%90.html",
       "articleCount": 1
+    },
+    {
+      "name": "처분서",
+      "url": "https://journal.fightingspirit.kr/tag/%EC%B2%98%EB%B6%84%EC%84%9C.html",
+      "articleCount": 1
+    },
+    {
+      "name": "총약정금산정",
+      "url": "https://journal.fightingspirit.kr/tag/%EC%B4%9D%EC%95%BD%EC%A0%95%EA%B8%88%EC%82%B0%EC%A0%95.html",
+      "articleCount": 1
+    },
+    {
+      "name": "행정절차법",
+      "url": "https://journal.fightingspirit.kr/tag/%ED%96%89%EC%A0%95%EC%A0%88%EC%B0%A8%EB%B2%95.html",
+      "articleCount": 1
+    },
+    {
+      "name": "행정처분",
+      "url": "https://journal.fightingspirit.kr/tag/%ED%96%89%EC%A0%95%EC%B2%98%EB%B6%84.html",
+      "articleCount": 1
+    },
+    {
+      "name": "헌법불합치소급효",
+      "url": "https://journal.fightingspirit.kr/tag/%ED%97%8C%EB%B2%95%EB%B6%88%ED%95%A9%EC%B9%98%EC%86%8C%EA%B8%89%ED%9A%A8.html",
+      "articleCount": 1
     }
   ],
   "articles": [
+    {
+      "id": 47,
+      "title": "강제경매에서 소유권이전청구권 보전 가등기의 인수 여부 판단 기준",
+      "url": "https://journal.fightingspirit.kr/journal/%EA%B0%95%EC%A0%9C%EA%B2%BD%EB%A7%A4%EC%97%90%EC%84%9C-%EC%86%8C%EC%9C%A0%EA%B6%8C%EC%9D%B4%EC%A0%84%EC%B2%AD%EA%B5%AC%EA%B6%8C-%EB%B3%B4%EC%A0%84-%EA%B0%80%EB%93%B1%EA%B8%B0%EC%9D%98-%EC%9D%B8%EC%88%98-%EC%97%AC%EB%B6%80-%ED%8C%90%EB%8B%A8-%EA%B8%B0%EC%A4%80-47.html",
+      "summary": "강제경매에서 소유권이전청구권 보전 가등기의 인수 여부 판단 기준",
+      "date": "2026.06.02",
+      "tags": [
+        "경매가등기인수",
+        "순위보전가등기",
+        "담보가등기",
+        "매수인권리",
+        "인수주의",
+        "공유물분할경매"
+      ],
+      "topics": [
+        "부동산 가압류"
+      ]
+    },
+    {
+      "id": 46,
+      "title": "행정처분 이유제시 의무와 이유불비 하자의 판단 기준",
+      "url": "https://journal.fightingspirit.kr/journal/%ED%96%89%EC%A0%95%EC%B2%98%EB%B6%84-%EC%9D%B4%EC%9C%A0%EC%A0%9C%EC%8B%9C-%EC%9D%98%EB%AC%B4%EC%99%80-%EC%9D%B4%EC%9C%A0%EB%B6%88%EB%B9%84-%ED%95%98%EC%9E%90%EC%9D%98-%ED%8C%90%EB%8B%A8-%EA%B8%B0%EC%A4%80-46.html",
+      "summary": "행정처분 이유제시 의무와 이유불비 하자의 판단 기준",
+      "date": "2026.06.02",
+      "tags": [
+        "행정처분",
+        "이유제시",
+        "행정절차법",
+        "처분서",
+        "이유불비"
+      ],
+      "topics": []
+    },
+    {
+      "id": 45,
+      "title": "기여상속인의 보상적 증여와 유류분 산정 — 민법 제1008조 단서와 부칙 제2조 적용범위",
+      "url": "https://journal.fightingspirit.kr/journal/%EA%B8%B0%EC%97%AC%EC%83%81%EC%86%8D%EC%9D%B8%EC%9D%98-%EB%B3%B4%EC%83%81%EC%A0%81-%EC%A6%9D%EC%97%AC%EC%99%80-%EC%9C%A0%EB%A5%98%EB%B6%84-%EC%82%B0%EC%A0%95-%EB%AF%BC%EB%B2%95-%EC%A0%9C1008%EC%A1%B0-%EB%8B%A8%EC%84%9C%EC%99%80-%EB%B6%80%EC%B9%99-%EC%A0%9C2%EC%A1%B0-%EC%A0%81%EC%9A%A9%EB%B2%94%EC%9C%84-45.html",
+      "summary": "기여상속인의 보상적 증여와 유류분 산정 — 민법 제1008조 단서와 부칙 제2조 적용범위",
+      "date": "2026.06.02",
+      "tags": [
+        "유류분기여분개정",
+        "보상적증여",
+        "민법1008조단서",
+        "헌법불합치소급효",
+        "유류분산정기초재산"
+      ],
+      "topics": []
+    },
+    {
+      "id": 42,
+      "title": "전세사기 피해자 보증금 회수 — 법적 절차와 우선순위 판단 기준",
+      "url": "https://journal.fightingspirit.kr/journal/%EC%A0%84%EC%84%B8%EC%82%AC%EA%B8%B0-%ED%94%BC%ED%95%B4%EC%9E%90-%EB%B3%B4%EC%A6%9D%EA%B8%88-%ED%9A%8C%EC%88%98-%EB%B2%95%EC%A0%81-%EC%A0%88%EC%B0%A8%EC%99%80-%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84-%ED%8C%90%EB%8B%A8-%EA%B8%B0%EC%A4%80-42.html",
+      "summary": "전세사기 피해자 결정 요건, 경매에서의 우선매수권, 대항력·우선변제권을 통한 보증금 회수 절차를 정리합니다.",
+      "date": "2026.06.02",
+      "tags": [
+        "전세사기보증금회수",
+        "전세사기피해자법",
+        "전세사기대응",
+        "우선매수권",
+        "배당이의신청",
+        "임차권등기명령",
+        "대항력우선변제권"
+      ],
+      "topics": [
+        "상가 임대차 원상회복",
+        "명도소송"
+      ]
+    },
+    {
+      "id": 41,
+      "title": "지역주택조합 가입계약 해지와 위약금 산정의 판단 기준",
+      "url": "https://journal.fightingspirit.kr/journal/%EC%A7%80%EC%97%AD%EC%A3%BC%ED%83%9D%EC%A1%B0%ED%95%A9-%EA%B0%80%EC%9E%85%EA%B3%84%EC%95%BD-%ED%95%B4%EC%A7%80%EC%99%80-%EC%9C%84%EC%95%BD%EA%B8%88-%EC%82%B0%EC%A0%95%EC%9D%98-%ED%8C%90%EB%8B%A8-%EA%B8%B0%EC%A4%80-41.html",
+      "summary": "지역주택조합 탈퇴 시 위약금 산정 기준, 동·호수 미배정 단계의 해석, 감액 가능성을 정리합니다.",
+      "date": "2026.06.02",
+      "tags": [
+        "지역주택조합위약금",
+        "조합원탈퇴",
+        "분담금환불",
+        "조합가입계약",
+        "사업계획승인지연",
+        "총약정금산정"
+      ],
+      "topics": []
+    },
     {
       "id": 7,
       "title": "주택임대차 조정서의 집행력과 강제집행 기준",
