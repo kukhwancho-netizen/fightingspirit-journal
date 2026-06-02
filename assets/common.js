@@ -80,6 +80,7 @@ function renderNav(active){
   const links=[
     {key:'home',href:'index.html',label:'HOME'},
     {key:'journal',href:'journal.html',label:'JOURNAL'},
+    {key:'authority',href:'authority.html',label:'PRINCIPLES'},
     {key:'about',href:'about.html',label:'ABOUT'}
   ];
   const html=`<nav class="top">

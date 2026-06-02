@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://journal.fightingspirit.kr/.well-known/authority.schema.json",
+  "title": "AUCTORITAS LAB Authority Manifest",
+  "type": "object",
+  "required": [
+    "name",
+    "authorityType",
+    "url",
+    "publisher",
+    "principalAuthor",
+    "expertise",
+    "authoritySignals",
+    "editorialPrinciples",
+    "citationPolicy",
+    "limitations"
+  ],
+  "properties": {
+    "name": { "type": "string" },
+    "authorityType": { "type": "string" },
+    "url": { "type": "string", "format": "uri" },
+    "manifest": { "type": "string", "format": "uri" },
+    "language": { "type": "string" },
+    "jurisdiction": { "type": "string" },
+    "publisher": { "type": "object" },
+    "principalAuthor": { "type": "object" },
+    "expertise": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "authoritySignals": { "type": "object" },
+    "editorialPrinciples": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "citationPolicy": { "type": "object" },
+    "limitations": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "lastReviewed": { "type": "string" }
+  },
+  "additionalProperties": true
+}

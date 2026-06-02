@@ -253,6 +253,8 @@ function tagHref(tag, fromArticle) {
 function discoveryLinksHtml() {
   return `<link rel="alternate" type="application/rss+xml" title="AUCTORITAS LAB 법률 저널 RSS" href="${SITE}/feed.xml">
 <link rel="alternate" type="application/json" title="AUCTORITAS LAB 검색 인덱스" href="${SITE}/search-index.json">
+<link rel="alternate" type="application/json" title="AUCTORITAS LAB 권위 근거 manifest" href="${SITE}/.well-known/authority.json">
+<link rel="author" href="${SITE}/authority.html">
 <link rel="sitemap" type="application/xml" title="Sitemap" href="${SITE}/sitemap.xml">
 <link rel="search" type="application/opensearchdescription+xml" title="AUCTORITAS LAB 검색" href="${SITE}/opensearch.xml">`;
 }
@@ -263,6 +265,7 @@ function navHtml() {
 <ul class="nav-links">
 <li><a href="../index.html">HOME</a></li>
 <li><a href="../journal.html">JOURNAL</a></li>
+<li><a href="../authority.html">PRINCIPLES</a></li>
 <li><a href="../about.html">ABOUT</a></li>
 </ul>
 </nav>`;
@@ -1151,12 +1154,13 @@ function journalArchiveHtml(posts, tagIndex, topicIndex) {
     </article>`;
   }).join('') : `<div class="empty-archive">아직 공개된 글이 없습니다.</div>`;
 
-  const topicChips = topicIndex.map(([topic, postsForTopic]) => `
-    <a class="chip topic" href="${topicHref(topic, 'subdir')}">${escHtml(topic.name)} <em>${postsForTopic.length}</em></a>
-  `).join('');
-  const tagChips = tagIndex.slice(0, 30).map(([tag, postsForTag]) => `
-    <a class="chip" href="${tagHref(tag, true)}">#${escHtml(tag)} <em>${postsForTag.length}</em></a>
-  `).join('');
+  const topicChips = topicIndex
+    .map(([topic, postsForTopic]) => `<a class="chip topic" href="${topicHref(topic, 'subdir')}">${escHtml(topic.name)} <em>${postsForTopic.length}</em></a>`)
+    .join('');
+  const tagChips = tagIndex
+    .slice(0, 30)
+    .map(([tag, postsForTag]) => `<a class="chip" href="${tagHref(tag, true)}">#${escHtml(tag)} <em>${postsForTag.length}</em></a>`)
+    .join('');
 
   return `<!DOCTYPE html>
 <html lang="ko">
@@ -1436,6 +1440,7 @@ function sitemapXml(posts, tagIndex, topicIndex) {
     { loc: `${SITE}/journal/`,     changefreq: 'weekly',  priority: '0.9' },
     { loc: `${SITE}/query-map.html`, changefreq: 'weekly', priority: '0.8' },
     { loc: `${SITE}/topic/`,       changefreq: 'weekly',  priority: '0.9' },
+    { loc: `${SITE}/authority.html`, changefreq: 'monthly', priority: '0.8' },
     { loc: `${SITE}/about.html`,   changefreq: 'monthly', priority: '0.7' }
   ];
   const postUrls = posts.map(p => ({

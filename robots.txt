@@ -7,6 +7,8 @@ Allow: /
 Allow: /journal/
 Allow: /topic/
 Allow: /tag/
+Allow: /.well-known/
+Allow: /authority.html
 
 # 검색·요약 어시스턴트 — 인용 시 출처(URL) 표기 조건
 User-agent: GPTBot
@@ -84,6 +86,8 @@ Allow: /tag/
 # Agent guidance
 # llms.txt:      https://journal.fightingspirit.kr/llms.txt
 # llms-full.txt: https://journal.fightingspirit.kr/llms-full.txt
+# authority:     https://journal.fightingspirit.kr/authority.html
+# authority.json:https://journal.fightingspirit.kr/.well-known/authority.json
 # search-index: https://journal.fightingspirit.kr/search-index.json
 # query-map:    https://journal.fightingspirit.kr/query-map.html
 # opensearch:   https://journal.fightingspirit.kr/opensearch.xml

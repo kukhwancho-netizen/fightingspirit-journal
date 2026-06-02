@@ -27,6 +27,23 @@
     "honorificPrefix": "변호사",
     "jobTitle": "변호사"
   },
+  "authority": {
+    "page": "https://journal.fightingspirit.kr/authority.html",
+    "manifest": "https://journal.fightingspirit.kr/.well-known/authority.json",
+    "editorialPrinciples": "https://journal.fightingspirit.kr/authority.html#editorial-principles",
+    "citationPolicy": "https://journal.fightingspirit.kr/authority.html#citation-policy",
+    "signals": [
+      "humanPublisher",
+      "legalServicePublisher",
+      "namedPrincipalAuthor",
+      "physicalOffice",
+      "contactInformation",
+      "topicHubs",
+      "searchIndex",
+      "fullTextCorpus"
+    ],
+    "summary": "조국환 변호사팀이 발행 주체, 책임 저자, 전문 범위, 작성 원칙, 인용 제한을 공개한 법률 저널입니다."
+  },
   "language": "ko",
   "topics": [
     "공간분쟁",
@@ -57,6 +74,8 @@
     "search_index": "https://journal.fightingspirit.kr/search-index.json",
     "search_query_targets": "https://journal.fightingspirit.kr/search-index.json",
     "search_query_map": "https://journal.fightingspirit.kr/query-map.html",
+    "authority_page": "https://journal.fightingspirit.kr/authority.html",
+    "authority_manifest": "https://journal.fightingspirit.kr/.well-known/authority.json",
     "opensearch": "https://journal.fightingspirit.kr/opensearch.xml"
   },
   "categories": [
@@ -115,6 +134,12 @@
       "url": "https://journal.fightingspirit.kr/feed.xml",
       "method": "GET",
       "description": "최신 30건 RSS 2.0 피드."
+    },
+    {
+      "type": "ReadAuthority",
+      "url": "https://journal.fightingspirit.kr/.well-known/authority.json",
+      "method": "GET",
+      "description": "발행 주체, 전문 범위, 권위 신호, 작성 원칙, 인용 정책을 구조화한 JSON manifest입니다."
     },
     {
       "type": "ContactPublisher",

@@ -11,6 +11,7 @@ const requiredFiles = [
   'index.html',
   'journal.html',
   'journal/index.html',
+  'authority.html',
   'query-map.html',
   'topic/index.html',
   'sitemap.xml',
@@ -20,7 +21,9 @@ const requiredFiles = [
   'llms-full.txt',
   'search-index.json',
   'opensearch.xml',
-  '.well-known/agent.json'
+  '.well-known/agent.json',
+  '.well-known/authority.json',
+  '.well-known/authority.schema.json'
 ];
 
 const errors = [];
@@ -65,15 +68,21 @@ async function main() {
   const journalHtml = await text('journal.html');
   const searchIndex = JSON.parse(await text('search-index.json'));
   const agent = JSON.parse(await text('.well-known/agent.json'));
+  const authority = JSON.parse(await text('.well-known/authority.json'));
+  const authoritySchema = JSON.parse(await text('.well-known/authority.schema.json'));
 
   requireText('robots.txt', robots, `Sitemap: ${SITE}/sitemap.xml`, 'Sitemap directive');
   requireText('sitemap.xml', sitemap, `<loc>${SITE}/journal/</loc>`, 'static journal archive URL');
   requireText('sitemap.xml', sitemap, `<loc>${SITE}/query-map.html</loc>`, 'query map URL');
   requireText('sitemap.xml', sitemap, `<loc>${SITE}/topic/</loc>`, 'topic index URL');
+  requireText('sitemap.xml', sitemap, `<loc>${SITE}/authority.html</loc>`, 'authority page URL');
   requireText('opensearch.xml', opensearch, `template="${SITE}/journal.html?q={searchTerms}"`, 'OpenSearch query template');
   requireText('llms.txt', llms, `${SITE}/journal/`, 'static archive link');
   requireText('llms.txt', llms, `${SITE}/query-map.html`, 'query map link');
+  requireText('llms.txt', llms, `${SITE}/authority.html`, 'authority page link');
+  requireText('llms.txt', llms, `${SITE}/.well-known/authority.json`, 'authority manifest link');
   requireText('index.html', indexHtml, 'href="journal/"', 'home static archive link');
+  requireText('index.html', indexHtml, 'href="authority.html"', 'home authority link');
   requireText('journal.html', journalHtml, 'href="journal/"', 'journal static archive link');
   requireText('journal/index.html', journalArchive, 'CollectionPage', 'CollectionPage JSON-LD');
   requireText('journal/index.html', journalArchive, 'ItemList', 'ItemList JSON-LD');
@@ -82,6 +91,15 @@ async function main() {
   requireText('.well-known/agent.json', JSON.stringify(agent), `${SITE}/journal/`, 'agent static archive URL');
   requireText('.well-known/agent.json', JSON.stringify(agent), 'search_query_targets', 'agent search query target index');
   requireText('.well-known/agent.json', JSON.stringify(agent), 'search_query_map', 'agent search query map');
+  requireText('.well-known/agent.json', JSON.stringify(agent), `${SITE}/authority.html`, 'agent authority page');
+  requireText('.well-known/agent.json', JSON.stringify(agent), `${SITE}/.well-known/authority.json`, 'agent authority manifest');
+  requireText('.well-known/authority.json', JSON.stringify(authority), 'authoritySignals', 'authority signals');
+  requireText('.well-known/authority.json', JSON.stringify(authority), 'citationPolicy', 'citation policy');
+  requireText('.well-known/authority.schema.json', JSON.stringify(authoritySchema), 'AUCTORITAS LAB Authority Manifest', 'authority schema title');
+
+  if (!authority.publisher?.name || !authority.principalAuthor?.name) {
+    errors.push('.well-known/authority.json: publisher and principalAuthor are required');
+  }
 
   if (!Array.isArray(searchIndex.articles) || searchIndex.articles.length === 0) {
     errors.push('search-index.json: articles must be a non-empty array');
