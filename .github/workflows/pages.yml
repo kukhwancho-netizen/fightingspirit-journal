@@ -60,6 +60,7 @@ jobs:
             llms.txt \
             og \
             opensearch.xml \
+            query-map.html \
             robots.txt \
             search-index.json \
             sitemap.xml \

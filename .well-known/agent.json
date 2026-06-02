@@ -56,6 +56,7 @@
     "topic_hubs": "https://journal.fightingspirit.kr/topic/",
     "search_index": "https://journal.fightingspirit.kr/search-index.json",
     "search_query_targets": "https://journal.fightingspirit.kr/search-index.json",
+    "search_query_map": "https://journal.fightingspirit.kr/query-map.html",
     "opensearch": "https://journal.fightingspirit.kr/opensearch.xml"
   },
   "categories": [

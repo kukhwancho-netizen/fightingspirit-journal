@@ -11,6 +11,7 @@ const requiredFiles = [
   'index.html',
   'journal.html',
   'journal/index.html',
+  'query-map.html',
   'topic/index.html',
   'sitemap.xml',
   'robots.txt',
@@ -59,6 +60,7 @@ async function main() {
   const opensearch = await text('opensearch.xml');
   const llms = await text('llms.txt');
   const journalArchive = await text('journal/index.html');
+  const queryMap = await text('query-map.html');
   const indexHtml = await text('index.html');
   const journalHtml = await text('journal.html');
   const searchIndex = JSON.parse(await text('search-index.json'));
@@ -66,15 +68,20 @@ async function main() {
 
   requireText('robots.txt', robots, `Sitemap: ${SITE}/sitemap.xml`, 'Sitemap directive');
   requireText('sitemap.xml', sitemap, `<loc>${SITE}/journal/</loc>`, 'static journal archive URL');
+  requireText('sitemap.xml', sitemap, `<loc>${SITE}/query-map.html</loc>`, 'query map URL');
   requireText('sitemap.xml', sitemap, `<loc>${SITE}/topic/</loc>`, 'topic index URL');
   requireText('opensearch.xml', opensearch, `template="${SITE}/journal.html?q={searchTerms}"`, 'OpenSearch query template');
   requireText('llms.txt', llms, `${SITE}/journal/`, 'static archive link');
+  requireText('llms.txt', llms, `${SITE}/query-map.html`, 'query map link');
   requireText('index.html', indexHtml, 'href="journal/"', 'home static archive link');
   requireText('journal.html', journalHtml, 'href="journal/"', 'journal static archive link');
   requireText('journal/index.html', journalArchive, 'CollectionPage', 'CollectionPage JSON-LD');
   requireText('journal/index.html', journalArchive, 'ItemList', 'ItemList JSON-LD');
+  requireText('query-map.html', queryMap, 'CollectionPage', 'query map CollectionPage JSON-LD');
+  requireText('query-map.html', queryMap, 'ItemList', 'query map ItemList JSON-LD');
   requireText('.well-known/agent.json', JSON.stringify(agent), `${SITE}/journal/`, 'agent static archive URL');
   requireText('.well-known/agent.json', JSON.stringify(agent), 'search_query_targets', 'agent search query target index');
+  requireText('.well-known/agent.json', JSON.stringify(agent), 'search_query_map', 'agent search query map');
 
   if (!Array.isArray(searchIndex.articles) || searchIndex.articles.length === 0) {
     errors.push('search-index.json: articles must be a non-empty array');
@@ -121,6 +128,9 @@ async function main() {
     }
     for (const query of (topic.queryTargets || []).slice(0, 3)) {
       requireText(rel, html, query, `visible query target: ${query}`);
+    }
+    for (const query of topic.queryTargets || []) {
+      requireText('query-map.html', queryMap, query, `query map target: ${query}`);
     }
   }
 

@@ -85,6 +85,7 @@ Allow: /tag/
 # llms.txt:      https://journal.fightingspirit.kr/llms.txt
 # llms-full.txt: https://journal.fightingspirit.kr/llms-full.txt
 # search-index: https://journal.fightingspirit.kr/search-index.json
+# query-map:    https://journal.fightingspirit.kr/query-map.html
 # opensearch:   https://journal.fightingspirit.kr/opensearch.xml
 
 Sitemap: https://journal.fightingspirit.kr/sitemap.xml

@@ -983,6 +983,112 @@ ${footerHtml()}
 </html>`;
 }
 
+function queryMapHtml(topicIndex) {
+  const pageUrl = `${SITE}/query-map.html`;
+  const desc = 'AUCTORITAS LAB 법률 저널의 주제 허브와 SERP 추적용 핵심 검색 질의를 연결한 공개 질의 지도입니다.';
+  const allQueries = topicIndex.flatMap(([topic]) => topicQueryTargets(topic).map(query => ({ topic, query })));
+  const jsonld = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "AUCTORITAS LAB 검색 질의 지도",
+    "description": desc,
+    "url": pageUrl,
+    "inLanguage": "ko",
+    "isPartOf": { "@type": "Blog", "name": "AUCTORITAS LAB 법률 저널", "url": SITE },
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": allQueries.length,
+      "itemListElement": allQueries.map((item, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "name": item.query,
+        "url": topicUrl(item.topic)
+      }))
+    }
+  };
+
+  const sections = topicIndex.map(([topic, postsForTopic]) => {
+    const queries = topicQueryTargets(topic).map(query => `
+      <a class="query" href="${topicHref(topic)}">
+        <span>${escHtml(query)}</span>
+        <em>${escHtml(topic.name)}</em>
+      </a>
+    `).join('');
+    return `<section class="topic-block">
+      <div class="topic-meta">
+        <a class="topic-name" href="${topicHref(topic)}">${escHtml(topic.name)}</a>
+        <p>${escHtml(topic.description)}</p>
+        <div class="topic-count">${postsForTopic.length} related articles</div>
+      </div>
+      <div class="query-grid">${queries}</div>
+    </section>`;
+  }).join('');
+
+  return `<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>검색 질의 지도 | AUCTORITAS LAB 법률 저널</title>
+<meta name="description" content="${escHtml(desc)}">
+<meta name="keywords" content="${escHtml(uniqueList(allQueries.map(x => x.query)).join(','))}">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="${pageUrl}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AUCTORITAS LAB">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="검색 질의 지도 | AUCTORITAS LAB">
+<meta property="og:description" content="${escHtml(desc)}">
+<meta property="og:url" content="${pageUrl}">
+<meta property="og:image" content="${SITE}/og/default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="검색 질의 지도 | AUCTORITAS LAB">
+<meta name="twitter:description" content="${escHtml(desc)}">
+<meta name="twitter:image" content="${SITE}/og/default.png">
+<script type="application/ld+json">${JSON.stringify(jsonld)}</script>
+${discoveryLinksHtml()}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="assets/common.css">
+<style>
+.wrap{max-width:1240px;margin:0 auto;padding:60px 40px 120px}
+.head{padding-bottom:42px;border-bottom:1px solid var(--ink)}
+.eyebrow{font-family:var(--label);font-size:10px;font-weight:600;letter-spacing:0;text-transform:uppercase;color:var(--fg-3);margin-bottom:18px}
+h1{font-family:var(--sans);font-weight:900;font-size:clamp(40px,5.5vw,80px);line-height:1.03;letter-spacing:0;color:var(--ink)}
+.desc{margin-top:20px;font-family:var(--sans);font-size:16px;line-height:1.85;color:var(--fg-2);max-width:74ch}
+.topic-block{display:grid;grid-template-columns:320px 1fr;gap:40px;padding:36px 0;border-bottom:1px solid var(--line)}
+.topic-name{display:inline-block;font-family:var(--sans);font-size:24px;font-weight:900;line-height:1.2;color:var(--ink);text-decoration:none}
+.topic-name:hover{color:var(--vermillion)}
+.topic-meta p{margin:14px 0 0;font-family:var(--sans);font-size:14px;line-height:1.75;color:var(--fg-2)}
+.topic-count{margin-top:14px;font-family:var(--label);font-size:10px;font-weight:600;letter-spacing:0;text-transform:uppercase;color:var(--fg-3)}
+.query-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.query{display:flex;justify-content:space-between;gap:16px;align-items:center;border:1px solid var(--line-2);padding:12px 14px;color:var(--ink);text-decoration:none;font-family:var(--sans);font-size:14px;font-weight:700;line-height:1.35;transition:background var(--d-fast) var(--ease),border-color var(--d-fast) var(--ease)}
+.query em{font-style:normal;font-size:11px;font-weight:600;color:var(--fg-3);white-space:nowrap}
+.query:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.query:hover em{color:var(--fg-on-ink-2)}
+@media(max-width:840px){
+  .wrap{padding:40px 20px 80px}
+  .topic-block{grid-template-columns:1fr;gap:20px}
+  .query-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div id="navSlot"></div>
+<div class="wrap">
+  <header class="head">
+    <div class="eyebrow">Search Query Map</div>
+    <h1>검색 질의 지도</h1>
+    <p class="desc">${escHtml(desc)}</p>
+  </header>
+  ${sections}
+</div>
+<div id="footerSlot"></div>
+<script src="assets/common.js"></script>
+<script>renderNav('journal');renderFooter();</script>
+</body>
+</html>`;
+}
+
 function journalArchiveHtml(posts, tagIndex, topicIndex) {
   const pageUrl = `${SITE}/journal/`;
   const desc = 'AUCTORITAS LAB 법률 저널의 전체 글을 검색엔진과 AI 에이전트가 JavaScript 없이도 따라갈 수 있도록 모은 정적 아카이브입니다.';
@@ -1328,6 +1434,7 @@ function sitemapXml(posts, tagIndex, topicIndex) {
     { loc: `${SITE}/`,             changefreq: 'weekly',  priority: '1.0' },
     { loc: `${SITE}/journal.html`, changefreq: 'weekly',  priority: '0.9' },
     { loc: `${SITE}/journal/`,     changefreq: 'weekly',  priority: '0.9' },
+    { loc: `${SITE}/query-map.html`, changefreq: 'weekly', priority: '0.8' },
     { loc: `${SITE}/topic/`,       changefreq: 'weekly',  priority: '0.9' },
     { loc: `${SITE}/about.html`,   changefreq: 'monthly', priority: '0.7' }
   ];
@@ -1420,6 +1527,9 @@ async function main() {
 
   await writeFile(join(journalDir, 'index.html'), journalArchiveHtml(posts, tagIndex, topicIndex), 'utf8');
   console.log('Wrote static journal archive -> journal/index.html');
+
+  await writeFile(join(ROOT, 'query-map.html'), queryMapHtml(topicIndex), 'utf8');
+  console.log('Wrote query-map.html');
 
   await writeFile(join(ROOT, 'feed.xml'), feedXml(posts), 'utf8');
   console.log('Wrote feed.xml');

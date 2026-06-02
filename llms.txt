@@ -27,6 +27,7 @@
 
 - [전체 글 목록](https://journal.fightingspirit.kr/journal.html): HTML 목록
 - [정적 글 아카이브](https://journal.fightingspirit.kr/journal/): JavaScript 없이 접근 가능한 전체 글 링크 목록
+- [검색 질의 지도](https://journal.fightingspirit.kr/query-map.html): 주제 허브와 SERP 추적 질의 연결표
 - [RSS 피드](https://journal.fightingspirit.kr/feed.xml): 최신 30건 (RSS 2.0)
 - [전체 본문 합본](https://journal.fightingspirit.kr/llms-full.txt): published 글 전체 (plain text)
 - [검색 인덱스 JSON](https://journal.fightingspirit.kr/search-index.json): 주제·태그·글 URL 구조화 목록

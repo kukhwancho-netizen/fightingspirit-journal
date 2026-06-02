@@ -15,6 +15,7 @@ AUCTORITAS LAB / 조국환 변호사팀 저널 전용 정적 사이트입니다.
 - `tag/`: 빌드 시 생성되는 태그 아카이브
 - `sitemap.xml`: 검색엔진 제출용 URL 목록
 - `search-index.json`: 주제·태그·글 URL 구조화 목록
+- `query-map.html`: 주제 허브와 SERP 추적 질의를 연결하는 공개 질의 지도
 - `opensearch.xml`: `journal.html?q={검색어}` 기반 사이트 검색 설명
 - `llms.txt`, `llms-full.txt`: AI 검색·요약 에이전트용 콘텐츠 맵
 
@@ -80,6 +81,7 @@ npm run audit
 https://journal.fightingspirit.kr/sitemap.xml
 https://journal.fightingspirit.kr/journal/
 https://journal.fightingspirit.kr/topic/
+https://journal.fightingspirit.kr/query-map.html
 https://journal.fightingspirit.kr/search-index.json
 https://journal.fightingspirit.kr/llms.txt
 ```
