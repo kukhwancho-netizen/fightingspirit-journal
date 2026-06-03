@@ -54,7 +54,13 @@ h1{font-family:var(--sans);font-weight:900;font-size:clamp(42px,5.8vw,84px);line
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-TC1HNLWLM6');
+  gtag('config', 'G-TC1HNLWLM6', {
+    send_page_view: true,
+    page_title: document.title,
+    page_path: window.location.pathname + window.location.search,
+    page_location: window.location.href,
+    cookie_domain: 'auto'
+  });
 </script>
 </head>
 <body>
@@ -111,7 +117,7 @@ h1{font-family:var(--sans);font-weight:900;font-size:clamp(42px,5.8vw,84px);line
       <div class="topic-name">부동산 가압류</div>
       <div class="topic-title">부동산 가압류 실무 저널</div>
       <p>부동산 가압류 신청, 보전처분, 담보제공, 집행해제와 관련한 실무상 판단 기준을 정리합니다.</p>
-      <div class="topic-count">3개 관련 글</div>
+      <div class="topic-count">4개 관련 글</div>
       <div class="topic-keys"><span>부동산 가압류</span><span>부동산 가압류 신청</span><span>부동산 가압류 해제</span><span>부동산 가압류 담보제공</span><span>보전처분 부동산 가압류</span></div>
     </a>
   
