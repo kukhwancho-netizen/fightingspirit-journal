@@ -18,7 +18,9 @@ function parseArgs(argv) {
     format: 'html',
     strictSeo: false,
     fillVisibleGaps: false,
-    publishToday: false
+    publishToday: false,
+    todayIntervalMinutes: null,
+    todayStartTime: null
   };
   const files = [];
   for (let i = 0; i < argv.length; i += 1) {
@@ -33,6 +35,11 @@ function parseArgs(argv) {
     else if (arg === '--strict-seo') opts.strictSeo = true;
     else if (arg === '--fill-visible-gaps') opts.fillVisibleGaps = true;
     else if (arg === '--publish-today') opts.publishToday = true;
+    else if (arg === '--today-interval') {
+      const next = argv[i + 1];
+      opts.todayIntervalMinutes = next && !next.startsWith('--') ? Number(argv[++i]) : 10;
+    }
+    else if (arg === '--today-start') opts.todayStartTime = argv[++i];
     else if (arg === '--help' || arg === '-h') opts.help = true;
     else files.push(arg);
   }
@@ -42,6 +49,12 @@ function parseArgs(argv) {
 
 function validateArgs(opts) {
   if (!['html', 'text'].includes(opts.format)) throw new Error(`Invalid --format: ${opts.format}`);
+  if (opts.todayIntervalMinutes !== null && (!Number.isFinite(opts.todayIntervalMinutes) || opts.todayIntervalMinutes <= 0)) {
+    throw new Error(`Invalid --today-interval: ${opts.todayIntervalMinutes}`);
+  }
+  if (opts.todayStartTime && !/^\d{1,2}:\d{2}$/.test(opts.todayStartTime)) {
+    throw new Error(`Invalid --today-start: ${opts.todayStartTime}`);
+  }
 }
 
 function usage() {
@@ -59,6 +72,8 @@ Options:
   --strict-seo                    검색 구조 경고도 실패로 처리.
   --fill-visible-gaps             공개 저널 기준 날짜별 빈 슬롯을 먼저 채움.
   --publish-today                 모든 글을 오늘 날짜의 즉시 공개 글로 준비.
+  --today-interval 10             오늘 남은 시간 기준 N분 간격으로 예약.
+  --today-start HH:MM             --today-interval의 첫 예약 시각을 직접 지정.
 `;
 }
 
@@ -368,6 +383,44 @@ function fillVisibleGapAssignments(count, counts, startDate) {
   return assignments;
 }
 
+function timeInputFromKstDate(date) {
+  const parts = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Asia/Seoul',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false
+  }).formatToParts(date);
+  const get = type => parts.find(p => p.type === type).value;
+  return `${get('hour')}:${get('minute')}`;
+}
+
+function roundUpDate(date, intervalMinutes) {
+  const ms = intervalMinutes * 60 * 1000;
+  return new Date(Math.ceil(date.getTime() / ms) * ms);
+}
+
+function todayIntervalAssignments(count, intervalMinutes, startTime = null) {
+  const date = formatDateInput(new Date());
+  const intervalMs = intervalMinutes * 60 * 1000;
+  const first = startTime
+    ? new Date(`${date}T${startTime}:00+09:00`)
+    : roundUpDate(new Date(Date.now() + intervalMs), intervalMinutes);
+  if (!Number.isFinite(first.getTime())) throw new Error(`Invalid --today-start: ${startTime}`);
+  const now = Date.now();
+  if (first.getTime() <= now) throw new Error('--today-start는 현재 시각 이후여야 합니다.');
+
+  const assignments = [];
+  for (let i = 0; i < count; i += 1) {
+    const slotDate = new Date(first.getTime() + i * intervalMs);
+    const slotDay = formatDateInput(slotDate);
+    if (slotDay !== date) {
+      throw new Error(`오늘 안에 ${count}건을 ${intervalMinutes}분 간격으로 배치할 시간이 부족합니다.`);
+    }
+    assignments.push({ date, slot: timeInputFromKstDate(slotDate) });
+  }
+  return assignments;
+}
+
 async function publishRows(rows) {
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!key) throw new Error('게시하려면 SUPABASE_SERVICE_ROLE_KEY 환경변수가 필요합니다.');
@@ -397,7 +450,10 @@ async function main() {
   const drafts = parseDrafts(input);
   let assignments = null;
   let baseDate = null;
-  if (opts.publishToday) {
+  if (opts.todayIntervalMinutes !== null) {
+    baseDate = formatDateInput(new Date());
+    assignments = todayIntervalAssignments(drafts.length, opts.todayIntervalMinutes, opts.todayStartTime);
+  } else if (opts.publishToday) {
     baseDate = formatDateInput(new Date());
     assignments = drafts.map(() => ({ date: baseDate, slot: null }));
   } else if (opts.fillVisibleGaps) {

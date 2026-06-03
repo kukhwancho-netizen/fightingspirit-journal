@@ -64,6 +64,20 @@ npm run posts:publish -- work/drafts.md --publish-today --strict-seo
 
 이 모드는 `date`를 오늘로 두고 `publish_at`을 비워서 공개 저널 목록, sitemap, search-index에 바로 들어가게 한다.
 
+### 오늘 10분 간격으로 예약하기
+
+사용자가 "오늘 10분 간격 예약"을 요청하면 오늘 남은 시간 안에서 현재 시각 이후의 10분 단위 슬롯으로 배정한다.
+
+```powershell
+npm run posts:publish -- work/drafts.md --today-interval 10 --strict-seo
+```
+
+첫 시각을 직접 정해야 하면 아래처럼 쓴다.
+
+```powershell
+npm run posts:publish -- work/drafts.md --today-interval 10 --today-start 13:00 --strict-seo
+```
+
 ### 공개 저널 기준으로 빈날 채우기
 
 예약 배치는 관리자 화면의 마지막 예약일이 아니라 공개 저널에 실제로 보이는 글의 날짜별 개수를 기준으로 잡는다. 미래 예약글은 공개 저널에 아직 보이지 않으므로 빈날 계산에서 제외한다.
