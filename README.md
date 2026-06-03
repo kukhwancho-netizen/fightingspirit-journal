@@ -87,3 +87,8 @@ https://journal.fightingspirit.kr/query-map.html
 https://journal.fightingspirit.kr/search-index.json
 https://journal.fightingspirit.kr/llms.txt
 ```
+
+## Product Design
+
+- `docs/journal-lens-product-design.md`: AUCTORITAS Journal Lens design brief, GA4 segmentation model, and weekly operating questions.
+- `docs/journal-lens-prototype.html`: Static prototype for a journal performance dashboard focused on discovery, reading quality, and authority handoff.

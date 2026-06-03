@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AUCTORITAS Journal Lens</title>
+  <style>
+    :root {
+      --bg: #f6f7f5;
+      --panel: #ffffff;
+      --ink: #231f20;
+      --muted: #666d68;
+      --line: #d9dfd9;
+      --accent: #b23a2f;
+      --blue: #315a7d;
+      --green: #3f6f58;
+      --gold: #9a6a24;
+      --soft-red: #f7e8e5;
+      --soft-blue: #e6edf3;
+      --soft-green: #e7f0ea;
+      --soft-gold: #f4ecdd;
+      --shadow: 0 1px 2px rgba(35, 31, 32, 0.08);
+      font-family: Inter, Pretendard, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      letter-spacing: 0;
+    }
+
+    .shell {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 28px 0 40px;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: end;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 5px 0 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 34px;
+      line-height: 1.08;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    .period {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: flex-end;
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .pill {
+      min-height: 32px;
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      color: var(--ink);
+      box-shadow: var(--shadow);
+    }
+
+    .verdict {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(340px, 0.72fr);
+      gap: 12px;
+      align-items: stretch;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--accent);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .verdict strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 19px;
+      line-height: 1.24;
+    }
+
+    .verdict p {
+      max-width: 680px;
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .score-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      align-content: stretch;
+    }
+
+    .score {
+      min-height: 82px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fafbf9;
+    }
+
+    .score span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+    }
+
+    .score strong {
+      margin-top: 12px;
+      font-family: inherit;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .section-heading {
+      margin-top: 18px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.2;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: right;
+    }
+
+    .metric {
+      min-height: 104px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .metric .label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .metric .value {
+      margin-top: 12px;
+      font-size: 26px;
+      line-height: 1;
+      font-weight: 750;
+    }
+
+    .metric .delta {
+      margin-top: 9px;
+      font-size: 12px;
+      color: var(--green);
+    }
+
+    .metric.warn .delta { color: var(--gold); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .panel {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      min-height: 278px;
+    }
+
+    .panel h2 {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.2;
+    }
+
+    .panel .sub {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .bars {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 138px minmax(0, 1fr) 48px;
+      gap: 10px;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .track {
+      height: 10px;
+      border-radius: 999px;
+      background: #eee8df;
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      border-radius: 999px;
+      background: var(--blue);
+    }
+
+    .fill.green { background: var(--green); }
+    .fill.gold { background: var(--gold); }
+    .fill.red { background: var(--accent); }
+
+    .trend {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      align-items: end;
+      gap: 9px;
+      height: 144px;
+      margin-top: 24px;
+      padding: 0 8px 8px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .col {
+      min-height: 18px;
+      border-radius: 5px 5px 0 0;
+      background: var(--green);
+    }
+
+    .trend-labels {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 9px;
+      padding: 8px 8px 0;
+      color: var(--muted);
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .handoff {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 12px;
+    }
+
+    .callout {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--soft-blue);
+    }
+
+    .callout strong {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+
+    .path-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 11px;
+    }
+
+    .path {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 9px 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      font-size: 13px;
+    }
+
+    .topic-board {
+      margin-top: 14px;
+      min-height: 0;
+    }
+
+    .topic-list {
+      display: grid;
+      gap: 0;
+      margin-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .topic-row {
+      display: grid;
+      grid-template-columns: minmax(180px, 1fr) 1.1fr minmax(160px, 0.8fr);
+      gap: 14px;
+      align-items: center;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topic-row strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .topic-row small {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .mini-signal {
+      display: grid;
+      grid-template-columns: 76px minmax(0, 1fr) 34px;
+      gap: 8px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: 13px;
+    }
+
+    th, td {
+      padding: 11px 9px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    td.num, th.num {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .tag.expand { background: var(--soft-green); color: var(--green); }
+    .tag.refresh { background: var(--soft-gold); color: var(--gold); }
+    .tag.link { background: var(--soft-blue); color: var(--blue); }
+    .tag.observe { background: var(--soft-red); color: var(--accent); }
+
+    .decisions {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .decision {
+      min-height: 92px;
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .decision strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+
+    .decision span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 980px) {
+      .summary { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .verdict { grid-template-columns: 1fr; }
+      .grid, .handoff { grid-template-columns: 1fr; }
+      .decisions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .topic-row { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .shell {
+        width: min(100vw - 20px, 1180px);
+        padding-top: 18px;
+      }
+
+      header {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      .period {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+
+      h1 { font-size: 27px; }
+      .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .section-heading p { text-align: left; }
+      .summary { grid-template-columns: 1fr 1fr; }
+      .score-strip { grid-template-columns: 1fr 1fr; }
+      .metric { min-height: 96px; padding: 12px; }
+      .bar-row { grid-template-columns: 108px minmax(0, 1fr) 38px; }
+      .decisions { grid-template-columns: 1fr; }
+
+      table,
+      thead,
+      tbody,
+      tr,
+      th,
+      td {
+        display: block;
+      }
+
+      table {
+        margin-top: 12px;
+        border-collapse: separate;
+        border-spacing: 0;
+        font-size: 12px;
+      }
+
+      thead { display: none; }
+
+      tbody {
+        display: grid;
+        gap: 10px;
+      }
+
+      tr {
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+      }
+
+      td {
+        display: grid;
+        grid-template-columns: 82px minmax(0, 1fr);
+        gap: 10px;
+        padding: 7px 0;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+      }
+
+      td:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      td::before {
+        content: attr(data-label);
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      td.num,
+      th.num {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <div>
+        <div class="eyebrow">AUCTORITAS LAB</div>
+        <h1>AUCTORITAS Journal Lens</h1>
+      </div>
+      <div class="period">
+        <span class="pill">Hostname: journal.fightingspirit.kr</span>
+        <span class="pill">Last 7 days</span>
+      </div>
+    </header>
+
+    <section class="verdict" aria-label="Weekly authority verdict">
+      <div>
+        <div class="eyebrow">Weekly Verdict</div>
+        <strong>Discovery is warming up; authority handoff is still thin.</strong>
+        <p>Organic and AI-assisted visits are visible, but the strongest articles need clearer paths into consultation-intent pages and related topic clusters.</p>
+      </div>
+      <div class="score-strip" aria-label="Authority signal scores">
+        <div class="score">
+          <span>DISCOVERABILITY</span>
+          <strong>B+</strong>
+        </div>
+        <div class="score">
+          <span>READ DEPTH</span>
+          <strong>B</strong>
+        </div>
+        <div class="score">
+          <span>HANDOFF</span>
+          <strong>C</strong>
+        </div>
+        <div class="score">
+          <span>NEXT MOVE</span>
+          <strong>Link</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-heading" aria-labelledby="weekly-pulse-title">
+      <h2 id="weekly-pulse-title">Weekly Pulse</h2>
+      <p>Journal performance, filtered by hostname</p>
+    </section>
+
+    <section class="summary" aria-label="Weekly Pulse metrics">
+      <article class="metric">
+        <div class="label">Active users</div>
+        <div class="value">114</div>
+        <div class="delta">+18%</div>
+      </article>
+      <article class="metric">
+        <div class="label">Sessions</div>
+        <div class="value">162</div>
+        <div class="delta">+12%</div>
+      </article>
+      <article class="metric">
+        <div class="label">Organic sessions</div>
+        <div class="value">41</div>
+        <div class="delta">+9%</div>
+      </article>
+      <article class="metric">
+        <div class="label">Avg engagement</div>
+        <div class="value">48s</div>
+        <div class="delta">stable</div>
+      </article>
+      <article class="metric warn">
+        <div class="label">Scroll events</div>
+        <div class="value">73</div>
+        <div class="delta">watch depth</div>
+      </article>
+      <article class="metric warn">
+        <div class="label">Main site clicks</div>
+        <div class="value">9</div>
+        <div class="delta">needs links</div>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="panel">
+        <h2>Discovery</h2>
+        <div class="sub">Where journal visits begin</div>
+        <div class="bars">
+          <div class="bar-row">
+            <span>Google organic</span>
+            <span class="track"><span class="fill green" style="width: 68%"></span></span>
+            <strong>41</strong>
+          </div>
+          <div class="bar-row">
+            <span>Naver</span>
+            <span class="track"><span class="fill" style="width: 28%"></span></span>
+            <strong>17</strong>
+          </div>
+          <div class="bar-row">
+            <span>ChatGPT / AI</span>
+            <span class="track"><span class="fill gold" style="width: 18%"></span></span>
+            <strong>11</strong>
+          </div>
+          <div class="bar-row">
+            <span>Referral</span>
+            <span class="track"><span class="fill" style="width: 32%"></span></span>
+            <strong>19</strong>
+          </div>
+          <div class="bar-row">
+            <span>Direct</span>
+            <span class="track"><span class="fill red" style="width: 38%"></span></span>
+            <strong>23</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h2>Reading Quality</h2>
+        <div class="sub">Engaged sessions by day</div>
+        <div class="trend" aria-label="Engaged sessions trend">
+          <div class="col" style="height: 42%"></div>
+          <div class="col" style="height: 57%"></div>
+          <div class="col" style="height: 48%"></div>
+          <div class="col" style="height: 69%"></div>
+          <div class="col" style="height: 64%"></div>
+          <div class="col" style="height: 88%"></div>
+          <div class="col" style="height: 76%"></div>
+        </div>
+        <div class="trend-labels">
+          <span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="handoff">
+      <article class="panel">
+        <h2>Authority Handoff</h2>
+        <div class="sub">Journal clicks that move toward the main site</div>
+        <div class="path-list">
+          <div class="path"><span>/about.html</span><strong>4</strong></div>
+          <div class="path"><span>www.fightingspirit.kr/contact</span><strong>3</strong></div>
+          <div class="path"><span>www.fightingspirit.kr/journals</span><strong>2</strong></div>
+        </div>
+      </article>
+      <aside class="callout">
+        <strong>Link</strong>
+        <span>Top articles are being read, but the handoff to consultation pages is thin. Add stronger contextual links from real estate and construction articles to main-site intent pages.</span>
+      </aside>
+    </section>
+
+    <section class="panel topic-board">
+      <h2>Topic Surface</h2>
+      <div class="sub">Which topics have enough search and authority signals to expand</div>
+      <div class="topic-list">
+        <div class="topic-row">
+          <div>
+            <strong>Real estate contract cancellation</strong>
+            <small>High intent, good organic entry, needs stronger internal path to consultation pages.</small>
+          </div>
+          <div class="mini-signal">
+            <span>Google</span>
+            <span class="track"><span class="fill green" style="width: 76%"></span></span>
+            <strong>36</strong>
+          </div>
+          <small>Action: expand with damages and deposit-return variants</small>
+        </div>
+        <div class="topic-row">
+          <div>
+            <strong>Interior construction disputes</strong>
+            <small>Shows AI-assisted discovery; structure should expose defect, payment, and setoff subtopics.</small>
+          </div>
+          <div class="mini-signal">
+            <span>AI / GPT</span>
+            <span class="track"><span class="fill gold" style="width: 54%"></span></span>
+            <strong>18</strong>
+          </div>
+          <small>Action: add topic hub links and FAQ anchors</small>
+        </div>
+        <div class="topic-row">
+          <div>
+            <strong>Administrative charges</strong>
+            <small>Stable Naver entry but weaker depth; title and opening summary should become more case-specific.</small>
+          </div>
+          <div class="mini-signal">
+            <span>Naver</span>
+            <span class="track"><span class="fill" style="width: 48%"></span></span>
+            <strong>29</strong>
+          </div>
+          <small>Action: refresh title, lead, and evidence table</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" style="margin-top:14px">
+      <h2>Top Articles</h2>
+      <div class="sub">Page path + query string, filtered by journal hostname</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Article</th>
+            <th>Topic</th>
+            <th>Source</th>
+            <th class="num">Views</th>
+            <th class="num">Avg</th>
+            <th>Reason</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Article">부동산 매매계약 해제와 계약금 반환 기준</td>
+            <td data-label="Topic">부동산</td>
+            <td data-label="Source">Google organic</td>
+            <td class="num" data-label="Views">36</td>
+            <td class="num" data-label="Avg">1m 12s</td>
+            <td data-label="Reason">High discovery and strong read depth</td>
+            <td data-label="Action"><span class="tag expand">Expand</span></td>
+          </tr>
+          <tr>
+            <td data-label="Article">개발부담금 체납과 가산금의 판단 기준</td>
+            <td data-label="Topic">행정</td>
+            <td data-label="Source">Naver</td>
+            <td class="num" data-label="Views">29</td>
+            <td class="num" data-label="Avg">44s</td>
+            <td data-label="Reason">Entry exists, but reading quality is soft</td>
+            <td data-label="Action"><span class="tag refresh">Refresh</span></td>
+          </tr>
+          <tr>
+            <td data-label="Article">인테리어 공사계약 해제 후 기성부분의 정산</td>
+            <td data-label="Topic">공사대금</td>
+            <td data-label="Source">ChatGPT / AI</td>
+            <td class="num" data-label="Views">18</td>
+            <td class="num" data-label="Avg">1m 04s</td>
+            <td data-label="Reason">AI discovery appears; internal handoff is weak</td>
+            <td data-label="Action"><span class="tag link">Link</span></td>
+          </tr>
+          <tr>
+            <td data-label="Article">주택임대차 조정서의 집행력과 강제집행 기준</td>
+            <td data-label="Topic">임대차</td>
+            <td data-label="Source">Direct</td>
+            <td class="num" data-label="Views">11</td>
+            <td class="num" data-label="Avg">32s</td>
+            <td data-label="Reason">Low sample; wait for another week</td>
+            <td data-label="Action"><span class="tag observe">Observe</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="decisions" aria-label="Weekly decision flow">
+      <article class="decision">
+        <strong>Expand</strong>
+        <span>검색 유입과 참여 시간이 모두 좋은 주제의 후속 글을 발행한다.</span>
+      </article>
+      <article class="decision">
+        <strong>Refresh</strong>
+        <span>유입은 있으나 읽힘이 약한 글의 제목, 요약, FAQ를 보강한다.</span>
+      </article>
+      <article class="decision">
+        <strong>Link</strong>
+        <span>읽히는 글에서 본사이트 목적지로 넘어가는 내부 링크를 강화한다.</span>
+      </article>
+      <article class="decision">
+        <strong>Observe</strong>
+        <span>데이터가 부족한 글은 다음 주까지 유지 관찰한다.</span>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

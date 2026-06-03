@@ -34,15 +34,31 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 <link rel="stylesheet" href="assets/common.css">
 <style>
-.masthead{padding:60px 40px 40px;display:grid;grid-template-columns:200px 1fr;gap:60px;align-items:start}
-.masthead .label{grid-column:1/-1;display:flex;gap:14px;align-items:center;margin-bottom:40px}
+.masthead{padding:52px 40px 34px;display:grid;grid-template-columns:minmax(150px,200px) minmax(0,1fr);gap:48px;align-items:start}
+.masthead .label{grid-column:1/-1;display:flex;gap:14px;align-items:center;margin-bottom:28px}
 .masthead .mark{font-family:var(--sans);font-weight:900;font-size:64px;line-height:.95;letter-spacing:-.06em;color:var(--ink);text-transform:uppercase}
 .masthead .mark .row{display:block}
 .masthead .mark .tag{display:block;margin-top:14px;font-family:var(--sans);font-weight:500;font-size:13px;letter-spacing:0;color:var(--fg-3);text-transform:none}
-.masthead .head h1{font-family:var(--sans);font-weight:900;font-size:clamp(48px,7vw,108px);line-height:.98;letter-spacing:-.045em;color:var(--ink)}
+.masthead .head h1{font-family:var(--sans);font-weight:900;font-size:clamp(44px,6.4vw,96px);line-height:.98;letter-spacing:-.045em;color:var(--ink)}
 .masthead .head h1 .line2{display:block;color:var(--fg-3)}
 .masthead .head h1 .dot{color:var(--vermillion)}
-.masthead .head .sub{margin-top:32px;font-family:var(--sans);font-size:16px;line-height:1.85;color:var(--fg-2);max-width:54ch;font-weight:400}
+.masthead .head .sub{margin-top:24px;font-family:var(--sans);font-size:16px;line-height:1.85;color:var(--fg-2);max-width:62ch;font-weight:400}
+.hero-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px}
+.hero-btn{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:10px 16px;border:1px solid var(--line-2);font-family:var(--label);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);transition:all var(--d-fast) var(--ease)}
+.hero-btn:hover,.hero-btn.primary{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.hero-btn.primary:hover{background:var(--vermillion);border-color:var(--vermillion)}
+
+.case-finder{padding:34px 40px 40px;border-bottom:1px solid var(--line);background:var(--paper)}
+.case-finder .inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:minmax(240px,.58fr) minmax(0,1.42fr);gap:36px;align-items:start}
+.case-label{font-family:var(--label);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--vermillion)}
+.case-finder h2{margin-top:12px;font-family:var(--sans);font-size:28px;line-height:1.22;letter-spacing:-.02em;font-weight:900;color:var(--ink);max-width:18ch}
+.case-finder p{margin-top:14px;font-family:var(--sans);font-size:14px;line-height:1.75;color:var(--fg-2);max-width:44ch}
+.case-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line)}
+.case-card{display:block;min-height:132px;padding:20px;background:var(--paper-2);color:var(--ink);transition:background var(--d-fast) var(--ease),transform var(--d-fast) var(--ease)}
+.case-card:hover{background:#fff;transform:translateY(-1px)}
+.case-card span{display:block;font-family:var(--label);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--fg-3)}
+.case-card strong{display:block;margin-top:12px;font-family:var(--sans);font-size:20px;line-height:1.24;letter-spacing:-.02em;font-weight:900;color:var(--ink)}
+.case-card em{display:block;margin-top:10px;font-style:normal;font-family:var(--sans);font-size:12px;line-height:1.55;color:var(--fg-2)}
 
 .cats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
 .cat-item{padding:36px 32px;border-right:1px solid var(--line);display:block;transition:background var(--d-fast) var(--ease)}
@@ -97,8 +113,8 @@
 .j-row .thumb{aspect-ratio:1200/630;background:var(--ink);overflow:hidden;border:1px solid var(--line)}
 .j-row .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform var(--d-slow) var(--ease)}
 .j-row:hover .thumb img{transform:scale(1.04)}
-.j-row .title{font-family:var(--sans);font-weight:600;font-size:18px;line-height:1.55;letter-spacing:-.012em;color:var(--ink);max-width:62ch}
-.j-row .title .sub{display:block;margin-top:6px;font-family:var(--sans);font-weight:400;font-size:13px;color:var(--fg-3);line-height:1.7;max-width:62ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.j-row .title{font-family:var(--sans);font-weight:600;font-size:18px;line-height:1.55;letter-spacing:-.012em;color:var(--ink);max-width:68ch;min-width:0}
+.j-row .title .sub{display:-webkit-box;margin-top:6px;font-family:var(--sans);font-weight:400;font-size:13px;color:var(--fg-3);line-height:1.65;max-width:66ch;overflow:hidden;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 .j-row .cat{font-family:var(--label);font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--fg-3);text-align:right}
 .j-row .cat .pri{color:var(--ink);font-weight:600}
 .j-row:hover .cat .pri{color:var(--vermillion)}
@@ -108,8 +124,9 @@
 .view-all a:hover{background:var(--ink);color:var(--paper)}
 
 @media(max-width:900px){
-  .masthead{padding:40px 20px 20px;grid-template-columns:1fr;gap:32px}.masthead .mark{font-size:48px}
+  .masthead{padding:36px 20px 24px;grid-template-columns:1fr;gap:24px}.masthead .mark{font-size:48px}
   .cats{grid-template-columns:1fr 1fr}.cat-item:nth-child(2n){border-right:none}.cat-item:nth-child(3),.cat-item:nth-child(4){border-top:1px solid var(--line)}
+  .case-finder{padding:30px 20px}.case-finder .inner{grid-template-columns:1fr;gap:22px}.case-grid{grid-template-columns:1fr 1fr}
   .authority-strip{padding:36px 20px}.authority-strip .inner{grid-template-columns:1fr;gap:18px}.authority-points{grid-template-columns:1fr 1fr}
   .journal-section{padding:40px 20px 80px}
   .topic-hubs{padding:32px 20px}.topic-grid{grid-template-columns:1fr 1fr}
@@ -120,6 +137,8 @@
 }
 @media(max-width:600px){
   .masthead .mark{font-size:36px}
+  .hero-actions{flex-direction:column}.hero-btn{width:100%}
+  .case-grid{grid-template-columns:1fr}.case-card{min-height:112px}
   .cats{grid-template-columns:1fr}.cat-item{border-right:none;border-bottom:1px solid var(--line);border-top:none!important}
   .authority-points{grid-template-columns:1fr}
   .topic-grid{grid-template-columns:1fr}
@@ -158,6 +177,11 @@
   <div class="head">
     <h1>공간을 둘러싼 분쟁,<br><span class="line2">법으로 풀어내다<span class="dot">.</span></span></h1>
     <p class="sub">공사대금·부동산·임대차·재건축 등 공간을 둘러싼 분쟁을 전문으로 다루는 공간분쟁 전문, 조국환 변호사팀이 직접 쓰는 판례·실무 저널.</p>
+    <div class="hero-actions" aria-label="저널 주요 이동">
+      <a class="hero-btn primary" href="#caseFinder">사안별 글 찾기</a>
+      <a class="hero-btn" href="journal/">전체 글 아카이브</a>
+      <a class="hero-btn" href="authority.html">발행 기준</a>
+    </div>
   </div>
 </header>
 
@@ -167,6 +191,48 @@
   <span style="color:var(--fg-3)">|</span>
   <span class="name">AUCTORITAS LAB</span>
 </div>
+
+<section class="case-finder" id="caseFinder" aria-labelledby="caseFinderTitle">
+  <div class="inner">
+    <div>
+      <div class="case-label">Case Finder</div>
+      <h2 id="caseFinderTitle">분쟁 유형을 먼저 고르면 관련 글로 이어집니다.</h2>
+      <p>방문자는 판례 분류보다 지금 겪는 사안을 먼저 떠올립니다. 저널 첫 화면은 공사대금, 인테리어 하자, 임대차, 부동산 보전처분처럼 실제 검색어에 가까운 길을 먼저 엽니다.</p>
+    </div>
+    <div class="case-grid" aria-label="사안별 빠른 탐색">
+      <a class="case-card" href="topic/공사대금-청구소송.html">
+        <span>Payment</span>
+        <strong>공사대금 청구소송</strong>
+        <em>하자 항변, 상계, 추가공사대금, 기성고 정산</em>
+      </a>
+      <a class="case-card" href="topic/인테리어-하자-분쟁.html">
+        <span>Interior</span>
+        <strong>인테리어 하자 분쟁</strong>
+        <em>부실시공, 하자보수 거절, 손해배상, 감정</em>
+      </a>
+      <a class="case-card" href="topic/건설-하자-분쟁.html">
+        <span>Construction</span>
+        <strong>건설 하자 분쟁</strong>
+        <em>하자보수, 도급계약, 보수비, 책임 범위</em>
+      </a>
+      <a class="case-card" href="topic/상가-임대차-원상회복.html">
+        <span>Lease</span>
+        <strong>상가 임대차 원상회복</strong>
+        <em>시설물 철거, 보증금 공제, 종료 후 비용 정산</em>
+      </a>
+      <a class="case-card" href="topic/부동산-가압류.html">
+        <span>Preserve</span>
+        <strong>부동산 가압류</strong>
+        <em>보전처분, 담보제공, 해제, 채권 회수</em>
+      </a>
+      <a class="case-card" href="topic/명도소송.html">
+        <span>Possession</span>
+        <strong>명도소송</strong>
+        <em>점유이전금지가처분, 임대차 종료, 불법점유 대응</em>
+      </a>
+    </div>
+  </div>
+</section>
 
 <section class="authority-strip" aria-labelledby="authorityTitle">
   <div class="inner">
