@@ -2,7 +2,7 @@
   "site": "https://journal.fightingspirit.kr",
   "name": "AUCTORITAS LAB 법률 저널",
   "description": "공간분쟁 전문 조국환 변호사팀의 판례·실무 저널 검색 인덱스",
-  "generatedAt": "2026-06-03T03:10:51.267Z",
+  "generatedAt": "2026-06-03T03:54:15.340Z",
   "topics": [
     {
       "name": "인테리어 하자 분쟁",
@@ -475,6 +475,16 @@
       "articleCount": 1
     },
     {
+      "name": "계약금반환",
+      "url": "https://journal.fightingspirit.kr/tag/%EA%B3%84%EC%95%BD%EA%B8%88%EB%B0%98%ED%99%98.html",
+      "articleCount": 1
+    },
+    {
+      "name": "계약해제",
+      "url": "https://journal.fightingspirit.kr/tag/%EA%B3%84%EC%95%BD%ED%95%B4%EC%A0%9C.html",
+      "articleCount": 1
+    },
+    {
       "name": "공사대금분쟁",
       "url": "https://journal.fightingspirit.kr/tag/%EA%B3%B5%EC%82%AC%EB%8C%80%EA%B8%88%EB%B6%84%EC%9F%81.html",
       "articleCount": 1
@@ -555,6 +565,11 @@
       "articleCount": 1
     },
     {
+      "name": "법률상담",
+      "url": "https://journal.fightingspirit.kr/tag/%EB%B2%95%EB%A5%A0%EC%83%81%EB%8B%B4.html",
+      "articleCount": 1
+    },
+    {
       "name": "보상적증여",
       "url": "https://journal.fightingspirit.kr/tag/%EB%B3%B4%EC%83%81%EC%A0%81%EC%A6%9D%EC%97%AC.html",
       "articleCount": 1
@@ -587,6 +602,16 @@
     {
       "name": "부동산개발",
       "url": "https://journal.fightingspirit.kr/tag/%EB%B6%80%EB%8F%99%EC%82%B0%EA%B0%9C%EB%B0%9C.html",
+      "articleCount": 1
+    },
+    {
+      "name": "부동산매매계약",
+      "url": "https://journal.fightingspirit.kr/tag/%EB%B6%80%EB%8F%99%EC%82%B0%EB%A7%A4%EB%A7%A4%EA%B3%84%EC%95%BD.html",
+      "articleCount": 1
+    },
+    {
+      "name": "부동산분쟁",
+      "url": "https://journal.fightingspirit.kr/tag/%EB%B6%80%EB%8F%99%EC%82%B0%EB%B6%84%EC%9F%81.html",
       "articleCount": 1
     },
     {
@@ -675,6 +700,11 @@
       "articleCount": 1
     },
     {
+      "name": "원상회복",
+      "url": "https://journal.fightingspirit.kr/tag/%EC%9B%90%EC%83%81%ED%9A%8C%EB%B3%B5.html",
+      "articleCount": 1
+    },
+    {
       "name": "유류분기여분개정",
       "url": "https://journal.fightingspirit.kr/tag/%EC%9C%A0%EB%A5%98%EB%B6%84%EA%B8%B0%EC%97%AC%EB%B6%84%EA%B0%9C%EC%A0%95.html",
       "articleCount": 1
@@ -700,6 +730,11 @@
       "articleCount": 1
     },
     {
+      "name": "이행착수",
+      "url": "https://journal.fightingspirit.kr/tag/%EC%9D%B4%ED%96%89%EC%B0%A9%EC%88%98.html",
+      "articleCount": 1
+    },
+    {
       "name": "인수주의",
       "url": "https://journal.fightingspirit.kr/tag/%EC%9D%B8%EC%88%98%EC%A3%BC%EC%9D%98.html",
       "articleCount": 1
@@ -722,6 +757,11 @@
     {
       "name": "임차보증금우선변제",
       "url": "https://journal.fightingspirit.kr/tag/%EC%9E%84%EC%B0%A8%EB%B3%B4%EC%A6%9D%EA%B8%88%EC%9A%B0%EC%84%A0%EB%B3%80%EC%A0%9C.html",
+      "articleCount": 1
+    },
+    {
+      "name": "잔금미지급",
+      "url": "https://journal.fightingspirit.kr/tag/%EC%9E%94%EA%B8%88%EB%AF%B8%EC%A7%80%EA%B8%89.html",
       "articleCount": 1
     },
     {
@@ -842,6 +882,11 @@
     {
       "name": "집행권원",
       "url": "https://journal.fightingspirit.kr/tag/%EC%A7%91%ED%96%89%EA%B6%8C%EC%9B%90.html",
+      "articleCount": 1
+    },
+    {
+      "name": "채무불이행",
+      "url": "https://journal.fightingspirit.kr/tag/%EC%B1%84%EB%AC%B4%EB%B6%88%EC%9D%B4%ED%96%89.html",
       "articleCount": 1
     },
     {
@@ -1218,6 +1263,25 @@
         "산재보험수급권",
         "부당이득징수결정",
         "선순위유족"
+      ],
+      "topics": []
+    },
+    {
+      "id": 57,
+      "title": "부동산 매매계약 해제와 계약금 반환 기준",
+      "url": "https://journal.fightingspirit.kr/journal/%EB%B6%80%EB%8F%99%EC%82%B0-%EB%A7%A4%EB%A7%A4%EA%B3%84%EC%95%BD-%ED%95%B4%EC%A0%9C%EC%99%80-%EA%B3%84%EC%95%BD%EA%B8%88-%EB%B0%98%ED%99%98-%EA%B8%B0%EC%A4%80-57.html",
+      "summary": "부동산 매매계약을 해제할 때는 계약금 포기·배액상환만으로 끝내는지 판단하지 않습니다. 계약 진행 단계, 이행착수 여부, 채무불이행의 적법한 최고와 도달 요건, 원상회복 범위를 함께 검토해야 합니다.",
+      "date": "2026.06.03",
+      "tags": [
+        "부동산매매계약",
+        "계약해제",
+        "계약금반환",
+        "이행착수",
+        "잔금미지급",
+        "원상회복",
+        "채무불이행",
+        "부동산분쟁",
+        "법률상담"
       ],
       "topics": []
     }
