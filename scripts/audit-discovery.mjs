@@ -96,7 +96,15 @@ async function main() {
   requireText('llms.txt', llms, `${SITE}/authority.html`, 'authority page link');
   requireText('llms.txt', llms, `${SITE}/.well-known/authority.json`, 'authority manifest link');
   requireText('index.html', indexHtml, 'href="journal/"', 'home static archive link');
+  requireText('index.html', indexHtml, 'href="query-map.html"', 'home query map link');
   requireText('index.html', indexHtml, 'href="authority.html"', 'home authority link');
+  requireText('index.html', indexHtml, 'Case Finder', 'home case finder section');
+  requireText('index.html', indexHtml, '검색 질의 지도', 'home query map label');
+  requireText('index.html', indexHtml, '공사대금 하자 항변', 'home high-intent construction payment query');
+  requireText('index.html', indexHtml, '인테리어 부실시공 손해배상', 'home high-intent interior defect query');
+  requireText('index.html', indexHtml, '점유이전금지가처분', 'home high-intent possession query');
+  requireText('index.html', indexHtml, '"@type": "CollectionPage"', 'home CollectionPage JSON-LD');
+  requireText('index.html', indexHtml, '"@type": "ItemList"', 'home ItemList JSON-LD');
   requireText('journal.html', journalHtml, 'href="journal/"', 'journal static archive link');
   requireText('journal/index.html', journalArchive, 'CollectionPage', 'CollectionPage JSON-LD');
   requireText('journal/index.html', journalArchive, 'ItemList', 'ItemList JSON-LD');
