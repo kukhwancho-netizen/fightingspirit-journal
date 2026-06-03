@@ -32,7 +32,13 @@ a.btn{display:inline-block;padding:14px 32px;background:var(--ink);color:var(--p
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-TC1HNLWLM6');
+  gtag('config', 'G-TC1HNLWLM6', {
+    send_page_view: true,
+    page_title: document.title,
+    page_path: window.location.pathname + window.location.search,
+    page_location: window.location.href,
+    cookie_domain: 'auto'
+  });
 </script>
 </head>
 <body>

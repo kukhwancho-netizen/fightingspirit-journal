@@ -30,7 +30,13 @@ const GA_TAG = `<!-- Google tag (gtag.js) -->
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', '${GA_MEASUREMENT_ID}');
+  gtag('config', '${GA_MEASUREMENT_ID}', {
+    send_page_view: true,
+    page_title: document.title,
+    page_path: window.location.pathname + window.location.search,
+    page_location: window.location.href,
+    cookie_domain: 'auto'
+  });
 </script>`;
 
 const SB_URL = 'https://cbdyclovsybrxhpgpjbo.supabase.co';

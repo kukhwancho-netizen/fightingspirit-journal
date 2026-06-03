@@ -53,7 +53,7 @@ function requireText(file, body, needle, label = needle) {
 
 function requireAnalytics(file, body) {
   requireText(file, body, `gtag/js?id=${GA_MEASUREMENT_ID}`, 'Google Analytics loader');
-  requireText(file, body, `gtag('config', '${GA_MEASUREMENT_ID}')`, 'Google Analytics config');
+  requireText(file, body, `gtag('config', '${GA_MEASUREMENT_ID}'`, 'Google Analytics config');
 }
 
 function urlToGeneratedPath(url) {
