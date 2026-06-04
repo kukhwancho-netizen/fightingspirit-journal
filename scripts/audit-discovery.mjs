@@ -103,8 +103,12 @@ async function main() {
   requireText('index.html', indexHtml, '공사대금 하자 항변', 'home high-intent construction payment query');
   requireText('index.html', indexHtml, '인테리어 부실시공 손해배상', 'home high-intent interior defect query');
   requireText('index.html', indexHtml, '점유이전금지가처분', 'home high-intent possession query');
+  requireText('index.html', indexHtml, '검색은 질문으로 시작합니다.', 'home search questions section');
+  requireText('index.html', indexHtml, '하자가 있으면 공사대금을 안 줘도 되나요?', 'home construction payment question');
+  requireText('index.html', indexHtml, '부동산 매매계약 해제 후 계약금을 돌려받을 수 있나요?', 'home sale contract question');
   requireText('index.html', indexHtml, '"@type": "CollectionPage"', 'home CollectionPage JSON-LD');
   requireText('index.html', indexHtml, '"@type": "ItemList"', 'home ItemList JSON-LD');
+  requireText('index.html', indexHtml, '"@type": "FAQPage"', 'home FAQPage JSON-LD');
   requireText('journal.html', journalHtml, 'href="journal/"', 'journal static archive link');
   requireText('journal/index.html', journalArchive, 'CollectionPage', 'CollectionPage JSON-LD');
   requireText('journal/index.html', journalArchive, 'ItemList', 'ItemList JSON-LD');

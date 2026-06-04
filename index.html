@@ -145,6 +145,61 @@
           }
         ]
       }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://journal.fightingspirit.kr/#search-questions",
+      "name": "공간분쟁 질문형 검색",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "하자가 있으면 공사대금을 안 줘도 되나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "하자의 정도, 공사의 완성도, 보수 가능성, 감액 또는 상계 주장 구조에 따라 달라집니다. 공사대금 청구소송에서는 지급 거절과 손해배상을 구분해 검토해야 합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "인테리어 부실시공 손해배상은 어디까지 되나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "계약 내용, 하자 감정, 보수비, 영업손실 주장 가능성, 하자보수 기회 제공 여부를 함께 봅니다. 단순 불만인지 법적 하자인지부터 정리해야 합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "임대차 종료 후 원상회복 비용을 보증금에서 공제할 수 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "공제 가능성은 특약, 통상 손모 여부, 시설물 설치 경위, 철거 범위, 비용 증빙에 따라 달라집니다. 보증금 공제 전후의 통지와 정산 자료가 중요합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "부동산 가압류를 해제하려면 무엇을 준비해야 하나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "채권의 존재와 보전 필요성, 담보 제공 가능성, 본안 소송 진행 상황, 해방공탁 또는 이의 절차를 함께 검토합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "명도소송 전에 점유이전금지가처분이 필요한가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "점유자가 바뀔 위험이 있거나 집행 단계의 공백을 줄여야 하는 사안에서는 함께 검토합니다. 점유 현황, 임대차 종료 사유, 통지 자료가 판단의 출발점입니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "부동산 매매계약 해제 후 계약금을 돌려받을 수 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "계약금 해제인지 채무불이행 해제인지, 이행착수 여부와 해제 통지의 도달 여부에 따라 결론이 달라집니다. 중도금, 잔금, 등기 협조 자료도 함께 봐야 합니다."
+          }
+        }
+      ]
     }
   ]
 }
@@ -167,7 +222,7 @@
 .hero-btn:hover,.hero-btn.primary{background:var(--ink);border-color:var(--ink);color:var(--paper)}
 .hero-btn.primary:hover{background:var(--vermillion);border-color:var(--vermillion)}
 
-.case-finder{padding:34px 40px 40px;border-bottom:1px solid var(--line);background:var(--paper)}
+.case-finder{scroll-margin-top:64px;padding:34px 40px 40px;border-bottom:1px solid var(--line);background:var(--paper)}
 .case-finder .inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:minmax(240px,.58fr) minmax(0,1.42fr);gap:36px;align-items:start}
 .case-label{font-family:var(--label);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--vermillion)}
 .case-finder h2{margin-top:12px;font-family:var(--sans);font-size:28px;line-height:1.22;letter-spacing:-.02em;font-weight:900;color:var(--ink);max-width:18ch}
@@ -183,6 +238,19 @@
 .case-card em{display:block;margin-top:10px;font-style:normal;font-family:var(--sans);font-size:12px;line-height:1.55;color:var(--fg-2)}
 .case-queries{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:14px}
 .case-queries .query{display:inline-flex;align-items:center;max-width:100%;min-height:24px;padding:4px 8px;border:1px solid var(--line);background:rgba(255,255,255,.68);font-family:var(--sans);font-size:11px;line-height:1.35;letter-spacing:0;text-transform:none;font-weight:700;color:var(--fg-2)}
+
+.search-questions{scroll-margin-top:64px;padding:44px 40px 48px;border-bottom:1px solid var(--line);background:var(--paper-2)}
+.search-questions .inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:minmax(240px,.5fr) minmax(0,1.5fr);gap:36px;align-items:start}
+.question-label{font-family:var(--label);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--vermillion)}
+.search-questions h2{margin-top:12px;font-family:var(--sans);font-size:30px;line-height:1.2;letter-spacing:0;font-weight:900;color:var(--ink);max-width:17ch}
+.search-questions p{margin-top:14px;font-family:var(--sans);font-size:14px;line-height:1.75;color:var(--fg-2);max-width:44ch}
+.question-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line)}
+.question-card{display:flex;flex-direction:column;min-height:184px;padding:20px;background:var(--paper);color:var(--ink);transition:background var(--d-fast) var(--ease),transform var(--d-fast) var(--ease)}
+.question-card:hover{background:#fff;transform:translateY(-1px)}
+.question-card span{font-family:var(--label);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-3)}
+.question-card strong{display:block;margin-top:12px;font-family:var(--sans);font-size:18px;line-height:1.32;letter-spacing:0;font-weight:900;color:var(--ink);overflow-wrap:anywhere}
+.question-card em{display:block;margin-top:10px;font-style:normal;font-family:var(--sans);font-size:12px;line-height:1.62;color:var(--fg-2)}
+.question-card .path{margin-top:auto;padding-top:16px;font-family:var(--label);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--vermillion)}
 
 .cats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
 .cat-item{padding:36px 32px;border-right:1px solid var(--line);display:block;transition:background var(--d-fast) var(--ease)}
@@ -251,6 +319,7 @@
   .masthead{padding:36px 20px 24px;grid-template-columns:1fr;gap:24px}.masthead .mark{font-size:48px}
   .cats{grid-template-columns:1fr 1fr}.cat-item:nth-child(2n){border-right:none}.cat-item:nth-child(3),.cat-item:nth-child(4){border-top:1px solid var(--line)}
   .case-finder{padding:30px 20px}.case-finder .inner{grid-template-columns:1fr;gap:22px}.case-grid{grid-template-columns:1fr 1fr}
+  .search-questions{padding:32px 20px 36px}.search-questions .inner{grid-template-columns:1fr;gap:22px}.question-grid{grid-template-columns:1fr 1fr}
   .authority-strip{padding:36px 20px}.authority-strip .inner{grid-template-columns:1fr;gap:18px}.authority-points{grid-template-columns:1fr 1fr}
   .journal-section{padding:40px 20px 80px}
   .topic-hubs{padding:32px 20px}.topic-grid{grid-template-columns:1fr 1fr}
@@ -266,6 +335,7 @@
   .mobile-break{display:block}
   .hero-actions{flex-direction:column}.hero-btn{width:100%}
   .case-grid{grid-template-columns:1fr}.case-card{min-height:150px}
+  .question-grid{grid-template-columns:1fr}.question-card{min-height:154px}
   .cats{grid-template-columns:1fr}.cat-item{border-right:none;border-bottom:1px solid var(--line);border-top:none!important}
   .authority-points{grid-template-columns:1fr}
   .topic-grid{grid-template-columns:1fr}
@@ -386,6 +456,54 @@
           <span class="query">명도소송 절차</span>
           <span class="query">점유이전금지가처분</span>
         </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="search-questions" id="searchQuestions" aria-labelledby="searchQuestionsTitle">
+  <div class="inner">
+    <div>
+      <div class="question-label">Search Questions</div>
+      <h2 id="searchQuestionsTitle">검색은 질문으로 시작합니다.</h2>
+      <p>실제 상담 전 검색은 짧은 키워드보다 문장에 가깝습니다. 저널은 질문을 곧바로 사안별 주제와 연결해, 사람이 찾기 쉽고 검색엔진이 이해하기 쉬운 구조를 유지합니다.</p>
+    </div>
+    <div class="question-grid" aria-label="질문형 검색 경로">
+      <a class="question-card" href="topic/공사대금-청구소송.html">
+        <span>Payment</span>
+        <strong>하자가 있으면 공사대금을 안 줘도 되나요?</strong>
+        <em>하자 항변, 감액, 손해배상, 상계 구조를 분리해 봅니다.</em>
+        <div class="path">공사대금 청구소송</div>
+      </a>
+      <a class="question-card" href="topic/인테리어-하자-분쟁.html">
+        <span>Interior</span>
+        <strong>인테리어 부실시공 손해배상은 어디까지 되나요?</strong>
+        <em>하자 감정, 보수비, 영업손실, 하자보수 기회를 함께 검토합니다.</em>
+        <div class="path">인테리어 하자 분쟁</div>
+      </a>
+      <a class="question-card" href="topic/상가-임대차-원상회복.html">
+        <span>Lease</span>
+        <strong>임대차 종료 후 원상회복 비용을 보증금에서 공제할 수 있나요?</strong>
+        <em>특약, 통상 손모, 시설물 설치 경위와 비용 증빙이 핵심입니다.</em>
+        <div class="path">상가 임대차 원상회복</div>
+      </a>
+      <a class="question-card" href="topic/부동산-가압류.html">
+        <span>Preserve</span>
+        <strong>부동산 가압류를 해제하려면 무엇을 준비해야 하나요?</strong>
+        <em>담보 제공, 해방공탁, 이의 절차, 본안 소송의 연결을 봅니다.</em>
+        <div class="path">부동산 가압류</div>
+      </a>
+      <a class="question-card" href="topic/명도소송.html">
+        <span>Possession</span>
+        <strong>명도소송 전에 점유이전금지가처분이 필요한가요?</strong>
+        <em>점유자가 바뀔 위험과 집행 가능성을 먼저 확인합니다.</em>
+        <div class="path">명도소송</div>
+      </a>
+      <a class="question-card" href="journal/%EB%B6%80%EB%8F%99%EC%82%B0-%EB%A7%A4%EB%A7%A4%EA%B3%84%EC%95%BD-%ED%95%B4%EC%A0%9C%EC%99%80-%EA%B3%84%EC%95%BD%EA%B8%88-%EB%B0%98%ED%99%98-%EA%B8%B0%EC%A4%80-57.html">
+        <span>Sale Contract</span>
+        <strong>부동산 매매계약 해제 후 계약금을 돌려받을 수 있나요?</strong>
+        <em>이행착수, 계약금 해제, 채무불이행 해제와 원상회복을 구분합니다.</em>
+        <div class="path">계약 해제와 계약금 반환</div>
       </a>
     </div>
   </div>
