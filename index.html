@@ -147,6 +147,56 @@
       }
     },
     {
+      "@type": "DataCatalog",
+      "@id": "https://journal.fightingspirit.kr/#citation-pack",
+      "name": "AUCTORITAS LAB Citation Pack",
+      "description": "AUCTORITAS LAB 법률 저널의 발행 주체, 본문 합본, 검색 인덱스, 사이트맵, RSS, 권위 manifest를 AI와 검색 시스템이 확인할 수 있도록 모은 기계판독 자료 묶음입니다.",
+      "url": "https://journal.fightingspirit.kr/#citationPack",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "AUCTORITAS LAB 법률 저널",
+        "url": "https://journal.fightingspirit.kr/"
+      },
+      "dataset": [
+        {
+          "@type": "Dataset",
+          "name": "LLMs content map",
+          "encodingFormat": "text/plain",
+          "url": "https://journal.fightingspirit.kr/llms.txt"
+        },
+        {
+          "@type": "Dataset",
+          "name": "Full text bundle",
+          "encodingFormat": "text/plain",
+          "url": "https://journal.fightingspirit.kr/llms-full.txt"
+        },
+        {
+          "@type": "Dataset",
+          "name": "Search index",
+          "encodingFormat": "application/json",
+          "url": "https://journal.fightingspirit.kr/search-index.json"
+        },
+        {
+          "@type": "Dataset",
+          "name": "Authority manifest",
+          "encodingFormat": "application/json",
+          "url": "https://journal.fightingspirit.kr/.well-known/authority.json"
+        },
+        {
+          "@type": "Dataset",
+          "name": "Sitemap",
+          "encodingFormat": "application/xml",
+          "url": "https://journal.fightingspirit.kr/sitemap.xml"
+        },
+        {
+          "@type": "Dataset",
+          "name": "RSS feed",
+          "encodingFormat": "application/rss+xml",
+          "url": "https://journal.fightingspirit.kr/feed.xml"
+        }
+      ]
+    },
+    {
       "@type": "FAQPage",
       "@id": "https://journal.fightingspirit.kr/#search-questions",
       "name": "공간분쟁 질문형 검색",
@@ -270,6 +320,19 @@
 .authority-point .t{margin-top:8px;font-family:var(--sans);font-size:14px;line-height:1.55;font-weight:760;color:var(--ink)}
 .authority-link{display:inline-block;margin-top:28px;font-family:var(--label);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:2px}
 
+.citation-pack{scroll-margin-top:64px;padding:44px 40px 48px;border-bottom:1px solid var(--line);background:var(--paper)}
+.citation-pack .inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:minmax(240px,.5fr) minmax(0,1.5fr);gap:36px;align-items:start}
+.citation-pack .kicker{font-family:var(--label);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--vermillion)}
+.citation-pack h2{margin-top:12px;font-family:var(--sans);font-size:30px;line-height:1.2;letter-spacing:0;font-weight:900;color:var(--ink);max-width:18ch}
+.citation-pack p{margin-top:14px;font-family:var(--sans);font-size:14px;line-height:1.75;color:var(--fg-2);max-width:48ch}
+.citation-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line)}
+.citation-card{display:flex;flex-direction:column;min-height:148px;padding:18px;background:var(--paper-2);color:var(--ink);transition:background var(--d-fast) var(--ease),transform var(--d-fast) var(--ease)}
+.citation-card:hover{background:#fff;transform:translateY(-1px)}
+.citation-card small{font-family:var(--label);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-3)}
+.citation-card strong{display:block;margin-top:10px;font-family:var(--sans);font-size:17px;line-height:1.28;font-weight:900;color:var(--ink)}
+.citation-card span{display:block;margin-top:8px;font-family:var(--sans);font-size:12px;line-height:1.58;color:var(--fg-2)}
+.citation-card em{display:block;margin-top:auto;padding-top:12px;font-family:var(--label);font-size:10px;font-style:normal;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--vermillion)}
+
 .topic-hubs{padding:42px 40px;border-bottom:1px solid var(--line);background:var(--paper-2)}
 .topic-hubs .topic-headline{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:18px}
 .topic-hubs .topic-label{font-family:var(--label);font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--fg-3)}
@@ -321,6 +384,7 @@
   .case-finder{padding:30px 20px}.case-finder .inner{grid-template-columns:1fr;gap:22px}.case-grid{grid-template-columns:1fr 1fr}
   .search-questions{padding:32px 20px 36px}.search-questions .inner{grid-template-columns:1fr;gap:22px}.question-grid{grid-template-columns:1fr 1fr}
   .authority-strip{padding:36px 20px}.authority-strip .inner{grid-template-columns:1fr;gap:18px}.authority-points{grid-template-columns:1fr 1fr}
+  .citation-pack{padding:32px 20px 36px}.citation-pack .inner{grid-template-columns:1fr;gap:22px}.citation-grid{grid-template-columns:1fr 1fr}
   .journal-section{padding:40px 20px 80px}
   .topic-hubs{padding:32px 20px}.topic-grid{grid-template-columns:1fr 1fr}
   .journal-section .header{grid-template-columns:1fr;gap:20px}.mast{font-size:54px}
@@ -336,6 +400,7 @@
   .hero-actions{flex-direction:column}.hero-btn{width:100%}
   .case-grid{grid-template-columns:1fr}.case-card{min-height:150px}
   .question-grid{grid-template-columns:1fr}.question-card{min-height:154px}
+  .citation-grid{grid-template-columns:1fr}.citation-card{min-height:132px}
   .cats{grid-template-columns:1fr}.cat-item{border-right:none;border-bottom:1px solid var(--line);border-top:none!important}
   .authority-points{grid-template-columns:1fr}
   .topic-grid{grid-template-columns:1fr}
@@ -375,10 +440,10 @@
     <h1>공간을 둘러싼 분쟁,<br><span class="line2">법으로 풀어내다<span class="dot">.</span></span></h1>
     <p class="sub">공사대금, 부동산, 임대차 등 <br class="mobile-break">공간분쟁을 판례와 실무 기준으로 정리합니다.</p>
     <div class="hero-actions" aria-label="저널 주요 이동">
-      <a class="hero-btn primary" href="#caseFinder">사안별 글 찾기</a>
-      <a class="hero-btn" href="journal/">전체 글 아카이브</a>
-      <a class="hero-btn" href="query-map.html">검색 질의 지도</a>
-      <a class="hero-btn" href="authority.html">발행 기준</a>
+      <a class="hero-btn primary" href="#caseFinder" data-analytics-event="journal_home_route_click" data-route-type="hero" data-route-name="case_finder">사안별 글 찾기</a>
+      <a class="hero-btn" href="journal/" data-analytics-event="journal_home_route_click" data-route-type="hero" data-route-name="archive">전체 글 아카이브</a>
+      <a class="hero-btn" href="query-map.html" data-analytics-event="journal_home_route_click" data-route-type="hero" data-route-name="query_map">검색 질의 지도</a>
+      <a class="hero-btn" href="authority.html" data-analytics-event="journal_home_route_click" data-route-type="hero" data-route-name="authority">발행 기준</a>
     </div>
   </div>
 </header>
@@ -390,20 +455,20 @@
   <span class="name">AUCTORITAS LAB</span>
 </div>
 
-<section class="case-finder" id="caseFinder" aria-labelledby="caseFinderTitle">
+<section class="case-finder" id="caseFinder" aria-labelledby="caseFinderTitle" data-analytics-section="case_finder" data-section-label="Case Finder">
   <div class="inner">
     <div>
       <div class="case-label">Case Finder</div>
       <h2 id="caseFinderTitle">분쟁 유형을 먼저 고르면 관련 글로 이어집니다.</h2>
       <p>방문자는 판례 분류보다 지금 겪는 사안을 먼저 떠올립니다. 저널 첫 화면은 공사대금, 인테리어 하자, 임대차, 부동산 보전처분처럼 실제 검색어에 가까운 길을 먼저 엽니다.</p>
       <div class="case-routes" aria-label="검색성과 확인 자료">
-        <a href="query-map.html">검색 질의 지도</a>
-        <a href="journal/">정적 아카이브</a>
-        <a href=".well-known/authority.json">권위 manifest</a>
+        <a href="query-map.html" data-analytics-event="journal_home_route_click" data-route-type="case_finder" data-route-name="query_map">검색 질의 지도</a>
+        <a href="journal/" data-analytics-event="journal_home_route_click" data-route-type="case_finder" data-route-name="archive">정적 아카이브</a>
+        <a href=".well-known/authority.json" data-analytics-event="journal_home_route_click" data-route-type="case_finder" data-route-name="authority_manifest">권위 manifest</a>
       </div>
     </div>
     <div class="case-grid" aria-label="사안별 빠른 탐색">
-      <a class="case-card" href="topic/공사대금-청구소송.html">
+      <a class="case-card" href="topic/공사대금-청구소송.html" data-analytics-event="journal_home_route_click" data-route-type="case_card" data-route-topic="공사대금 청구소송">
         <span class="case-type">Payment</span>
         <strong>공사대금 청구소송</strong>
         <em>하자 항변, 상계, 추가공사대금, 기성고 정산</em>
@@ -412,7 +477,7 @@
           <span class="query">공사대금 상계</span>
         </span>
       </a>
-      <a class="case-card" href="topic/인테리어-하자-분쟁.html">
+      <a class="case-card" href="topic/인테리어-하자-분쟁.html" data-analytics-event="journal_home_route_click" data-route-type="case_card" data-route-topic="인테리어 하자 분쟁">
         <span class="case-type">Interior</span>
         <strong>인테리어 하자 분쟁</strong>
         <em>부실시공, 하자보수 거절, 손해배상, 감정</em>
@@ -421,7 +486,7 @@
           <span class="query">인테리어 하자 감정</span>
         </span>
       </a>
-      <a class="case-card" href="topic/건설-하자-분쟁.html">
+      <a class="case-card" href="topic/건설-하자-분쟁.html" data-analytics-event="journal_home_route_click" data-route-type="case_card" data-route-topic="건설 하자 분쟁">
         <span class="case-type">Construction</span>
         <strong>건설 하자 분쟁</strong>
         <em>하자보수, 도급계약, 보수비, 책임 범위</em>
@@ -430,7 +495,7 @@
           <span class="query">도급계약 하자 분쟁</span>
         </span>
       </a>
-      <a class="case-card" href="topic/상가-임대차-원상회복.html">
+      <a class="case-card" href="topic/상가-임대차-원상회복.html" data-analytics-event="journal_home_route_click" data-route-type="case_card" data-route-topic="상가 임대차 원상회복">
         <span class="case-type">Lease</span>
         <strong>상가 임대차 원상회복</strong>
         <em>시설물 철거, 보증금 공제, 종료 후 비용 정산</em>
@@ -439,7 +504,7 @@
           <span class="query">시설물 철거 분쟁</span>
         </span>
       </a>
-      <a class="case-card" href="topic/부동산-가압류.html">
+      <a class="case-card" href="topic/부동산-가압류.html" data-analytics-event="journal_home_route_click" data-route-type="case_card" data-route-topic="부동산 가압류">
         <span class="case-type">Preserve</span>
         <strong>부동산 가압류</strong>
         <em>보전처분, 담보제공, 해제, 채권 회수</em>
@@ -448,7 +513,7 @@
           <span class="query">부동산 가압류 해제</span>
         </span>
       </a>
-      <a class="case-card" href="topic/명도소송.html">
+      <a class="case-card" href="topic/명도소송.html" data-analytics-event="journal_home_route_click" data-route-type="case_card" data-route-topic="명도소송">
         <span class="case-type">Possession</span>
         <strong>명도소송</strong>
         <em>점유이전금지가처분, 임대차 종료, 불법점유 대응</em>
@@ -461,7 +526,7 @@
   </div>
 </section>
 
-<section class="search-questions" id="searchQuestions" aria-labelledby="searchQuestionsTitle">
+<section class="search-questions" id="searchQuestions" aria-labelledby="searchQuestionsTitle" data-analytics-section="search_questions" data-section-label="Search Questions">
   <div class="inner">
     <div>
       <div class="question-label">Search Questions</div>
@@ -469,37 +534,37 @@
       <p>실제 상담 전 검색은 짧은 키워드보다 문장에 가깝습니다. 저널은 질문을 곧바로 사안별 주제와 연결해, 사람이 찾기 쉽고 검색엔진이 이해하기 쉬운 구조를 유지합니다.</p>
     </div>
     <div class="question-grid" aria-label="질문형 검색 경로">
-      <a class="question-card" href="topic/공사대금-청구소송.html">
+      <a class="question-card" href="topic/공사대금-청구소송.html" data-analytics-event="journal_home_route_click" data-route-type="question_card" data-route-topic="공사대금 청구소송" data-route-query="하자가 있으면 공사대금을 안 줘도 되나요?">
         <span>Payment</span>
         <strong>하자가 있으면 공사대금을 안 줘도 되나요?</strong>
         <em>하자 항변, 감액, 손해배상, 상계 구조를 분리해 봅니다.</em>
         <div class="path">공사대금 청구소송</div>
       </a>
-      <a class="question-card" href="topic/인테리어-하자-분쟁.html">
+      <a class="question-card" href="topic/인테리어-하자-분쟁.html" data-analytics-event="journal_home_route_click" data-route-type="question_card" data-route-topic="인테리어 하자 분쟁" data-route-query="인테리어 부실시공 손해배상은 어디까지 되나요?">
         <span>Interior</span>
         <strong>인테리어 부실시공 손해배상은 어디까지 되나요?</strong>
         <em>하자 감정, 보수비, 영업손실, 하자보수 기회를 함께 검토합니다.</em>
         <div class="path">인테리어 하자 분쟁</div>
       </a>
-      <a class="question-card" href="topic/상가-임대차-원상회복.html">
+      <a class="question-card" href="topic/상가-임대차-원상회복.html" data-analytics-event="journal_home_route_click" data-route-type="question_card" data-route-topic="상가 임대차 원상회복" data-route-query="임대차 종료 후 원상회복 비용을 보증금에서 공제할 수 있나요?">
         <span>Lease</span>
         <strong>임대차 종료 후 원상회복 비용을 보증금에서 공제할 수 있나요?</strong>
         <em>특약, 통상 손모, 시설물 설치 경위와 비용 증빙이 핵심입니다.</em>
         <div class="path">상가 임대차 원상회복</div>
       </a>
-      <a class="question-card" href="topic/부동산-가압류.html">
+      <a class="question-card" href="topic/부동산-가압류.html" data-analytics-event="journal_home_route_click" data-route-type="question_card" data-route-topic="부동산 가압류" data-route-query="부동산 가압류를 해제하려면 무엇을 준비해야 하나요?">
         <span>Preserve</span>
         <strong>부동산 가압류를 해제하려면 무엇을 준비해야 하나요?</strong>
         <em>담보 제공, 해방공탁, 이의 절차, 본안 소송의 연결을 봅니다.</em>
         <div class="path">부동산 가압류</div>
       </a>
-      <a class="question-card" href="topic/명도소송.html">
+      <a class="question-card" href="topic/명도소송.html" data-analytics-event="journal_home_route_click" data-route-type="question_card" data-route-topic="명도소송" data-route-query="명도소송 전에 점유이전금지가처분이 필요한가요?">
         <span>Possession</span>
         <strong>명도소송 전에 점유이전금지가처분이 필요한가요?</strong>
         <em>점유자가 바뀔 위험과 집행 가능성을 먼저 확인합니다.</em>
         <div class="path">명도소송</div>
       </a>
-      <a class="question-card" href="journal/%EB%B6%80%EB%8F%99%EC%82%B0-%EB%A7%A4%EB%A7%A4%EA%B3%84%EC%95%BD-%ED%95%B4%EC%A0%9C%EC%99%80-%EA%B3%84%EC%95%BD%EA%B8%88-%EB%B0%98%ED%99%98-%EA%B8%B0%EC%A4%80-57.html">
+      <a class="question-card" href="journal/%EB%B6%80%EB%8F%99%EC%82%B0-%EB%A7%A4%EB%A7%A4%EA%B3%84%EC%95%BD-%ED%95%B4%EC%A0%9C%EC%99%80-%EA%B3%84%EC%95%BD%EA%B8%88-%EB%B0%98%ED%99%98-%EA%B8%B0%EC%A4%80-57.html" data-analytics-event="journal_home_route_click" data-route-type="question_card" data-route-topic="부동산 매매계약 해제" data-route-query="부동산 매매계약 해제 후 계약금을 돌려받을 수 있나요?">
         <span>Sale Contract</span>
         <strong>부동산 매매계약 해제 후 계약금을 돌려받을 수 있나요?</strong>
         <em>이행착수, 계약금 해제, 채무불이행 해제와 원상회복을 구분합니다.</em>
@@ -509,7 +574,7 @@
   </div>
 </section>
 
-<section class="authority-strip" aria-labelledby="authorityTitle">
+<section class="authority-strip" aria-labelledby="authorityTitle" data-analytics-section="authority_strip" data-section-label="Authority Signals">
   <div class="inner">
     <div class="kicker">Authority Signals</div>
     <div>
@@ -521,7 +586,55 @@
         <div class="authority-point"><div class="n">03</div><div class="t">판례, 법리, 절차, 증거의 구분</div></div>
         <div class="authority-point"><div class="n">04</div><div class="t">AI 인용용 manifest와 본문 합본 공개</div></div>
       </div>
-      <a class="authority-link" href="authority.html">발행 원칙 보기</a>
+      <a class="authority-link" href="authority.html" data-analytics-event="journal_home_route_click" data-route-type="authority" data-route-name="principles">발행 원칙 보기</a>
+    </div>
+  </div>
+</section>
+
+<section class="citation-pack" id="citationPack" aria-labelledby="citationPackTitle" data-analytics-section="citation_pack" data-section-label="Citation Pack">
+  <div class="inner">
+    <div>
+      <div class="kicker">Citation Pack</div>
+      <h2 id="citationPackTitle">AI가 확인할 수 있는 자료를 한곳에 둡니다.</h2>
+      <p>저널은 글만 발행하지 않고, 출처·전문 범위·검색 인덱스·전체 본문 합본을 공개합니다. 권위를 선언하는 대신 확인 가능한 자료 묶음으로 남깁니다.</p>
+    </div>
+    <div class="citation-grid" aria-label="AI 및 검색 시스템용 공개 자료">
+      <a class="citation-card" href="llms.txt" data-analytics-event="journal_home_route_click" data-route-type="citation_pack" data-route-name="llms_map">
+        <small>Content Map</small>
+        <strong>llms.txt</strong>
+        <span>주제, 글, 검색 질의, 발행 기준을 요약한 AI용 사이트 지도</span>
+        <em>텍스트 지도</em>
+      </a>
+      <a class="citation-card" href="llms-full.txt" data-analytics-event="journal_home_route_click" data-route-type="citation_pack" data-route-name="full_text">
+        <small>Full Text</small>
+        <strong>llms-full.txt</strong>
+        <span>공개된 저널 본문을 한 파일로 모은 인용·검토용 합본</span>
+        <em>본문 합본</em>
+      </a>
+      <a class="citation-card" href="search-index.json" data-analytics-event="journal_home_route_click" data-route-type="citation_pack" data-route-name="search_index">
+        <small>Search Index</small>
+        <strong>search-index.json</strong>
+        <span>글, 태그, 주제 허브, 추적 검색 질의를 구조화한 색인</span>
+        <em>JSON 색인</em>
+      </a>
+      <a class="citation-card" href=".well-known/authority.json" data-analytics-event="journal_home_route_click" data-route-type="citation_pack" data-route-name="authority_manifest">
+        <small>Authority</small>
+        <strong>authority.json</strong>
+        <span>발행 주체, 전문 범위, 작성 원칙, AI 인용 기준</span>
+        <em>권위 manifest</em>
+      </a>
+      <a class="citation-card" href="sitemap.xml" data-analytics-event="journal_home_route_click" data-route-type="citation_pack" data-route-name="sitemap">
+        <small>Crawl</small>
+        <strong>sitemap.xml</strong>
+        <span>검색엔진이 확인할 정규 URL 목록과 글 공개 경로</span>
+        <em>사이트맵</em>
+      </a>
+      <a class="citation-card" href="feed.xml" data-analytics-event="journal_home_route_click" data-route-type="citation_pack" data-route-name="rss">
+        <small>Updates</small>
+        <strong>feed.xml</strong>
+        <span>새 글 발행 흐름을 구독·수집할 수 있는 RSS 피드</span>
+        <em>RSS 피드</em>
+      </a>
     </div>
   </div>
 </section>

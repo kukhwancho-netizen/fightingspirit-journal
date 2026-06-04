@@ -120,3 +120,69 @@ function renderFooter(){
   const slot=document.getElementById('footerSlot');
   if(slot)slot.outerHTML=html;
 }
+
+function _toSnakeCase(value){
+  return String(value).replace(/[A-Z]/g,m=>'_'+m.toLowerCase());
+}
+
+function _analyticsParamsFrom(el){
+  const params={};
+  for(const [key,value] of Object.entries(el.dataset||{})){
+    if(key==='analyticsEvent'||key==='analyticsSection')continue;
+    params[_toSnakeCase(key)]=value;
+  }
+  return params;
+}
+
+function trackJournalEvent(name,params={}){
+  const payload={
+    ...params,
+    page_path:location.pathname+location.search,
+    page_location:location.href
+  };
+  if(typeof window.gtag==='function'){
+    window.gtag('event',name,payload);
+    return;
+  }
+  window.dataLayer=window.dataLayer||[];
+  window.dataLayer.push({event:name,...payload});
+}
+
+function setupJournalAnalytics(){
+  document.addEventListener('click',event=>{
+    const el=event.target.closest('[data-analytics-event]');
+    if(!el)return;
+    trackJournalEvent(el.dataset.analyticsEvent,_analyticsParamsFrom(el));
+  });
+
+  const sections=[...document.querySelectorAll('[data-analytics-section]')];
+  if(!sections.length)return;
+  const seen=new Set();
+  const record=el=>{
+    const section=el.dataset.analyticsSection;
+    if(!section||seen.has(section))return;
+    seen.add(section);
+    trackJournalEvent('journal_home_section_view',_analyticsParamsFrom(el));
+  };
+
+  if(!('IntersectionObserver' in window)){
+    sections.forEach(record);
+    return;
+  }
+
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting&&entry.intersectionRatio>=0.35){
+        record(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  },{threshold:[0.35],rootMargin:'0px 0px -15% 0px'});
+  sections.forEach(section=>observer.observe(section));
+}
+
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',setupJournalAnalytics,{once:true});
+}else{
+  setupJournalAnalytics();
+}

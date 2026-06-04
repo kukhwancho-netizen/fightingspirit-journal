@@ -15,6 +15,7 @@ const requiredFiles = [
   'journal/index.html',
   'about.html',
   'authority.html',
+  'assets/common.js',
   '404.html',
   'query-map.html',
   'topic/index.html',
@@ -71,6 +72,7 @@ async function main() {
   const robots = await text('robots.txt');
   const opensearch = await text('opensearch.xml');
   const llms = await text('llms.txt');
+  const commonJs = await text('assets/common.js');
   const journalArchive = await text('journal/index.html');
   const queryMap = await text('query-map.html');
   const indexHtml = await text('index.html');
@@ -106,9 +108,17 @@ async function main() {
   requireText('index.html', indexHtml, '검색은 질문으로 시작합니다.', 'home search questions section');
   requireText('index.html', indexHtml, '하자가 있으면 공사대금을 안 줘도 되나요?', 'home construction payment question');
   requireText('index.html', indexHtml, '부동산 매매계약 해제 후 계약금을 돌려받을 수 있나요?', 'home sale contract question');
+  requireText('index.html', indexHtml, 'Citation Pack', 'home citation pack section');
+  requireText('index.html', indexHtml, 'href="llms-full.txt"', 'home full-text bundle link');
+  requireText('index.html', indexHtml, 'href="search-index.json"', 'home search-index link');
+  requireText('index.html', indexHtml, 'data-analytics-event="journal_home_route_click"', 'home route click analytics hook');
+  requireText('index.html', indexHtml, 'data-analytics-section="citation_pack"', 'home citation pack section analytics hook');
   requireText('index.html', indexHtml, '"@type": "CollectionPage"', 'home CollectionPage JSON-LD');
   requireText('index.html', indexHtml, '"@type": "ItemList"', 'home ItemList JSON-LD');
+  requireText('index.html', indexHtml, '"@type": "DataCatalog"', 'home DataCatalog JSON-LD');
   requireText('index.html', indexHtml, '"@type": "FAQPage"', 'home FAQPage JSON-LD');
+  requireText('assets/common.js', commonJs, 'journal_home_section_view', 'section view analytics event');
+  requireText('assets/common.js', commonJs, 'trackJournalEvent', 'journal analytics helper');
   requireText('journal.html', journalHtml, 'href="journal/"', 'journal static archive link');
   requireText('journal/index.html', journalArchive, 'CollectionPage', 'CollectionPage JSON-LD');
   requireText('journal/index.html', journalArchive, 'ItemList', 'ItemList JSON-LD');
