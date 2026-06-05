@@ -6,6 +6,12 @@ const SB_URL = process.env.SUPABASE_URL || 'https://cbdyclovsybrxhpgpjbo.supabas
 const AUTHOR_LINE = '작성: 조국환 변호사팀 | AUCTORITAS LAB';
 const SERIES = new Set(['PRECEDENT', 'CIVIL', 'ADMIN', 'FAMILY']);
 const SLOTS = ['05:10', '07:10', '09:10'];
+const EXISTING_STYLE = {
+  minBodyChars: 1800,
+  minParagraphs: 8,
+  allowedTags: new Set(['h2', 'h3', 'p', 'strong', 'br'])
+};
+const NON_AUCTORITAS_TONE_RE = /(ㅋㅋ|ㅎㅎ|ㅠㅠ|ㅜㅜ|!!|100%|반드시\s*승소|대박|꿀팁|완벽하게\s*해결|클릭|상담\s*신청)/;
 
 function parseArgs(argv) {
   const opts = {
@@ -73,7 +79,7 @@ Options:
   --min-tags 8                    최소 태그 수.
   --status published              직접 예약은 published + future publish_at 권장.
   --format html|text              기본 html. 검색 구조용 h2/h3/p를 생성.
-  --strict-seo                    검색 구조 경고도 실패로 처리.
+  --strict-seo                    검색 구조/기존 글 유사성 경고도 실패로 처리.
   --fill-visible-gaps             공개 저널 기준 날짜별 빈 슬롯을 먼저 채움.
   --publish-today                 모든 글을 오늘 날짜의 즉시 공개 글로 준비.
   --today-interval 10             오늘 남은 시간 기준 N분 간격으로 예약.
@@ -206,7 +212,7 @@ function normalizeBodyHtml(raw) {
       html.push(`<p>${inlineHtml(tableText).replace(/\n/g, '<br>')}</p>`);
       continue;
     }
-    if (/^자주\s*묻는\s*질문$/.test(normalized)) {
+    if (/^(?:FAQ|자주\s*묻는\s*질문)$/i.test(normalized)) {
       html.push('<h2>자주 묻는 질문</h2>');
       inFaq = true;
       continue;
@@ -238,6 +244,19 @@ function stripText(raw) {
   return String(raw || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function htmlTagNames(content) {
+  return [...String(content || '').matchAll(/<\/?\s*([a-z][a-z0-9-]*)\b/gi)]
+    .map(match => match[1].toLowerCase());
+}
+
+function countOpeningTag(content, tag) {
+  return (String(content || '').match(new RegExp(`<${tag}(?:\\s|>)`, 'gi')) || []).length;
+}
+
 function includesSearchTarget(haystack, target) {
   if (!target) return true;
   if (haystack.includes(target)) return true;
@@ -250,6 +269,41 @@ function summaryFor(draft, content) {
   if (draft.summary) return draft.summary;
   const body = stripText(content).replace(AUTHOR_LINE, '').trim();
   return body.length > 150 ? `${body.slice(0, 147)}...` : body;
+}
+
+function existingPostStyleWarnings(row, opts) {
+  const warnings = [];
+  if (opts.format !== 'html') return warnings;
+
+  const content = String(row.content || '');
+  const tagNames = htmlTagNames(content);
+  const disallowedTags = [...new Set(tagNames.filter(tag => !EXISTING_STYLE.allowedTags.has(tag)))];
+  if (disallowedTags.length) {
+    warnings.push(`기존 글 유사성: 본문 HTML은 h2/h3/p/strong/br 중심이어야 합니다. 감지 태그: ${disallowedTags.join(', ')}`);
+  }
+  if (/\s(?:class|style)=/i.test(content)) {
+    warnings.push('기존 글 유사성: 본문 안에는 class/style 속성을 넣지 않습니다');
+  }
+
+  const authorHtml = `<p>${AUTHOR_LINE}</p>`;
+  const authorCount = (content.match(new RegExp(escapeRegExp(AUTHOR_LINE), 'g')) || []).length;
+  if (authorCount !== 1 || !content.trim().endsWith(authorHtml)) {
+    warnings.push('기존 글 유사성: 작성자 라인은 본문 마지막에 한 번만 둡니다');
+  }
+
+  const bodyText = stripText(content).replace(AUTHOR_LINE, '').trim();
+  const paragraphCount = Math.max(0, countOpeningTag(content, 'p') - 1);
+  if (bodyText.length < EXISTING_STYLE.minBodyChars) {
+    warnings.push(`기존 글 유사성: 본문 ${bodyText.length}자, 권장 ${EXISTING_STYLE.minBodyChars}자 이상`);
+  }
+  if (paragraphCount < EXISTING_STYLE.minParagraphs) {
+    warnings.push(`기존 글 유사성: 본문 문단 ${paragraphCount}개, 권장 ${EXISTING_STYLE.minParagraphs}개 이상`);
+  }
+  if (NON_AUCTORITAS_TONE_RE.test(bodyText)) {
+    warnings.push('기존 글 유사성: 구어체/광고성 표현이 감지됐습니다');
+  }
+
+  return warnings;
 }
 
 function parseDrafts(text) {
@@ -289,6 +343,7 @@ function seoWarnings(draft, row, opts) {
   if (primary && !includesSearchTarget(earlyText, primary)) warnings.push(`주 검색질의가 제목 또는 초반부에 없음: ${primary}`);
   if (row.summary.length < 60 || row.summary.length > 170) warnings.push(`요약 길이 ${row.summary.length}자, 권장 60~170자`);
   if (row.title.length < 18 || row.title.length > 85) warnings.push(`제목 길이 ${row.title.length}자, 권장 18~85자`);
+  warnings.push(...existingPostStyleWarnings(row, opts));
   return warnings;
 }
 

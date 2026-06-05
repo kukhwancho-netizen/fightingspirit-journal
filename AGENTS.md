@@ -14,6 +14,8 @@ https://github.com/kukhwancho-netizen/another-pipe
 - `CLAUDE.md`
 - `docs/auctoritas-codex-posting-workflow.md`
 
+운영 레포의 `--strict-seo`는 검색 구조뿐 아니라 기존 공개 저널 글과의 유사성도 검사한다. 초안이 짧거나 구어체이면 바로 발행하지 말고, 기존 글처럼 선비적인 법률 해설문 구조로 보강한 뒤 다시 통과시킨다.
+
 ## 이 레포에서 가능한 호환 명령
 
 이 레포에도 같은 저널업로더 스크립트가 있다.
