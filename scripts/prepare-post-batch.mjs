@@ -59,6 +59,10 @@ function validateArgs(opts) {
 
 function usage() {
   return `Usage:
+  npm run journal:uploader -- drafts.md --base-date 2026-06-03
+  SUPABASE_SERVICE_ROLE_KEY=... npm run journal:uploader:publish -- drafts.md --base-date auto
+
+Compatibility:
   npm run posts:prepare -- drafts.md --base-date 2026-06-03
   SUPABASE_SERVICE_ROLE_KEY=... npm run posts:publish -- drafts.md --base-date auto
 

@@ -1,6 +1,12 @@
-# Codex 저널 발행 워크플로
+# 저널업로더
 
-대시보드 클릭 자동화 대신 Codex가 초안을 검증하고 Supabase `posts` payload를 만드는 방식으로 운용한다. 목표는 단순 업로드가 아니라 검색 질의에 걸릴 문서 구조를 일관되게 만드는 것이다.
+저널업로더는 대시보드 클릭 자동화 대신 Codex나 Claude Code가 초안을 검증하고 Supabase `posts` payload를 만드는 발행 루트다. 목표는 단순 업로드가 아니라 검색 질의에 걸릴 문서 구조를 일관되게 만드는 것이다.
+
+실행 별칭은 다음을 기본으로 쓴다.
+
+- 준비/검증: `npm run journal:uploader`
+- DB 등록/예약: `npm run journal:uploader:publish`
+- 기존 호환 명령: `npm run posts:prepare`, `npm run posts:publish`
 
 ## 결론
 
@@ -49,7 +55,7 @@
 ## 준비만 하기
 
 ```powershell
-npm run posts:prepare -- work/drafts.md --base-date 2026-06-03
+npm run journal:uploader -- work/drafts.md --base-date 2026-06-03
 ```
 
 결과는 `work/prepared-posts.json`에 저장된다. 태그가 8개 미만이거나 제목·본문이 비면 실패한다. 검색 구조 문제는 `warnings`로 표시된다. 경고까지 실패로 보고 싶으면 `--strict-seo`를 붙인다.
@@ -59,7 +65,7 @@ npm run posts:prepare -- work/drafts.md --base-date 2026-06-03
 사용자가 "예약 없이 오늘 올려"라고 하면 예약 슬롯을 잡지 말고 모든 글을 오늘 날짜의 즉시 공개 글로 준비한다.
 
 ```powershell
-npm run posts:publish -- work/drafts.md --publish-today --strict-seo
+npm run journal:uploader:publish -- work/drafts.md --publish-today --strict-seo
 ```
 
 이 모드는 `date`를 오늘로 두고 `publish_at`을 비워서 공개 저널 목록, sitemap, search-index에 바로 들어가게 한다.
@@ -69,13 +75,13 @@ npm run posts:publish -- work/drafts.md --publish-today --strict-seo
 사용자가 "오늘 10분 간격 예약"을 요청하면 오늘 남은 시간 안에서 현재 시각 이후의 10분 단위 슬롯으로 배정한다.
 
 ```powershell
-npm run posts:publish -- work/drafts.md --today-interval 10 --strict-seo
+npm run journal:uploader:publish -- work/drafts.md --today-interval 10 --strict-seo
 ```
 
 첫 시각을 직접 정해야 하면 아래처럼 쓴다.
 
 ```powershell
-npm run posts:publish -- work/drafts.md --today-interval 10 --today-start 13:00 --strict-seo
+npm run journal:uploader:publish -- work/drafts.md --today-interval 10 --today-start 13:00 --strict-seo
 ```
 
 ### 공개 저널 기준으로 빈날 채우기
@@ -83,7 +89,7 @@ npm run posts:publish -- work/drafts.md --today-interval 10 --today-start 13:00 
 예약 배치는 관리자 화면의 마지막 예약일이 아니라 공개 저널에 실제로 보이는 글의 날짜별 개수를 기준으로 잡는다. 미래 예약글은 공개 저널에 아직 보이지 않으므로 빈날 계산에서 제외한다.
 
 ```powershell
-npm run posts:publish -- work/drafts.md --fill-visible-gaps --strict-seo
+npm run journal:uploader:publish -- work/drafts.md --fill-visible-gaps --strict-seo
 ```
 
 이 모드는 오늘부터 공개 글이 3개 미만인 날짜를 먼저 채우고, 05:10 / 07:10 / 09:10 순서로 배정한다.
@@ -94,7 +100,7 @@ npm run posts:publish -- work/drafts.md --fill-visible-gaps --strict-seo
 
 ```powershell
 $env:SUPABASE_SERVICE_ROLE_KEY='...'
-npm run posts:publish -- work/drafts.md --base-date auto
+npm run journal:uploader:publish -- work/drafts.md --base-date auto
 ```
 
 `--base-date auto`는 Supabase에서 가장 늦은 `publish_at`을 읽고 그 다음 날부터 하루 3개씩 배정한다.

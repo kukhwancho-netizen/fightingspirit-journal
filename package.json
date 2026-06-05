@@ -8,6 +8,8 @@
     "build": "node scripts/prerender.mjs",
     "check": "node --check scripts/prerender.mjs && node --check scripts/audit-discovery.mjs",
     "audit": "node scripts/audit-discovery.mjs",
+    "journal:uploader": "node scripts/prepare-post-batch.mjs",
+    "journal:uploader:publish": "node scripts/prepare-post-batch.mjs --publish",
     "posts:prepare": "node scripts/prepare-post-batch.mjs",
     "posts:publish": "node scripts/prepare-post-batch.mjs --publish"
   },
