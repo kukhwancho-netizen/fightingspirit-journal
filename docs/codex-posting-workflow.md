@@ -2,6 +2,14 @@
 
 저널업로더는 대시보드 클릭 자동화 대신 Codex나 Claude Code가 초안을 검증하고 Supabase `posts` payload를 만드는 발행 루트다. 목표는 단순 업로드가 아니라 검색 질의에 걸릴 문서 구조를 일관되게 만드는 것이다.
 
+## 클라우드 관리자 인계
+
+실제 운영 배포원은 `kukhwancho-netizen/another-pipe`이다. 어느 클라우드 Codex/Claude Code 세션이든 "저널에 올려줘" 요청을 받으면 우선 `another-pipe`를 pull하고, 그 레포의 `AGENTS.md`, `CLAUDE.md`, `docs/auctoritas-codex-posting-workflow.md`를 읽는다.
+
+이 레포의 저널업로더는 호환용이다. 실제 공개 배포까지 책임지는 기본 루트는 `another-pipe`이다.
+
+`SUPABASE_SERVICE_ROLE_KEY`는 레포, 문서, 로그에 남기지 않는다. 클라우드 실행 환경의 secret 또는 세션 환경변수로만 제공한다.
+
 실행 별칭은 다음을 기본으로 쓴다.
 
 - 준비/검증: `npm run journal:uploader`
